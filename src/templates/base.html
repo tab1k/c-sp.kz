@@ -1,0 +1,483 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>csp</title>
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="author" content="Webestica.com" />
+    <meta name="description" content="ЦЕНТР СТАЛЬНОГО ПРОКАТА 'ЦСП' " />
+
+    <!-- Dark mode -->
+    <script>
+      const storedTheme = localStorage.getItem('theme')
+      
+      const getPreferredTheme = () => {
+        return storedTheme ? storedTheme : 'light' // По умолчанию — светлая тема
+      }
+      
+      const setTheme = function (theme) {
+        document.documentElement.setAttribute('data-bs-theme', theme)
+      }
+      
+      setTheme(getPreferredTheme())
+      
+      window.addEventListener('DOMContentLoaded', () => {
+        var el = document.querySelector('.theme-icon-active')
+        if (el != 'undefined' && el != null) {
+          const showActiveTheme = (theme) => {
+            const activeThemeIcon = document.querySelector('.theme-icon-active use')
+            const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+            const svgOfActiveBtn = btnToActive.querySelector('.mode-switch use').getAttribute('href')
+      
+            document.querySelectorAll('[data-bs-theme-value]').forEach((element) => {
+              element.classList.remove('active')
+            })
+      
+            btnToActive.classList.add('active')
+            activeThemeIcon.setAttribute('href', svgOfActiveBtn)
+          }
+      
+          showActiveTheme(getPreferredTheme())
+      
+          document.querySelectorAll('[data-bs-theme-value]').forEach((toggle) => {
+            toggle.addEventListener('click', () => {
+              const theme = toggle.getAttribute('data-bs-theme-value')
+              localStorage.setItem('theme', theme)
+              setTheme(theme)
+              showActiveTheme(theme)
+            })
+          })
+        }
+      })
+    </script>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/favicon.ico" />
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap" />
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/all.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-icons.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tiny-slider.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/glightbox.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/flatpickr.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/choices.min.css' %}" />
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+  </head>
+
+  <body>
+    <!-- Header START -->
+    <header class="navbar-light header-sticky">
+      <div class="header-top container">
+        <span style="color: #262a31;">
+          <i class="fa-solid fa-envelope me-2"></i> zakaz@steelfed.kz
+        </span>
+        <span>
+            <a style="color: #262a31;" href="mailto:zakaz@steelfed.kz">
+              <i class="fa-solid fa-phone me-2"></i> +7 (707) 777 28 17
+            </a>
+        </span>
+      </div>
+      <style>
+       .header-top {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1200px; /* Или другой размер в зависимости от дизайна */
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #666;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #e2e6ed;
+    z-index: 1050;
+}
+
+
+      </style>
+      <!-- Logo Nav START -->
+      <nav class="navbar navbar-expand-xl">
+        <div class="container mt-5">
+          <!-- Logo START -->
+          <a class="navbar-brand" href="index.html">
+            <img class="light-mode-item navbar-brand-item" src="{% static 'images/logo.png' %}" alt="logo">
+            <img class="dark-mode-item navbar-brand-item" src="{% static 'images/logo.png' %}" alt="logo">
+          </a>
+          <!-- Logo END -->
+    
+          <!-- Responsive navbar toggler -->
+          <button class="navbar-toggler ms-auto ms-sm-0 p-0 p-sm-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <span class="d-none d-sm-inline-block small"></span>
+          </button>
+    
+          <!-- Responsive category toggler -->
+          <button class="navbar-toggler ms-sm-auto mx-3 me-md-0 p-0 p-sm-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCategoryCollapse" aria-controls="navbarCategoryCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-grid-3x3-gap-fill fa-fw"></i><span class="d-none d-sm-inline-block small"></span>
+          </button>
+    
+          <!-- Main navbar START -->
+          <div class="navbar-collapse collapse" id="navbarCollapse">
+            <div class="search-bar" style="position: relative; width: 100%;">
+              <input type="text" id="search-input" style="border-radius: 7px; border: 1px solid #e2e6ed; color: #262a31; padding: 8px 40px 8px 8px; width: 600px;" placeholder="Поиск в каталоге...">
+              <ul id="search-results" style="position: absolute; width: 100%; max-height: 200px; overflow-y: auto; z-index: 10; display: none; list-style: none; padding: 0; margin: 0; border-radius: 7px; background-color: white;"></ul>
+          </div>
+          
+          </div>
+          <!-- Main navbar END -->
+    
+          <!-- Nav category menu START -->
+          <div class="navbar-collapse collapse" id="navbarCategoryCollapse">
+            <ul class="navbar-nav navbar-nav-scroll nav-pills-primary-soft text-center ms-auto p-2 p-xl-0">
+              <!-- Nav item Hotel -->
+              <li class="nav-item"> 
+                <a class="nav-link active" href="index.html">
+                  <i class="fa-solid fa-house me-2"></i>Главная
+                </a>
+              </li>
+              
+              <!-- Nav item Services -->
+              <li class="nav-item"> 
+                <a class="nav-link" href="index-flight.html">
+                  <i class="fa-solid fa-gavel me-2"></i>Услуги
+                </a>
+              </li>
+              
+              <!-- Nav item Contacts -->
+              <li class="nav-item"> 
+                <a class="nav-link" href="index-tour.html">
+                  <i class="fa-solid fa-phone me-2"></i>Контакты
+                </a>
+              </li>
+              
+              <!-- Nav item About -->
+              <li class="nav-item"> 
+                <a class="nav-link" href="index-cab.html">
+                  <i class="fa-solid fa-info-circle me-2"></i>О компании
+                </a>
+              </li>
+              
+            </ul>
+          </div>
+          <!-- Nav category menu END -->
+    
+        </div>
+      </nav>
+      <!-- Logo Nav END -->
+    </header>
+    <!-- Header END -->
+
+    <!-- **************** MAIN CONTENT START **************** -->
+    {% block content %}
+
+    {% endblock %}
+    <!-- **************** MAIN CONTENT END **************** -->
+
+    <!--  =======================
+Footer START  -->
+    <footer class="bg-dark pt-5">
+      <div class="container">
+        <!-- Row START -->
+        <div class="row g-4">
+          <!-- Widget 1 START -->
+          <div class="col-lg-3">
+            <!-- logo -->
+            <a href="index.html"><img class="h-40px" src="{% static 'images/logo.png' %}" alt="logo" /></a>
+            <p class="my-3 text-body-secondary">Departure defective arranging rapturous did believe him all had supported.</p>
+            <p class="mb-2">
+              <a href="#" class="text-body-secondary text-primary-hover"><i class="bi bi-telephone me-2"></i>+1234 568 963</a>
+            </p>
+            <p class="mb-0">
+              <a href="#" class="text-body-secondary text-primary-hover"><i class="bi bi-envelope me-2"></i>example@gmail.com</a>
+            </p>
+          </div>
+          <!-- Widget 1 END -->
+
+          <!-- Widget 2 START -->
+          <div class="col-lg-8 ms-auto">
+            <div class="row g-4">
+              <!-- Link block -->
+              <div class="col-6 col-md-3">
+                <h5 class="text-white mb-2 mb-md-4">Page</h5>
+                <ul class="nav flex-column text-primary-hover">
+                  <li class="nav-item">
+                    <a class="nav-link text-body-secondary" href="#">About us</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-body-secondary" href="#">Contact us</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-body-secondary" href="#">News and Blog</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-body-secondary" href="#">Meet a Team</a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Link block -->
+              <div class="col-6 col-md-3">
+                <h5 class="text-white mb-2 mb-md-4">Link</h5>
+                <ul class="nav flex-column text-primary-hover">
+                  <li class="nav-item">
+                    <a class="nav-link text-body-secondary" href="#">Sign up</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-body-secondary" href="#">Sign in</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-body-secondary" href="#">Privacy Policy</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-body-secondary" href="#">Terms</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-body-secondary" href="#">Cookie</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-body-secondary" href="#">Support</a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Link block -->
+              <div class="col-6 col-md-3">
+                <h5 class="text-white mb-2 mb-md-4">Global Site</h5>
+                <ul class="nav flex-column text-primary-hover">
+                  <li class="nav-item">
+                    <a class="nav-link text-body-secondary" href="#">India</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-body-secondary" href="#">California</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-body-secondary" href="#">Indonesia</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-body-secondary" href="#">Canada</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-body-secondary" href="#">Malaysia</a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Link block -->
+              <div class="col-6 col-md-3">
+                <h5 class="text-white mb-2 mb-md-4">Booking</h5>
+                <ul class="nav flex-column text-primary-hover">
+                  <li class="nav-item">
+                    <a class="nav-link text-body-secondary" href="#"><i class="fa-solid fa-hotel me-2"></i>Hotel</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-body-secondary" href="#"><i class="fa-solid fa-plane me-2"></i>Flight</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-body-secondary" href="#"><i class="fa-solid fa-globe-americas me-2"></i>Tour</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-body-secondary" href="#"><i class="fa-solid fa-car me-2"></i>Cabs</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Widget 2 END -->
+        </div>
+        <!-- Row END -->
+
+        <!-- Tops Links -->
+        <div class="row mt-5">
+          <h5 class="mb-2 text-white">Top Links</h5>
+          <ul class="list-inline text-primary-hover lh-lg">
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">Flights</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">Hotels</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">Tours</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">Cabs</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">About</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">Contact us</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">Blogs</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">Services</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">Detail page</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">Services</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">Policy</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">Testimonials</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">Newsletters</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">Podcasts</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">Protests</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">NewsCyber</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">Education</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">Sports</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">Tech and Auto</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">Opinion</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-body-secondary">Share Market</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Payment and card -->
+        <div class="row g-4 justify-content-between mt-0 mt-md-2">
+          <!-- Payment card -->
+          <div class="col-sm-7 col-md-6 col-lg-4">
+            <h5 class="text-white mb-2">Payment & Security</h5>
+            <ul class="list-inline mb-0 mt-3">
+              <li class="list-inline-item">
+                <a href="#"><img src="images/paypal.svg" class="h-30px" alt="" /></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#"><img src="images/visa.svg" class="h-30px" alt="" /></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#"><img src="images/mastercard.svg" class="h-30px" alt="" /></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#"><img src="images/expresscard.svg" class="h-30px" alt="" /></a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Social media icon -->
+          <div class="col-sm-5 col-md-6 col-lg-3 text-sm-end">
+            <h5 class="text-white mb-2">Follow us on</h5>
+            <ul class="list-inline mb-0 mt-3">
+              <li class="list-inline-item">
+                <a class="btn btn-sm px-2 bg-facebook mb-0" href="#"><i class="fab fa-fw fa-facebook-f"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a class="btn btn-sm shadow px-2 bg-instagram mb-0" href="#"><i class="fab fa-fw fa-instagram"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a class="btn btn-sm shadow px-2 bg-twitter mb-0" href="#"><i class="fab fa-fw fa-twitter"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a class="btn btn-sm shadow px-2 bg-linkedin mb-0" href="#"><i class="fab fa-fw fa-linkedin-in"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <hr class="mt-4 mb-0" />
+
+        <!-- Bottom footer -->
+        <div class="row">
+          <div class="container">
+            <div class="d-lg-flex justify-content-between align-items-center py-3 text-center text-lg-start">
+              <!-- copyright text -->
+              <div class="text-body-secondary text-primary-hover">
+                Copyrights ©2024 Booking. Build by <a href="https://www.webestica.com/" class="text-body-secondary">Webestica</a>.
+              </div>
+              <!-- copyright links -->
+              <div class="nav mt-2 mt-lg-0">
+                <ul class="list-inline text-primary-hover mx-auto mb-0">
+                  <li class="list-inline-item me-0">
+                    <a class="nav-link text-body-secondary py-1" href="#">Privacy policy</a>
+                  </li>
+                  <li class="list-inline-item me-0">
+                    <a class="nav-link text-body-secondary py-1" href="#">Terms and conditions</a>
+                  </li>
+                  <li class="list-inline-item me-0">
+                    <a class="nav-link text-body-secondary py-1 pe-0" href="#">Refund policy</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--  =======================
+Footer END  -->
+
+    <!-- Modal START -->
+    <div class="modal fade" id="map360" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Title -->
+          <div class="modal-header">
+            <h5 class="modal-title" id="map360label">Hotel 360 View</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <!-- Body -->
+          <div class="modal-body p-3">
+            <iframe src="https://www.google.com/maps/embed?pb=!4v1664190302197!6m8!1m7!1sgWjBbRwH2wMmQTbvyZwkGw!2m2!1d51.49712857925994!2d-0.1593322776188391!3f348.1837813715552!4f17.07463868756892!5f0.8485845663286693" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal END -->
+
+    <!-- Back to top -->
+    <div class="back-top"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Vendors -->
+    <script src="{% static 'js/tiny-slider.js' %}"></script>
+    <script src="{% static 'js/purecounter_vanilla.js' %}"></script>
+    <script src="{% static 'js/glightbox.js' %}"></script>
+    <script src="{% static 'js/flatpickr.min.js' %}"></script>
+    <script src="{% static 'js/choices.min.js' %}"></script>
+    <script src="{% static 'js/jarallax.min.js' %}"></script>
+    <script src="{% static 'js/jarallax-video.min.js' %}"></script>
+
+    <!-- ThemeFunctions -->
+    <script src="{% static 'js/functions.js' %}"></script>
+  </body>
+</html>

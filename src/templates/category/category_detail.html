@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="pt-0">
+	<div class="container">
+		<!-- Background image -->
+		<div class="rounded-3 p-3 p-sm-5" style="background-image: url('{% static 'images/image.png' %}'); background-position: center center; background-repeat: no-repeat; background-size: cover;">
+			<!-- Banner title -->
+			<div class="row my-2 my-xl-5"> 
+				<div class="col-md-8 mx-auto"> 
+					<h1 class="text-center text-white">{{ category.name }}</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="pt-0">
+	<div class="container">
+		
+		<div class="row">
+			<!-- Left sidebar START -->
+			<aside class="col-xl-4 col-xxl-3">
+				<!-- Responsive offcanvas body START -->
+				<div class="offcanvas-xl offcanvas-end" tabindex="-1" id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
+					<div class="offcanvas-header">
+						<h5 class="offcanvas-title" id="offcanvasSidebarLabel">Advance Filters</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasSidebar" aria-label="Close"></button>
+					</div>
+					<div class="offcanvas-body flex-column p-3 p-xl-0">
+						<form class="rounded-3 shadow">
+                            <style>
+                                .category-list {
+                                    list-style: none;
+                                    padding: 0;
+                                    margin: 0;
+                                }
+                            
+                                .category-list li {
+                                    font-size: 18px;
+                                    font-weight: bold;
+                           
+                                    padding: 10px 15px;
+                                    cursor: pointer;
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                }
+                            
+                                .category-list li:hover {
+                                    background-color: #f8f9fa;
+                                }
+                            
+                                .category-list li i {
+                                    font-size: 14px;
+                                    color: #666;
+                                }
+                            
+                                .sub-category {
+                                    font-size: 16px;
+                                    font-weight: normal;
+                                    padding: 5px 10px;
+                                    display: none;
+                                }
+                            
+                                .category-list li.active + .sub-category {
+                                    display: block;
+                                }
+
+                                
+                            </style>
+							<!-- Hotel type START -->
+							<div class="card card-body rounded-0 rounded-top p-2">
+                                <ul class="category-list">
+                                    {% for category in categories %}
+                                        <li style="color: #262a31;" onclick="toggleSub(this)">
+                                            {{ category.name }}
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </li>
+                                        {% if category.children.exists %}
+
+                                        <ul class="sub-category">
+                                            {% for subcategory in category.children.all %}
+                                                <a style="color: #262a31;" href="{{ subcategory.get_absolute_url }}"><li style="font-size: 15px; padding-bottom: 5px; padding-top: 5px;">- {{ subcategory.name }}</li></a>
+                                            {% endfor %}
+                                        </ul>
+
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                                <script>
+                                    function toggleSub(element) {
+                                        element.classList.toggle("active");
+                                    }
+                                </script>
+							</div>
+							
+							
+						</form><!-- Form End -->
+					</div>
+					<!-- Buttons -->
+					<div class="d-flex justify-content-between p-2 p-xl-0 mt-xl-4">
+						<button class="btn btn-link p-0 mb-0">Clear all</button>
+						<button class="btn btn-primary mb-0">Filter Result</button>
+					</div>
+				</div>
+				<!-- Responsive offcanvas body END -->
+			</aside>
+			<!-- Left sidebar END -->
+
+			<!-- Main content START -->
+			<div class="col-xl-8 col-xxl-9">
+				<div class="vstack gap-4">
+
+                    <style>
+                        .container {
+                            
+                              margin: auto;
+                          }
+                          h1 {
+                              font-size: 24px;
+                              margin-bottom: 5px;
+                          }
+                          p {
+                              color: #666;
+                              margin-bottom: 20px;
+                          }
+                          .grid {
+                              display: grid;
+                              gap: 10px;
+                              grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                          }
+                          .grid-item {
+                              position: relative;
+                              border-radius: 15px;
+                              overflow: hidden;
+                              cursor: pointer;
+                              background-size: cover !important;
+                              background-position: center !important;
+                              height: 150px;
+                  
+                              align-items: flex-end;
+                              padding: 10px;
+                              color: white;
+                              font-size: 18px;
+                              font-weight: bold;
+                          }
+                  
+                          .big {
+                              grid-column: span 2;
+                              height: 150px;
+                          }
+                          .grid-item::before {
+                              content: "";
+                              position: absolute;
+                              top: 0; left: 0; right: 0; bottom: 0;
+                              background: #f5f5f5;
+                              background: rgba(0, 0, 0, 0);
+                          }
+                          .grid-item span {
+                              position: relative;
+                              z-index: 2;
+                          }
+                          .more {
+                              background: #ddd;
+                              display: flex;
+                              justify-content: center;
+                              align-items: center;
+                              font-size: 20px;
+                              color: #444;
+                          }
+                          @media (min-width: 768px) {
+                              .grid {
+                                  grid-template-columns: repeat(3, 1fr);
+                              }
+                              .big {
+                                  grid-column: span 3;
+                              }
+                          }
+                      </style>
+
+                    <div class="grid">
+                        {% if category.children.exists %}
+                            {% for subcategory in category.children.all %}
+                          <a href="{{ subcategory.get_absolute_url }}">
+                            <div class="grid-item {% if forloop.first %}big{% endif %}" style="background-image: url('{% static 'images/tech/chernyi.jpg' %}');">
+                                <span>{{ subcategory.name }}</span>
+                            </div>
+                          </a>
+                          {% endfor %}
+                          {% else %}
+                          {% if category.products.exists %}
+                            {% for product in category.products.all %}
+                            <a href="{{ subcategory.get_absolute_url }}">
+                                <div class="grid-item {% if forloop.first %}big{% endif %}" style="background-image: url('{% static 'images/tech/chernyi.jpg' %}');">
+                                    <span>{{ product.name }}</span>
+                                </div>
+                            </a>
+                            {% endfor %}
+                            {% else %}
+                            <p>Нет продуктов в этой категории.</p>
+                            {% endif %}
+                            {% endif %}
+                    </div>
+
+				</div>
+			</div>
+			<!-- Main content END -->
+		</div> <!-- Row END -->
+	</div>
+</section>
+
+{% endblock %}
