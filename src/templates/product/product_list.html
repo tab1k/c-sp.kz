@@ -5,33 +5,92 @@
 <section class="pt-0">
 	<div class="container">
 		<!-- Tabs and alert START -->
-		<div class="row mb-4">
-			<div class="col-12">
-				<!-- Alert box START -->
-				<div class="alert alert-danger alert-dismissible d-flex justify-content-between align-items-center rounded-3 fade show mb-4 mb-0 pe-2" role="alert">
-					<div class="d-flex">
-						<span class="alert-heading h5 mb-0 me-2"><i class="bi bi-exclamation-octagon-fill"></i></span>
-						<span><strong class="alert-heading me-2">Covid Policy:</strong>You may require to present an RT-PCR negative test report at the hotel</span>
-					</div>
-						<button type="button" class="btn btn-link pb-0 text-end" data-bs-dismiss="alert" aria-label="Close"><i class="bi bi-x-lg text-dark"></i></button>
+		<div class="row">
+			<div class="bread-crumbs">
+				<div class="">
+					<ul class="bread-crumbs__list" itemscope="" itemtype="https://schema.org/BreadcrumbList">
+						
+						
+						<li class="bread-crumbs__item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+							<a class="bread-crumbs__link" href="/" itemprop="item">
+								  <span itemprop="name">
+									  Главная
+								  </span>
+							</a>
+							<meta itemprop="position" content="1">
+						</li>
+						
+						
+						
+						<li class="bread-crumbs__item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+							<a class="bread-crumbs__link" href="/catalog/" itemprop="item">
+								  <span itemprop="name">
+									  Каталог металлопроката
+								  </span>
+							</a>
+							<meta itemprop="position" content="2">
+						</li>
+						
+						
+						
+						<li class="bread-crumbs__item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+							<a class="bread-crumbs__link" href="/catalog/chernyj-metalloprokat/" itemprop="item">
+								  <span itemprop="name">
+									  Черный металлопрокат
+								  </span>
+							</a>
+							<meta itemprop="position" content="3">
+						</li>
+						
+						
+						
+					</ul>
 				</div>
-				<!-- Alert box END -->
+			</div>
 
-				<!-- Buttons -->
-				<div class="hstack gap-3 justify-content-between justify-content-md-end">
-					<!-- Filter offcanvas button -->
-					<button class="btn btn-primary-soft btn-primary-check mb-0 d-xl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
-						<i class="fa-solid fa-sliders-h me-1"></i> Show filters
-					</button>
-					<!-- tabs -->
-				</div>
+			<style>
+				.bread-crumbs__list {
+					display: flex;
+					flex-wrap: wrap;
+					margin: 0;
+				
+					margin-bottom: 8px;
+					padding: 0;
+					list-style-type: none;
+				}
+				.bread-crumbs__item {
+					display: flex;
+					align-items: center;
+					margin-bottom: 8px;
+				}
+				.bread-crumbs__link {
+					color: #999;
+					font-weight: 700;
+					font-size: 12px;
+					text-transform: uppercase;
+					letter-spacing: .01em;
+				}
+
+				.bread-crumbs__item::after {
+					content: url('{% static 'images/tech/rigth.svg' %}');
+					display: flex;
+					align-items: center;
+					margin: 0 9px;
+					width: 7px;
+					height: 10px;
+					color: #d3d6db;
+				}
+			</style>
+
+			<div class="col-12">
+				<h3 style="color: #262a31; margin-bottom: 0px;">{{ category.name.upper }}<h3>
 			</div>
 		</div>
 		<!-- Tabs and alert END -->
 
          <!-- БЛОК Дополнительно -->
 
-        <div class="container mb-5 mt-3 p-0">
+        <div class="container mb-3 mt-1 p-0">
             <div class="categories">
             <div class="category">
                 <img src="{% static 'images/tech/kabel.png' %}" alt="Доставка" />
@@ -425,20 +484,29 @@
 				<!-- Responsive offcanvas body END -->
 			</aside>
 			<!-- Left sidebar END -->
-
+			
 			<!-- Main content START -->
 			<div class="col-xl-8 col-xxl-9">
-                <div class="product-control__found mb-3">Найдено <span
+				<div class="hstack gap-3 justify-content-between justify-content-md-end">
+					<!-- Filter offcanvas button -->
+					<button class="btn btn-primary-soft btn-primary-check mb-0 d-xl-none w-100" style="background-color: #f5f5f5; color: black;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+						<i class="fa-solid fa-sliders-h me-1"></i> Фильтры
+					</button>
+					<!-- tabs -->
+				</div>
+                <div class="product-control__found mb-3 mt-3">Найдено <span
                     id="product-count">{{ products.count }}</span> товаров.
                 </div>
 				<div class="vstack ">
                     {% for product in products %}
-					<div class="alert" style="border: 1px solid #d3d6db; background-color: white; margin-bottom: 5px;">
+					<div class="alert" style="border: 1px solid #e3e5e8; background-color: white; margin-bottom: 5px;">
                         <a href="{{ product.get_absolute_url }}">
-                            <div class="product-info">
-                                <img class="product-logo" src="{% static 'images/tech/truba.webp' %}">
-                                <div class="product-name">{{ product.name }}</div>
-                                <button >УЗНАТЬ ЦЕНУ</button>
+                            <div class="product-info" style="justify-content: space-between;">
+                                <div class="d-flex" style="align-items: center;">
+									<img class="product-logo" src="{% static 'images/tech/truba.webp' %}">
+                                	<div class="product-name" style="margin-left: 10px;"><p style="margin: 0;">{{ product.name }}</p></div>
+								</div>
+                                <button class="btn btn-sm btn-primary mb-0" style="background-color: #f5f5f5; border: 1px solid #e3e5e8; color: #262a31;">Купить</button>
                             </div>
                         </a>
                     </div>
@@ -468,10 +536,11 @@
         }
 
         .product-name {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             color: #333;
         }
+		
 
                     </style>
 

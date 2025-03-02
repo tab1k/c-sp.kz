@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block preloader %}
+
+<div id="preloader">
+    <img src="{% static 'images/preloader.png' %}" alt="Loading..." id="gear">
+</div>
+
+<style>
+    #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    #gear {
+        width: 80px;
+        height: 80px;
+        animation: rotate 1s linear infinite;
+        filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.2));
+    }
+
+    @keyframes rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Ждём 1.5 секунды и скрываем прелоадер
+        setTimeout(function () {
+            let preloader = document.getElementById("preloader");
+            if (preloader) {
+                preloader.style.opacity = "0"; // Плавное исчезновение
+                setTimeout(() => preloader.remove(), 500); // Удаляем после исчезновения
+            }
+        }, 1000);
+    });
+</script>
+
+{% endblock %}
+
+{% block content %}
+    <!-- НАЧАЛО КАТЕГОРИЙ -->
+
+    <style>
+        .container {
+            
+              margin: auto;
+          }
+          h1 {
+              font-size: 24px;
+              margin-bottom: 5px;
+          }
+          p {
+              color: #666;
+              margin-bottom: 20px;
+          }
+          .grid {
+              display: grid;
+              gap: 10px;
+              grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          }
+          .grid-item {
+              position: relative;
+              border-radius: 15px;
+              overflow: hidden;
+              cursor: pointer;
+              background-size: cover !important;
+              background-position: center !important;
+              height: 150px;
+  
+              align-items: flex-end;
+              padding: 10px;
+              color: white;
+              font-size: 18px;
+              font-weight: bold;
+          }
+  
+          .big {
+              grid-column: span 2;
+              height: 150px;
+          }
+          .grid-item::before {
+              content: "";
+              position: absolute;
+              top: 0; left: 0; right: 0; bottom: 0;
+              background: #f5f5f5;
+              background: rgba(0, 0, 0, 0);
+          }
+          .grid-item span {
+              position: relative;
+              z-index: 2;
+          }
+          .more {
+              background: #ddd;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 20px;
+              color: #444;
+          }
+          @media (min-width: 768px) {
+              .grid {
+                  grid-template-columns: repeat(3, 1fr);
+              }
+              .big {
+                  grid-column: span 3;
+              }
+          }
+      </style>
+      <div class="container mt-3 mb-5">
+        <h4 class=" mb-3" style="color: #262a31;">Каталог</h4>
+        <div class="grid">
+            {% for category in categories|slice:":8" %}
+              <a href="{{ category.get_absolute_url }}">
+                <div class="grid-item {% if forloop.first %}big{% endif %}" style="background-image: url('{% static 'images/tech/chernyi.jpg' %}');">
+                    <span>{{ category.name }}</span>
+                </div>
+              </a>
+            {% endfor %}
+            <div class="grid-item more">
+                <span>Ещё →</span>
+            </div>
+        </div>
+      </div>
+    
+  
+      <!-- КОНЕЦ КАТЕГОРИЙ-->
+
+      
+{% endblock %}

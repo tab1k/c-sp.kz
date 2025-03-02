@@ -66,11 +66,11 @@ class AjaxableTemplateView(TemplateView):
         return str(content) if content else ""
 
 class ServiceViewPage(AjaxableTemplateView):
-    template_name = 'services.html'
+    template_name = 'website/services.html'
 
 
 class AboutViewPage(AjaxableTemplateView):
-    template_name = 'about.html'
+    template_name = 'website/about.html'
 
 
 class DeliveryViewPage(AjaxableTemplateView):
@@ -86,7 +86,7 @@ class RefundViewPage(AjaxableTemplateView):
 
 
 class ContactViewPage(AjaxableTemplateView):
-    template_name = 'buyers/contacts.html'
+    template_name = 'website/contacts.html'
 
 
 class CategoryViewPage(TemplateView):

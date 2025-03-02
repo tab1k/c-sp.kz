@@ -1,7 +1,58 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block preloader %}
+
+<div id="preloader">
+    <img src="{% static 'images/preloader.png' %}" alt="Loading..." id="gear">
+</div>
+
+<style>
+    #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    #gear {
+        width: 80px;
+        height: 80px;
+        animation: rotate 1s linear infinite;
+        filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.2));
+    }
+
+    @keyframes rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Ждём 1.5 секунды и скрываем прелоадер
+        setTimeout(function () {
+            let preloader = document.getElementById("preloader");
+            if (preloader) {
+                preloader.style.opacity = "0"; // Плавное исчезновение
+                setTimeout(() => preloader.remove(), 500); // Удаляем после исчезновения
+            }
+        }, 1000);
+    });
+</script>
+
+{% endblock %}
+
+
 {% block content %}
+
+
   <main>
 
     <!-- БЛОК ВИДЕО -->
@@ -22,8 +73,8 @@
           <div class="position-relative p-4 p-sm-5" style="z-index: 2;">
             <div class="row justify-content-between pt-0 pb-5"> 
               <div class="col-md-7 col-lg-8 col-xxl-7 pb-5 mb-0 mb-lg-5"> 
-                <h1 class="text-white">Life Is Adventure Make The Best Of It</h1>
-                <p class="text-white mb-0">Planning for a trip? we will organize your best trip with the best destination and within the best budgets!</p>
+                <h1 class="text-white">Ваш надежный партнер в строительстве! </h1>
+                <p class="text-white mb-0">Полный спектр поставок: от металлопроката до комплексных решений. </p>
               </div>
             </div>
           </div>
@@ -90,6 +141,7 @@
     </div>
 
     <style>
+      
       .categories {
         display: flex;
         overflow-x: auto;
@@ -209,7 +261,7 @@
         }
     </style>
     <div class="container mt-3">
-      <h4 class="about-company-bottom__title" style="color: #262a31;">Каталог</h4>
+      <h4 class="about-company-bottom__title" style="color: #262a31;"><a href="{% url 'website:category' %}">Каталог</a></h4>
       <div class="grid">
           {% for category in categories|slice:":8" %}
             <a href="{{ category.get_absolute_url }}">
@@ -227,11 +279,24 @@
 
     <!-- КОНЕЦ КАТЕГОРИЙ-->
 
+    <section class="pt-0 pt-lg-5 pb-0">
+      <div class="container">
+        <!-- Content START -->
+        <div class="row mb-4 mb-md-5 mt-4">
+          <div class="col-md-12 mx-auto">
+            <h3 class="mb-4">О компании </h3>
+            <p class="fw-bold">ТОО "ЦЕНТР СТАЛЬНОГО ПРОКАТА "ЦСП" – молодая, но динамично развивающаяся компания, специализирующаяся на поставках металлопроката и комплексных решениях для строительства. <br><br> Мы уже зарекомендовали себя как надежный партнер благодаря высококвалифицированным специалистам, которые всегда готовы помочь, подсказать и предложить оптимальные решения. Качество продукции и индивидуальный подход – наши главные приоритеты.</p>
+          </div>
+        </div>
+        <!-- Content END -->
+      </div>
+    </section>
+
 
     <!-- - БЛОК ТОВАРОВ -->
 
     <div class="container mt-4 mb-4">
-      <h4 class="about-company-bottom__title" style="color: #262a31;">Часто ищут</h2>
+      <h4 class="about-company-bottom__title mb-3" style="color: #262a31;">Часто ищут...</h2>
       <div class="categories">
         <div class="category">
           <span>Кабель</span>
