@@ -19,6 +19,9 @@ COPY requirements.txt /app/requirements.txt
 # Установка зависимостей из requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
+# Установим gunicorn, если он не указан в requirements.txt
+RUN pip install --no-cache-dir gunicorn
+
 # Копирование проекта в контейнер
 COPY ./src /app
 
