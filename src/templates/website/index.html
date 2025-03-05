@@ -60,16 +60,13 @@
       <div class="container position-relative">
         <!-- Bg image -->
         <div class="position-relative bg-mode shadow rounded-3 overflow-hidden">
-          <!-- Фоновое видео -->
-          <video autoplay loop muted playsinline class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
-            <source src="{% static 'video/video2.mp4' %}" type="video/mp4">
-            Ваш браузер не поддерживает тег видео.
-          </video>
-        
+          <!-- Фоновое изображение -->
+          <img src="{% static 'images/bg_header.jpeg' %}" alt="Background Image" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
+    
           <!-- Затемняющий слой (если нужно сделать текст читаемым) -->
           <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
-        
-          <!-- Контент поверх видео -->
+    
+          <!-- Контент поверх изображения -->
           <div class="position-relative p-4 p-sm-5" style="z-index: 2;">
             <div class="row justify-content-between pt-0 pb-5"> 
               <div class="col-md-7 col-lg-8 col-xxl-7 pb-5 mb-0 mb-lg-5"> 
@@ -79,18 +76,103 @@
             </div>
           </div>
         </div>
-        
-    
-    
       </div>
     </section>
+    
     <!-- КОНЕЦ БЛОК ВИДЕО -->
 
+
+    <!-- НАЧАЛО КАТЕГОРИЙ -->
+
+    <style>
+      .container {
+          
+            margin: auto;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .grid {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+        .grid-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            background-size: cover !important;
+            background-position: center !important;
+            height: 150px;
+
+            align-items: flex-end;
+            padding: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .big {
+            grid-column: span 2;
+            height: 150px;
+        }
+        .grid-item::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: #f5f5f5;
+            background: rgba(0, 0, 0, 0);
+        }
+        .grid-item span {
+            position: relative;
+            z-index: 2;
+        }
+        .more {
+            background: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: #444;
+        }
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            .big {
+                grid-column: span 3;
+            }
+        }
+    </style>
+    <div class="container mt-3">
+      <h4 class="about-company-bottom__title mb-4" style="color: #262a31;"><a href="{% url 'website:category' %}">Каталог</a></h4>
+      <div class="grid">
+          {% for category in categories|slice:":8" %}
+            <a href="{{ category.get_absolute_url }}">
+              <div class="grid-item {% if forloop.first %}big{% endif %}" style="background-image: url('{% static 'images/tech/chernyi.jpg' %}');">
+                  <span>{{ category.name }}</span>
+              </div>
+            </a>
+          {% endfor %}
+          <div class="grid-item more">
+              <span>Ещё →</span>
+          </div>
+      </div>
+    </div>
+  
+
+    <!-- КОНЕЦ КАТЕГОРИЙ-->
 
     <!-- БЛОК Дополнительно -->
 
     <div class="container mb-3 mt-3">
-      <h4 class="about-company-bottom__title" style="color: #262a31;">Популярное</h4>
+      <h4 class="about-company-bottom__title" style="color: #262a31;">Спектр услуг</h4>
       <div class="categories">
         <div class="category">
           <img src="{% static 'images/tech/kabel.png' %}" alt="Доставка" />
@@ -192,208 +274,295 @@
 
     <!--  КОНЕЦ БЛОКА -->
 
-    <!-- НАЧАЛО КАТЕГОРИЙ -->
-
-    <style>
-      .container {
-          
-            margin: auto;
-        }
-        h1 {
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
-        p {
-            color: #666;
-            margin-bottom: 20px;
-        }
-        .grid {
-            display: grid;
-            gap: 10px;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        }
-        .grid-item {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            cursor: pointer;
-            background-size: cover !important;
-            background-position: center !important;
-            height: 150px;
-
-            align-items: flex-end;
-            padding: 10px;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .big {
-            grid-column: span 2;
-            height: 150px;
-        }
-        .grid-item::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: #f5f5f5;
-            background: rgba(0, 0, 0, 0);
-        }
-        .grid-item span {
-            position: relative;
-            z-index: 2;
-        }
-        .more {
-            background: #ddd;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
-            color: #444;
-        }
-        @media (min-width: 768px) {
-            .grid {
-                grid-template-columns: repeat(5, 1fr);
-            }
-            .big {
-                grid-column: span 3;
-            }
-        }
-    </style>
-    <div class="container mt-3">
-      <h4 class="about-company-bottom__title" style="color: #262a31;"><a href="{% url 'website:category' %}">Каталог</a></h4>
-      <div class="grid">
-          {% for category in categories|slice:":8" %}
-            <a href="{{ category.get_absolute_url }}">
-              <div class="grid-item {% if forloop.first %}big{% endif %}" style="background-image: url('{% static 'images/tech/chernyi.jpg' %}');">
-                  <span>{{ category.name }}</span>
-              </div>
-            </a>
-          {% endfor %}
-          <div class="grid-item more">
-              <span>Ещё →</span>
-          </div>
-      </div>
-    </div>
-  
-
-    <!-- КОНЕЦ КАТЕГОРИЙ-->
-
-    <section class="pt-0 pt-lg-5 pb-0">
+    <section class="pb-0 pb-xl-5">
       <div class="container">
-        <!-- Content START -->
-        <div class="row mb-4 mb-md-5 mt-4">
-          <div class="col-md-12 mx-auto">
-            <h3 class="mb-4">О компании </h3>
-            <p class="fw-bold">ТОО "ЦЕНТР СТАЛЬНОГО ПРОКАТА "ЦСП" – молодая, но динамично развивающаяся компания, специализирующаяся на поставках металлопроката и комплексных решениях для строительства. <br><br> Мы уже зарекомендовали себя как надежный партнер благодаря высококвалифицированным специалистам, которые всегда готовы помочь, подсказать и предложить оптимальные решения. Качество продукции и индивидуальный подход – наши главные приоритеты.</p>
+        <div class="row g-4 justify-content-between align-items-center">
+          <!-- Left side START -->
+          <div class="col-lg-5 position-relative">
+            <!-- Svg Decoration -->
+            <figure class="position-absolute top-0 start-0 translate-middle z-index-1 ms-4">
+              <svg class="fill-warning" width="77px" height="77px">
+                <path d="M76.997,41.258 L45.173,41.258 L67.676,63.760 L63.763,67.673 L41.261,45.171 L41.261,76.994 L35.728,76.994 L35.728,45.171 L13.226,67.673 L9.313,63.760 L31.816,41.258 L-0.007,41.258 L-0.007,35.725 L31.816,35.725 L9.313,13.223 L13.226,9.311 L35.728,31.813 L35.728,-0.010 L41.261,-0.010 L41.261,31.813 L63.763,9.311 L67.676,13.223 L45.174,35.725 L76.997,35.725 L76.997,41.258 Z"></path>
+              </svg>
+            </figure>
+    
+            <!-- Svg decoration -->
+            <figure class="position-absolute bottom-0 end-0 d-none d-md-block mb-n5 me-n4">
+              <svg height="400" class="fill-primary opacity-2" viewBox="0 0 340 340">
+                <circle cx="194.2" cy="2.2" r="2.2"></circle>
+                <circle cx="2.2" cy="2.2" r="2.2"></circle>
+                <circle cx="218.2" cy="2.2" r="2.2"></circle>
+                <circle cx="26.2" cy="2.2" r="2.2"></circle>
+                <circle cx="242.2" cy="2.2" r="2.2"></circle>
+                <circle cx="50.2" cy="2.2" r="2.2"></circle>
+                <circle cx="266.2" cy="2.2" r="2.2"></circle>
+                <circle cx="74.2" cy="2.2" r="2.2"></circle>
+                <circle cx="290.2" cy="2.2" r="2.2"></circle>
+                <circle cx="98.2" cy="2.2" r="2.2"></circle>
+                <circle cx="314.2" cy="2.2" r="2.2"></circle>
+                <circle cx="122.2" cy="2.2" r="2.2"></circle>
+                <circle cx="338.2" cy="2.2" r="2.2"></circle>
+                <circle cx="146.2" cy="2.2" r="2.2"></circle>
+                <circle cx="170.2" cy="2.2" r="2.2"></circle>
+                <circle cx="194.2" cy="26.2" r="2.2"></circle>
+                <circle cx="2.2" cy="26.2" r="2.2"></circle>
+                <circle cx="218.2" cy="26.2" r="2.2"></circle>
+                <circle cx="26.2" cy="26.2" r="2.2"></circle>
+                <circle cx="242.2" cy="26.2" r="2.2"></circle>
+                <circle cx="50.2" cy="26.2" r="2.2"></circle>
+                <circle cx="266.2" cy="26.2" r="2.2"></circle>
+                <circle cx="74.2" cy="26.2" r="2.2"></circle>
+                <circle cx="290.2" cy="26.2" r="2.2"></circle>
+                <circle cx="98.2" cy="26.2" r="2.2"></circle>
+                <circle cx="314.2" cy="26.2" r="2.2"></circle>
+                <circle cx="122.2" cy="26.2" r="2.2"></circle>
+                <circle cx="338.2" cy="26.2" r="2.2"></circle>
+                <circle cx="146.2" cy="26.2" r="2.2"></circle>
+                <circle cx="170.2" cy="26.2" r="2.2"></circle>
+                <circle cx="194.2" cy="50.2" r="2.2"></circle>
+                <circle cx="2.2" cy="50.2" r="2.2"></circle>
+                <circle cx="218.2" cy="50.2" r="2.2"></circle>
+                <circle cx="26.2" cy="50.2" r="2.2"></circle>
+                <circle cx="242.2" cy="50.2" r="2.2"></circle>
+                <circle cx="50.2" cy="50.2" r="2.2"></circle>
+                <circle cx="266.2" cy="50.2" r="2.2"></circle>
+                <circle cx="74.2" cy="50.2" r="2.2"></circle>
+                <circle cx="290.2" cy="50.2" r="2.2"></circle>
+                <circle cx="98.2" cy="50.2" r="2.2"></circle>
+                <circle cx="314.2" cy="50.2" r="2.2"></circle>
+                <circle cx="122.2" cy="50.2" r="2.2"></circle>
+                <circle cx="338.2" cy="50.2" r="2.2"></circle>
+                <circle cx="146.2" cy="50.2" r="2.2"></circle>
+                <circle cx="170.2" cy="50.2" r="2.2"></circle>
+                <circle cx="194.2" cy="74.2" r="2.2"></circle>
+                <circle cx="2.2" cy="74.2" r="2.2"></circle>
+                <circle cx="218.2" cy="74.2" r="2.2"></circle>
+                <circle cx="26.2" cy="74.2" r="2.2"></circle>
+                <circle cx="242.2" cy="74.2" r="2.2"></circle>
+                <circle cx="50.2" cy="74.2" r="2.2"></circle>
+                <circle cx="266.2" cy="74.2" r="2.2"></circle>
+                <circle cx="74.2" cy="74.2" r="2.2"></circle>
+                <circle cx="290.2" cy="74.2" r="2.2"></circle>
+                <circle cx="98.2" cy="74.2" r="2.2"></circle>
+                <circle cx="314.2" cy="74.2" r="2.2"></circle>
+                <circle cx="122.2" cy="74.2" r="2.2"></circle>
+                <circle cx="338.2" cy="74.2" r="2.2"></circle>
+                <circle cx="146.2" cy="74.2" r="2.2"></circle>
+                <circle cx="170.2" cy="74.2" r="2.2"></circle>
+                <circle cx="194.2" cy="98.2" r="2.2"></circle>
+                <circle cx="2.2" cy="98.2" r="2.2"></circle>
+                <circle cx="218.2" cy="98.2" r="2.2"></circle>
+                <circle cx="26.2" cy="98.2" r="2.2"></circle>
+                <circle cx="242.2" cy="98.2" r="2.2"></circle>
+                <circle cx="50.2" cy="98.2" r="2.2"></circle>
+                <circle cx="266.2" cy="98.2" r="2.2"></circle>
+                <circle cx="74.2" cy="98.2" r="2.2"></circle>
+                <circle cx="290.2" cy="98.2" r="2.2"></circle>
+                <circle cx="98.2" cy="98.2" r="2.2"></circle>
+                <circle cx="314.2" cy="98.2" r="2.2"></circle>
+                <circle cx="122.2" cy="98.2" r="2.2"></circle>
+                <circle cx="338.2" cy="98.2" r="2.2"></circle>
+                <circle cx="146.2" cy="98.2" r="2.2"></circle>
+                <circle cx="170.2" cy="98.2" r="2.2"></circle>
+                <circle cx="194.2" cy="122.2" r="2.2"></circle>
+                <circle cx="2.2" cy="122.2" r="2.2"></circle>
+                <circle cx="218.2" cy="122.2" r="2.2"></circle>
+                <circle cx="26.2" cy="122.2" r="2.2"></circle>
+                <circle cx="242.2" cy="122.2" r="2.2"></circle>
+                <circle cx="50.2" cy="122.2" r="2.2"></circle>
+                <circle cx="266.2" cy="122.2" r="2.2"></circle>
+                <circle cx="74.2" cy="122.2" r="2.2"></circle>
+                <circle cx="290.2" cy="122.2" r="2.2"></circle>
+                <circle cx="98.2" cy="122.2" r="2.2"></circle>
+                <circle cx="314.2" cy="122.2" r="2.2"></circle>
+                <circle cx="122.2" cy="122.2" r="2.2"></circle>
+                <circle cx="338.2" cy="122.2" r="2.2"></circle>
+                <circle cx="146.2" cy="122.2" r="2.2"></circle>
+                <circle cx="170.2" cy="122.2" r="2.2"></circle>
+                <circle cx="194.2" cy="146.2" r="2.2"></circle>
+                <circle cx="2.2" cy="146.2" r="2.2"></circle>
+                <circle cx="218.2" cy="146.2" r="2.2"></circle>
+                <circle cx="26.2" cy="146.2" r="2.2"></circle>
+                <circle cx="242.2" cy="146.2" r="2.2"></circle>
+                <circle cx="50.2" cy="146.2" r="2.2"></circle>
+                <circle cx="266.2" cy="146.2" r="2.2"></circle>
+                <circle cx="74.2" cy="146.2" r="2.2"></circle>
+                <circle cx="290.2" cy="146.2" r="2.2"></circle>
+                <circle cx="98.2" cy="146.2" r="2.2"></circle>
+                <circle cx="314.2" cy="146.2" r="2.2"></circle>
+                <circle cx="122.2" cy="146.2" r="2.2"></circle>
+                <circle cx="338.2" cy="146.2" r="2.2"></circle>
+                <circle cx="146.2" cy="146.2" r="2.2"></circle>
+                <circle cx="170.2" cy="146.2" r="2.2"></circle>
+                <circle cx="194.2" cy="170.2" r="2.2"></circle>
+                <circle cx="2.2" cy="170.2" r="2.2"></circle>
+                <circle cx="218.2" cy="170.2" r="2.2"></circle>
+                <circle cx="26.2" cy="170.2" r="2.2"></circle>
+                <circle cx="242.2" cy="170.2" r="2.2"></circle>
+                <circle cx="50.2" cy="170.2" r="2.2"></circle>
+                <circle cx="266.2" cy="170.2" r="2.2"></circle>
+                <circle cx="74.2" cy="170.2" r="2.2"></circle>
+                <circle cx="290.2" cy="170.2" r="2.2"></circle>
+                <circle cx="98.2" cy="170.2" r="2.2"></circle>
+                <circle cx="314.2" cy="170.2" r="2.2"></circle>
+                <circle cx="122.2" cy="170.2" r="2.2"></circle>
+                <circle cx="338.2" cy="170.2" r="2.2"></circle>
+                <circle cx="146.2" cy="170.2" r="2.2"></circle>
+                <circle cx="170.2" cy="170.2" r="2.2"></circle>
+                <circle cx="194.2" cy="194.2" r="2.2"></circle>
+                <circle cx="2.2" cy="194.2" r="2.2"></circle>
+                <circle cx="218.2" cy="194.2" r="2.2"></circle>
+                <circle cx="26.2" cy="194.2" r="2.2"></circle>
+                <circle cx="242.2" cy="194.2" r="2.2"></circle>
+                <circle cx="50.2" cy="194.2" r="2.2"></circle>
+                <circle cx="266.2" cy="194.2" r="2.2"></circle>
+                <circle cx="74.2" cy="194.2" r="2.2"></circle>
+                <circle cx="290.2" cy="194.2" r="2.2"></circle>
+                <circle cx="98.2" cy="194.2" r="2.2"></circle>
+                <circle cx="314.2" cy="194.2" r="2.2"></circle>
+                <circle cx="122.2" cy="194.2" r="2.2"></circle>
+                <circle cx="338.2" cy="194.2" r="2.2"></circle>
+                <circle cx="146.2" cy="194.2" r="2.2"></circle>
+                <circle cx="170.2" cy="194.2" r="2.2"></circle>
+                <circle cx="194.2" cy="218.2" r="2.2"></circle>
+                <circle cx="2.2" cy="218.2" r="2.2"></circle>
+                <circle cx="218.2" cy="218.2" r="2.2"></circle>
+                <circle cx="26.2" cy="218.2" r="2.2"></circle>
+                <circle cx="242.2" cy="218.2" r="2.2"></circle>
+                <circle cx="50.2" cy="218.2" r="2.2"></circle>
+                <circle cx="266.2" cy="218.2" r="2.2"></circle>
+                <circle cx="74.2" cy="218.2" r="2.2"></circle>
+                <circle cx="290.2" cy="218.2" r="2.2"></circle>
+                <circle cx="98.2" cy="218.2" r="2.2"></circle>
+                <circle cx="314.2" cy="218.2" r="2.2"></circle>
+                <circle cx="122.2" cy="218.2" r="2.2"></circle>
+                <circle cx="338.2" cy="218.2" r="2.2"></circle>
+                <circle cx="146.2" cy="218.2" r="2.2"></circle>
+                <circle cx="170.2" cy="218.2" r="2.2"></circle>
+                <circle cx="194.2" cy="242.2" r="2.2"></circle>
+                <circle cx="2.2" cy="242.2" r="2.2"></circle>
+                <circle cx="218.2" cy="242.2" r="2.2"></circle>
+                <circle cx="26.2" cy="242.2" r="2.2"></circle>
+                <circle cx="242.2" cy="242.2" r="2.2"></circle>
+                <circle cx="50.2" cy="242.2" r="2.2"></circle>
+                <circle cx="266.2" cy="242.2" r="2.2"></circle>
+                <circle cx="74.2" cy="242.2" r="2.2"></circle>
+                <circle cx="290.2" cy="242.2" r="2.2"></circle>
+                <circle cx="98.2" cy="242.2" r="2.2"></circle>
+                <circle cx="314.2" cy="242.2" r="2.2"></circle>
+                <circle cx="122.2" cy="242.2" r="2.2"></circle>
+                <circle cx="338.2" cy="242.2" r="2.2"></circle>
+                <circle cx="146.2" cy="242.2" r="2.2"></circle>
+                <circle cx="170.2" cy="242.2" r="2.2"></circle>
+                <circle cx="194.2" cy="266.2" r="2.2"></circle>
+                <circle cx="2.2" cy="266.2" r="2.2"></circle>
+                <circle cx="218.2" cy="266.2" r="2.2"></circle>
+                <circle cx="26.2" cy="266.2" r="2.2"></circle>
+                <circle cx="242.2" cy="266.2" r="2.2"></circle>
+                <circle cx="50.2" cy="266.2" r="2.2"></circle>
+                <circle cx="266.2" cy="266.2" r="2.2"></circle>
+                <circle cx="74.2" cy="266.2" r="2.2"></circle>
+                <circle cx="290.2" cy="266.2" r="2.2"></circle>
+                <circle cx="98.2" cy="266.2" r="2.2"></circle>
+                <circle cx="314.2" cy="266.2" r="2.2"></circle>
+                <circle cx="122.2" cy="266.2" r="2.2"></circle>
+                <circle cx="338.2" cy="266.2" r="2.2"></circle>
+                <circle cx="146.2" cy="266.2" r="2.2"></circle>
+                <circle cx="170.2" cy="266.2" r="2.2"></circle>
+                <circle cx="194.2" cy="290.2" r="2.2"></circle>
+                <circle cx="2.2" cy="290.2" r="2.2"></circle>
+                <circle cx="218.2" cy="290.2" r="2.2"></circle>
+                <circle cx="26.2" cy="290.2" r="2.2"></circle>
+                <circle cx="242.2" cy="290.2" r="2.2"></circle>
+                <circle cx="50.2" cy="290.2" r="2.2"></circle>
+                <circle cx="266.2" cy="290.2" r="2.2"></circle>
+                <circle cx="74.2" cy="290.2" r="2.2"></circle>
+                <circle cx="290.2" cy="290.2" r="2.2"></circle>
+                <circle cx="98.2" cy="290.2" r="2.2"></circle>
+                <circle cx="314.2" cy="290.2" r="2.2"></circle>
+                <circle cx="122.2" cy="290.2" r="2.2"></circle>
+                <circle cx="338.2" cy="290.2" r="2.2"></circle>
+                <circle cx="146.2" cy="290.2" r="2.2"></circle>
+                <circle cx="170.2" cy="290.2" r="2.2"></circle>
+                <circle cx="194.2" cy="314.2" r="2.2"></circle>
+                <circle cx="2.2" cy="314.2" r="2.2"></circle>
+                <circle cx="218.2" cy="314.2" r="2.2"></circle>
+                <circle cx="26.2" cy="314.2" r="2.2"></circle>
+                <circle cx="242.2" cy="314.2" r="2.2"></circle>
+                <circle cx="50.2" cy="314.2" r="2.2"></circle>
+                <circle cx="266.2" cy="314.2" r="2.2"></circle>
+                <circle cx="74.2" cy="314.2" r="2.2"></circle>
+                <circle cx="290.2" cy="314.2" r="2.2"></circle>
+                <circle cx="98.2" cy="314.2" r="2.2"></circle>
+                <circle cx="314.2" cy="314.2" r="2.2"></circle>
+                <circle cx="122.2" cy="314.2" r="2.2"></circle>
+                <circle cx="338.2" cy="314.2" r="2.2"></circle>
+                <circle cx="146.2" cy="314.2" r="2.2"></circle>
+                <circle cx="170.2" cy="314.2" r="2.2"></circle>
+                <circle cx="194.2" cy="338.2" r="2.2"></circle>
+                <circle cx="2.2" cy="338.2" r="2.2"></circle>
+                <circle cx="218.2" cy="338.2" r="2.2"></circle>
+                <circle cx="26.2" cy="338.2" r="2.2"></circle>
+                <circle cx="242.2" cy="338.2" r="2.2"></circle>
+                <circle cx="50.2" cy="338.2" r="2.2"></circle>
+                <circle cx="266.2" cy="338.2" r="2.2"></circle>
+                <circle cx="74.2" cy="338.2" r="2.2"></circle>
+                <circle cx="290.2" cy="338.2" r="2.2"></circle>
+                <circle cx="98.2" cy="338.2" r="2.2"></circle>
+                <circle cx="314.2" cy="338.2" r="2.2"></circle>
+                <circle cx="122.2" cy="338.2" r="2.2"></circle>
+                <circle cx="338.2" cy="338.2" r="2.2"></circle>
+                <circle cx="146.2" cy="338.2" r="2.2"></circle>
+                <circle cx="170.2" cy="338.2" r="2.2"></circle>
+              </svg>
+            </figure>
+    
+            <!-- Image -->
+            <img src="{% static 'images/logo.png' %}" class="rounded-3 position-relative" alt="">
+    
+            
           </div>
+          <!-- Left side END -->
+    
+          <!-- Right side START -->
+          <div class="col-lg-6">
+            <h2 class="mb-3 mb-lg-5">The Best Holidays Start Here!</h2>
+            <p class="mb-3 mb-lg-5">ТОО "ЦЕНТР СТАЛЬНОГО ПРОКАТА "ЦСП" – молодая, но динамично развивающаяся компания, специализирующаяся на поставках металлопроката и комплексных решениях для строительства. <br><br> Мы уже зарекомендовали себя как надежный партнер благодаря высококвалифицированным специалистам, которые всегда готовы помочь, подсказать и предложить оптимальные решения. Качество продукции и индивидуальный подход – наши главные приоритеты.</p>
+    
+            <!-- Features START -->
+            <div class="row g-4">
+              <!-- Item -->
+              <div class="col-sm-6">
+                <div class="icon-lg bg-success bg-opacity-10 text-success rounded-circle"><i class="fa-solid fa-utensils"></i></div>
+                <h5 class="mt-2">Quality Food</h5>
+                <p class="mb-0">Departure defective arranging rapturous did. Conduct denied adding worthy little.</p>
+              </div>
+              <!-- Item -->
+              <div class="col-sm-6">
+                <div class="icon-lg bg-danger bg-opacity-10 text-danger rounded-circle"><i class="bi bi-stopwatch-fill"></i></div>
+                <h5 class="mt-2">Quick Services</h5>
+                <p class="mb-0">Supposing so be resolving breakfast am or perfectly. </p>
+              </div>
+              <!-- Item -->
+              <div class="col-sm-6">
+                <div class="icon-lg bg-orange bg-opacity-10 text-orange rounded-circle"><i class="bi bi-shield-fill-check"></i></div>
+                <h5 class="mt-2">High Security</h5>
+                <p class="mb-0">Arranging rapturous did believe him all had supported. </p>
+              </div>
+              <!-- Item -->
+              <div class="col-sm-6">
+                <div class="icon-lg bg-info bg-opacity-10 text-info rounded-circle"><i class="bi bi-lightning-fill"></i></div>
+                <h5 class="mt-2">24 Hours Alert</h5>
+                <p class="mb-0">Rapturous did believe him all had supported.</p>
+              </div>		
+            </div>
+            <!-- Features END -->
+    
+          </div>
+          <!-- Right side END -->
         </div>
-        <!-- Content END -->
       </div>
     </section>
-
-
-    <!-- - БЛОК ТОВАРОВ -->
-
-    <div class="container mt-4 mb-4">
-      <h4 class="about-company-bottom__title mb-3" style="color: #262a31;">Часто ищут...</h2>
-      <div class="categories">
-        <div class="category">
-          <span>Кабель</span>
-        </div>
-
-        <div class="category">
-          <span>Кабель</span>
-        </div>
-
-        <div class="category">
-          <span>Кабель</span>
-        </div>
-
-        <div class="category">
-          <span>Кабель</span>
-        </div>
-
-        <div class="category">
-          <span>Кабель</span>
-        </div>
-
-        <div class="category">
-          <span>Кабель</span>
-        </div>
-
-        <div class="category">
-          <span>Кабель</span>
-        </div>
-
-        <div class="category">
-          <span>Кабель</span>
-        </div>
-
-        <div class="category">
-          <span>Кабель</span>
-        </div>
-
-        <div class="category">
-          <span>Кабель</span>
-        </div>
-        
-      </div>
-    </div>
-
-    <style>
-      .categories {
-        display: flex;
-        overflow-x: auto;
-        gap: 15px;
-        white-space: nowrap;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-      }
-      .categories::-webkit-scrollbar {
-        display: none;
-      }
-      .category {
-        flex: 0 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
-        background: #f5f5f5;
-        border-radius: 10px;
-        text-align: center;
-        min-width: 80px;
-      }
-      .icon-wrapper {
-        width: 50px;
-        height: 50px;
-        background: #f5f5f5;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 5px;
-      }
-      .icon-wrapper svg {
-        width: 24px;
-        height: 24px;
-        fill: #333;
-      }
-      .category img {
-        width: 40px;
-        height: 40px;
-        margin-bottom: 5px;
-      }
-      .category span {
-        font-size: 14px;
-        color: #333;
-      }
-    </style>
-
-    <!-- КОНЕЦ БЛОКА ТОВАРОВ -->
-
-
-    
 
 
 
@@ -401,6 +570,7 @@
 
     <section class="pt-0 mt-5 mb-5">
       <div class="container">
+        <h3 class="mb-4">Этапы заказа </h3>
         <div class="row g-4 g-lg-5 justify-content-center">
           <!-- Step item -->
           <div class="col-sm-6 col-md-4 text-center position-relative">
@@ -455,6 +625,39 @@
     </section>
 
     <!-- КОНЕЦ БЛОК О НАС -->
+
+
+    <section class="py-0 py-md-5">
+      <div class="container">
+        <h3 class="mb-4">С нами сотрудничают </h3>
+        <div class="row g-4 g-lg-7 justify-content-center align-items-center">
+          <!-- Image -->
+          <div class="col-5 col-sm-3 col-xl-2">
+            <img src="{% static 'images/logo.png' %}" class="grayscale" alt="">
+          </div>
+          <!-- Image -->
+          <div class="col-5 col-sm-3 col-xl-2">
+            <img src="{% static 'images/logo.png' %}" class="grayscale" alt="">
+          </div>
+          <!-- Image -->
+          <div class="col-5 col-sm-3 col-xl-2">
+            <img src="{% static 'images/logo.png' %}" class="grayscale" alt="">
+          </div>
+          <!-- Image -->
+          <div class="col-5 col-sm-3 col-xl-2">
+            <img src="{% static 'images/logo.png' %}" class="grayscale" alt="">
+          </div>
+          <!-- Image -->
+          <div class="col-5 col-sm-3 col-xl-2">
+            <img src="{% static 'images/logo.png' %}" class="grayscale" alt="">
+          </div>
+          <!-- Image -->
+          <div class="col-5 col-sm-3 col-xl-2">
+            <img src="{% static 'images/logo.png' %}" class="grayscale" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
 
 
     <!-- БЛОК ПАРТНЕРЫ -->
