@@ -55,32 +55,19 @@
 
   <main>
 
-    <!-- БЛОК ВИДЕО -->
-    <section class="pt-0 pb-2">
-      <div class="container position-relative">
-        <!-- Bg image -->
-        <div class="position-relative bg-mode shadow rounded-3 overflow-hidden">
-          <!-- Фоновое изображение -->
-          <img src="{% static 'images/bg_header.jpeg' %}" alt="Background Image" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
-    
-          <!-- Затемняющий слой (если нужно сделать текст читаемым) -->
-          <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
-    
-          <!-- Контент поверх изображения -->
-          <div class="position-relative p-4 p-sm-5" style="z-index: 2;">
-            <div class="row justify-content-between pt-0 pb-5"> 
-              <div class="col-md-7 col-lg-8 col-xxl-7 pb-5 mb-0 mb-lg-5"> 
-                <h1 class="text-white">Ваш надежный партнер в строительстве! </h1>
-                <p class="text-white mb-0">Полный спектр поставок: от металлопроката до комплексных решений. </p>
-              </div>
-            </div>
+    <section class="position-relative py-8 py-sm-9" style="background-image:url('{% static 'images/bg_header.jpeg' %}'); background-position: center left; background-size: cover;">
+      <!-- Background dark overlay -->
+      <div class="bg-overlay bg-dark opacity-2"></div>
+      <div class="container z-index-9 position-relative">
+        <div class="row">
+          <div class="col-xl-8 m-auto text-center py-xl-8">
+            <h1 class="display-4 text-white mb-3">Ваш надежный партнер в строительстве! </h1>
+            <h5 class="text-white mb-3">Полный спектр поставок ! </h5>
+            <a href="#" class="btn btn-lg btn-dark mb-0">Заявка в 1 клик!</a>
           </div>
-        </div>
+        </div> <!-- Row END -->
       </div>
     </section>
-    
-    <!-- КОНЕЦ БЛОК ВИДЕО -->
-
 
     <!-- НАЧАЛО КАТЕГОРИЙ -->
 
@@ -171,360 +158,67 @@
 
     <!-- БЛОК Дополнительно -->
 
-    <div class="container mb-3 mt-3">
-      <h4 class="about-company-bottom__title mb-4 mt-4" style="color: #262a31;">Спектр услуг</h4>
-      <div class="categories">
-        <div class="category">
-          <img src="{% static 'images/tech/lazerr.webp' %}" alt="Доставка" />
-          <span>Лазерная резка</span>
-        </div>
-
-        <div class="category">
-          <img src="{% static 'images/tech/vozduh2.webp' %}" alt="Бургеры" />
-          <span>Изготовление воздуховодов и фасонных частей</span>
-        </div>
-
-        <div class="category">
-          <img src="{% static 'images/tech/listy.webp' %}" alt="Пицца" />
-          <span>Профлисты</span>
-        </div>
-
-        <div class="category">
-          <img src="{% static 'images/tech/list.webp' %}" alt="Доставка" />
-          <span>Cэндвич панели</span>
-        </div>
-      
-        <div class="category">
-          <img src="{% static 'images/tech/fason.webp' %}" alt="Бургеры" />
-          <span>Фасонные элементы</span>
-        </div>
-
-    
-      </div>
-    </div>
-
-    <style>
-      
-      .categories {
-        display: flex;
-        overflow-x: auto;
-        gap: 15px;
-        white-space: nowrap;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-      }
-      .categories::-webkit-scrollbar {
-        display: none;
-      }
-      .category {
-        flex: 0 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
-        background: #f5f5f5;
-        border-radius: 10px;
-        text-align: center;
-        min-width: 80px;
-      }
-      .icon-wrapper {
-        width: 50px;
-        height: 50px;
-        background: #f5f5f5;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 5px;
-      }
-      .icon-wrapper svg {
-        width: 24px;
-        height: 24px;
-        fill: #333;
-      }
-      .category img {
-        width: 40px;
-        height: 40px;
-        margin-bottom: 5px;
-      }
-      .category span {
-        font-size: 14px;
-        color: #333;
-      }
-    </style>
 
     <!--  КОНЕЦ БЛОКА -->
 
-    <section class="pb-0 pb-xl-5">
+    <section class="my-md-5 mt-3 mb-3" style="background-image:url('{% static 'images/tech/11.jpg' %}'); background-position: center left; background-size: cover;">
       <div class="container">
-        <div class="row g-4 justify-content-between align-items-center">
-          <!-- Left side START -->
-          <div class="col-lg-5 position-relative">
-            <!-- Svg Decoration -->
-            <figure class="position-absolute top-0 start-0 translate-middle z-index-1 ms-4">
-              <svg class="fill-warning" width="77px" height="77px">
-                <path d="M76.997,41.258 L45.173,41.258 L67.676,63.760 L63.763,67.673 L41.261,45.171 L41.261,76.994 L35.728,76.994 L35.728,45.171 L13.226,67.673 L9.313,63.760 L31.816,41.258 L-0.007,41.258 L-0.007,35.725 L31.816,35.725 L9.313,13.223 L13.226,9.311 L35.728,31.813 L35.728,-0.010 L41.261,-0.010 L41.261,31.813 L63.763,9.311 L67.676,13.223 L45.174,35.725 L76.997,35.725 L76.997,41.258 Z"></path>
-              </svg>
-            </figure>
-    
-            <!-- Svg decoration -->
-            <figure class="position-absolute bottom-0 end-0 d-none d-md-block mb-n5 me-n4">
-              <svg height="400" class="fill-primary opacity-2" viewBox="0 0 340 340">
-                <circle cx="194.2" cy="2.2" r="2.2"></circle>
-                <circle cx="2.2" cy="2.2" r="2.2"></circle>
-                <circle cx="218.2" cy="2.2" r="2.2"></circle>
-                <circle cx="26.2" cy="2.2" r="2.2"></circle>
-                <circle cx="242.2" cy="2.2" r="2.2"></circle>
-                <circle cx="50.2" cy="2.2" r="2.2"></circle>
-                <circle cx="266.2" cy="2.2" r="2.2"></circle>
-                <circle cx="74.2" cy="2.2" r="2.2"></circle>
-                <circle cx="290.2" cy="2.2" r="2.2"></circle>
-                <circle cx="98.2" cy="2.2" r="2.2"></circle>
-                <circle cx="314.2" cy="2.2" r="2.2"></circle>
-                <circle cx="122.2" cy="2.2" r="2.2"></circle>
-                <circle cx="338.2" cy="2.2" r="2.2"></circle>
-                <circle cx="146.2" cy="2.2" r="2.2"></circle>
-                <circle cx="170.2" cy="2.2" r="2.2"></circle>
-                <circle cx="194.2" cy="26.2" r="2.2"></circle>
-                <circle cx="2.2" cy="26.2" r="2.2"></circle>
-                <circle cx="218.2" cy="26.2" r="2.2"></circle>
-                <circle cx="26.2" cy="26.2" r="2.2"></circle>
-                <circle cx="242.2" cy="26.2" r="2.2"></circle>
-                <circle cx="50.2" cy="26.2" r="2.2"></circle>
-                <circle cx="266.2" cy="26.2" r="2.2"></circle>
-                <circle cx="74.2" cy="26.2" r="2.2"></circle>
-                <circle cx="290.2" cy="26.2" r="2.2"></circle>
-                <circle cx="98.2" cy="26.2" r="2.2"></circle>
-                <circle cx="314.2" cy="26.2" r="2.2"></circle>
-                <circle cx="122.2" cy="26.2" r="2.2"></circle>
-                <circle cx="338.2" cy="26.2" r="2.2"></circle>
-                <circle cx="146.2" cy="26.2" r="2.2"></circle>
-                <circle cx="170.2" cy="26.2" r="2.2"></circle>
-                <circle cx="194.2" cy="50.2" r="2.2"></circle>
-                <circle cx="2.2" cy="50.2" r="2.2"></circle>
-                <circle cx="218.2" cy="50.2" r="2.2"></circle>
-                <circle cx="26.2" cy="50.2" r="2.2"></circle>
-                <circle cx="242.2" cy="50.2" r="2.2"></circle>
-                <circle cx="50.2" cy="50.2" r="2.2"></circle>
-                <circle cx="266.2" cy="50.2" r="2.2"></circle>
-                <circle cx="74.2" cy="50.2" r="2.2"></circle>
-                <circle cx="290.2" cy="50.2" r="2.2"></circle>
-                <circle cx="98.2" cy="50.2" r="2.2"></circle>
-                <circle cx="314.2" cy="50.2" r="2.2"></circle>
-                <circle cx="122.2" cy="50.2" r="2.2"></circle>
-                <circle cx="338.2" cy="50.2" r="2.2"></circle>
-                <circle cx="146.2" cy="50.2" r="2.2"></circle>
-                <circle cx="170.2" cy="50.2" r="2.2"></circle>
-                <circle cx="194.2" cy="74.2" r="2.2"></circle>
-                <circle cx="2.2" cy="74.2" r="2.2"></circle>
-                <circle cx="218.2" cy="74.2" r="2.2"></circle>
-                <circle cx="26.2" cy="74.2" r="2.2"></circle>
-                <circle cx="242.2" cy="74.2" r="2.2"></circle>
-                <circle cx="50.2" cy="74.2" r="2.2"></circle>
-                <circle cx="266.2" cy="74.2" r="2.2"></circle>
-                <circle cx="74.2" cy="74.2" r="2.2"></circle>
-                <circle cx="290.2" cy="74.2" r="2.2"></circle>
-                <circle cx="98.2" cy="74.2" r="2.2"></circle>
-                <circle cx="314.2" cy="74.2" r="2.2"></circle>
-                <circle cx="122.2" cy="74.2" r="2.2"></circle>
-                <circle cx="338.2" cy="74.2" r="2.2"></circle>
-                <circle cx="146.2" cy="74.2" r="2.2"></circle>
-                <circle cx="170.2" cy="74.2" r="2.2"></circle>
-                <circle cx="194.2" cy="98.2" r="2.2"></circle>
-                <circle cx="2.2" cy="98.2" r="2.2"></circle>
-                <circle cx="218.2" cy="98.2" r="2.2"></circle>
-                <circle cx="26.2" cy="98.2" r="2.2"></circle>
-                <circle cx="242.2" cy="98.2" r="2.2"></circle>
-                <circle cx="50.2" cy="98.2" r="2.2"></circle>
-                <circle cx="266.2" cy="98.2" r="2.2"></circle>
-                <circle cx="74.2" cy="98.2" r="2.2"></circle>
-                <circle cx="290.2" cy="98.2" r="2.2"></circle>
-                <circle cx="98.2" cy="98.2" r="2.2"></circle>
-                <circle cx="314.2" cy="98.2" r="2.2"></circle>
-                <circle cx="122.2" cy="98.2" r="2.2"></circle>
-                <circle cx="338.2" cy="98.2" r="2.2"></circle>
-                <circle cx="146.2" cy="98.2" r="2.2"></circle>
-                <circle cx="170.2" cy="98.2" r="2.2"></circle>
-                <circle cx="194.2" cy="122.2" r="2.2"></circle>
-                <circle cx="2.2" cy="122.2" r="2.2"></circle>
-                <circle cx="218.2" cy="122.2" r="2.2"></circle>
-                <circle cx="26.2" cy="122.2" r="2.2"></circle>
-                <circle cx="242.2" cy="122.2" r="2.2"></circle>
-                <circle cx="50.2" cy="122.2" r="2.2"></circle>
-                <circle cx="266.2" cy="122.2" r="2.2"></circle>
-                <circle cx="74.2" cy="122.2" r="2.2"></circle>
-                <circle cx="290.2" cy="122.2" r="2.2"></circle>
-                <circle cx="98.2" cy="122.2" r="2.2"></circle>
-                <circle cx="314.2" cy="122.2" r="2.2"></circle>
-                <circle cx="122.2" cy="122.2" r="2.2"></circle>
-                <circle cx="338.2" cy="122.2" r="2.2"></circle>
-                <circle cx="146.2" cy="122.2" r="2.2"></circle>
-                <circle cx="170.2" cy="122.2" r="2.2"></circle>
-                <circle cx="194.2" cy="146.2" r="2.2"></circle>
-                <circle cx="2.2" cy="146.2" r="2.2"></circle>
-                <circle cx="218.2" cy="146.2" r="2.2"></circle>
-                <circle cx="26.2" cy="146.2" r="2.2"></circle>
-                <circle cx="242.2" cy="146.2" r="2.2"></circle>
-                <circle cx="50.2" cy="146.2" r="2.2"></circle>
-                <circle cx="266.2" cy="146.2" r="2.2"></circle>
-                <circle cx="74.2" cy="146.2" r="2.2"></circle>
-                <circle cx="290.2" cy="146.2" r="2.2"></circle>
-                <circle cx="98.2" cy="146.2" r="2.2"></circle>
-                <circle cx="314.2" cy="146.2" r="2.2"></circle>
-                <circle cx="122.2" cy="146.2" r="2.2"></circle>
-                <circle cx="338.2" cy="146.2" r="2.2"></circle>
-                <circle cx="146.2" cy="146.2" r="2.2"></circle>
-                <circle cx="170.2" cy="146.2" r="2.2"></circle>
-                <circle cx="194.2" cy="170.2" r="2.2"></circle>
-                <circle cx="2.2" cy="170.2" r="2.2"></circle>
-                <circle cx="218.2" cy="170.2" r="2.2"></circle>
-                <circle cx="26.2" cy="170.2" r="2.2"></circle>
-                <circle cx="242.2" cy="170.2" r="2.2"></circle>
-                <circle cx="50.2" cy="170.2" r="2.2"></circle>
-                <circle cx="266.2" cy="170.2" r="2.2"></circle>
-                <circle cx="74.2" cy="170.2" r="2.2"></circle>
-                <circle cx="290.2" cy="170.2" r="2.2"></circle>
-                <circle cx="98.2" cy="170.2" r="2.2"></circle>
-                <circle cx="314.2" cy="170.2" r="2.2"></circle>
-                <circle cx="122.2" cy="170.2" r="2.2"></circle>
-                <circle cx="338.2" cy="170.2" r="2.2"></circle>
-                <circle cx="146.2" cy="170.2" r="2.2"></circle>
-                <circle cx="170.2" cy="170.2" r="2.2"></circle>
-                <circle cx="194.2" cy="194.2" r="2.2"></circle>
-                <circle cx="2.2" cy="194.2" r="2.2"></circle>
-                <circle cx="218.2" cy="194.2" r="2.2"></circle>
-                <circle cx="26.2" cy="194.2" r="2.2"></circle>
-                <circle cx="242.2" cy="194.2" r="2.2"></circle>
-                <circle cx="50.2" cy="194.2" r="2.2"></circle>
-                <circle cx="266.2" cy="194.2" r="2.2"></circle>
-                <circle cx="74.2" cy="194.2" r="2.2"></circle>
-                <circle cx="290.2" cy="194.2" r="2.2"></circle>
-                <circle cx="98.2" cy="194.2" r="2.2"></circle>
-                <circle cx="314.2" cy="194.2" r="2.2"></circle>
-                <circle cx="122.2" cy="194.2" r="2.2"></circle>
-                <circle cx="338.2" cy="194.2" r="2.2"></circle>
-                <circle cx="146.2" cy="194.2" r="2.2"></circle>
-                <circle cx="170.2" cy="194.2" r="2.2"></circle>
-                <circle cx="194.2" cy="218.2" r="2.2"></circle>
-                <circle cx="2.2" cy="218.2" r="2.2"></circle>
-                <circle cx="218.2" cy="218.2" r="2.2"></circle>
-                <circle cx="26.2" cy="218.2" r="2.2"></circle>
-                <circle cx="242.2" cy="218.2" r="2.2"></circle>
-                <circle cx="50.2" cy="218.2" r="2.2"></circle>
-                <circle cx="266.2" cy="218.2" r="2.2"></circle>
-                <circle cx="74.2" cy="218.2" r="2.2"></circle>
-                <circle cx="290.2" cy="218.2" r="2.2"></circle>
-                <circle cx="98.2" cy="218.2" r="2.2"></circle>
-                <circle cx="314.2" cy="218.2" r="2.2"></circle>
-                <circle cx="122.2" cy="218.2" r="2.2"></circle>
-                <circle cx="338.2" cy="218.2" r="2.2"></circle>
-                <circle cx="146.2" cy="218.2" r="2.2"></circle>
-                <circle cx="170.2" cy="218.2" r="2.2"></circle>
-                <circle cx="194.2" cy="242.2" r="2.2"></circle>
-                <circle cx="2.2" cy="242.2" r="2.2"></circle>
-                <circle cx="218.2" cy="242.2" r="2.2"></circle>
-                <circle cx="26.2" cy="242.2" r="2.2"></circle>
-                <circle cx="242.2" cy="242.2" r="2.2"></circle>
-                <circle cx="50.2" cy="242.2" r="2.2"></circle>
-                <circle cx="266.2" cy="242.2" r="2.2"></circle>
-                <circle cx="74.2" cy="242.2" r="2.2"></circle>
-                <circle cx="290.2" cy="242.2" r="2.2"></circle>
-                <circle cx="98.2" cy="242.2" r="2.2"></circle>
-                <circle cx="314.2" cy="242.2" r="2.2"></circle>
-                <circle cx="122.2" cy="242.2" r="2.2"></circle>
-                <circle cx="338.2" cy="242.2" r="2.2"></circle>
-                <circle cx="146.2" cy="242.2" r="2.2"></circle>
-                <circle cx="170.2" cy="242.2" r="2.2"></circle>
-                <circle cx="194.2" cy="266.2" r="2.2"></circle>
-                <circle cx="2.2" cy="266.2" r="2.2"></circle>
-                <circle cx="218.2" cy="266.2" r="2.2"></circle>
-                <circle cx="26.2" cy="266.2" r="2.2"></circle>
-                <circle cx="242.2" cy="266.2" r="2.2"></circle>
-                <circle cx="50.2" cy="266.2" r="2.2"></circle>
-                <circle cx="266.2" cy="266.2" r="2.2"></circle>
-                <circle cx="74.2" cy="266.2" r="2.2"></circle>
-                <circle cx="290.2" cy="266.2" r="2.2"></circle>
-                <circle cx="98.2" cy="266.2" r="2.2"></circle>
-                <circle cx="314.2" cy="266.2" r="2.2"></circle>
-                <circle cx="122.2" cy="266.2" r="2.2"></circle>
-                <circle cx="338.2" cy="266.2" r="2.2"></circle>
-                <circle cx="146.2" cy="266.2" r="2.2"></circle>
-                <circle cx="170.2" cy="266.2" r="2.2"></circle>
-                <circle cx="194.2" cy="290.2" r="2.2"></circle>
-                <circle cx="2.2" cy="290.2" r="2.2"></circle>
-                <circle cx="218.2" cy="290.2" r="2.2"></circle>
-                <circle cx="26.2" cy="290.2" r="2.2"></circle>
-                <circle cx="242.2" cy="290.2" r="2.2"></circle>
-                <circle cx="50.2" cy="290.2" r="2.2"></circle>
-                <circle cx="266.2" cy="290.2" r="2.2"></circle>
-                <circle cx="74.2" cy="290.2" r="2.2"></circle>
-                <circle cx="290.2" cy="290.2" r="2.2"></circle>
-                <circle cx="98.2" cy="290.2" r="2.2"></circle>
-                <circle cx="314.2" cy="290.2" r="2.2"></circle>
-                <circle cx="122.2" cy="290.2" r="2.2"></circle>
-                <circle cx="338.2" cy="290.2" r="2.2"></circle>
-                <circle cx="146.2" cy="290.2" r="2.2"></circle>
-                <circle cx="170.2" cy="290.2" r="2.2"></circle>
-                <circle cx="194.2" cy="314.2" r="2.2"></circle>
-                <circle cx="2.2" cy="314.2" r="2.2"></circle>
-                <circle cx="218.2" cy="314.2" r="2.2"></circle>
-                <circle cx="26.2" cy="314.2" r="2.2"></circle>
-                <circle cx="242.2" cy="314.2" r="2.2"></circle>
-                <circle cx="50.2" cy="314.2" r="2.2"></circle>
-                <circle cx="266.2" cy="314.2" r="2.2"></circle>
-                <circle cx="74.2" cy="314.2" r="2.2"></circle>
-                <circle cx="290.2" cy="314.2" r="2.2"></circle>
-                <circle cx="98.2" cy="314.2" r="2.2"></circle>
-                <circle cx="314.2" cy="314.2" r="2.2"></circle>
-                <circle cx="122.2" cy="314.2" r="2.2"></circle>
-                <circle cx="338.2" cy="314.2" r="2.2"></circle>
-                <circle cx="146.2" cy="314.2" r="2.2"></circle>
-                <circle cx="170.2" cy="314.2" r="2.2"></circle>
-                <circle cx="194.2" cy="338.2" r="2.2"></circle>
-                <circle cx="2.2" cy="338.2" r="2.2"></circle>
-                <circle cx="218.2" cy="338.2" r="2.2"></circle>
-                <circle cx="26.2" cy="338.2" r="2.2"></circle>
-                <circle cx="242.2" cy="338.2" r="2.2"></circle>
-                <circle cx="50.2" cy="338.2" r="2.2"></circle>
-                <circle cx="266.2" cy="338.2" r="2.2"></circle>
-                <circle cx="74.2" cy="338.2" r="2.2"></circle>
-                <circle cx="290.2" cy="338.2" r="2.2"></circle>
-                <circle cx="98.2" cy="338.2" r="2.2"></circle>
-                <circle cx="314.2" cy="338.2" r="2.2"></circle>
-                <circle cx="122.2" cy="338.2" r="2.2"></circle>
-                <circle cx="338.2" cy="338.2" r="2.2"></circle>
-                <circle cx="146.2" cy="338.2" r="2.2"></circle>
-                <circle cx="170.2" cy="338.2" r="2.2"></circle>
-              </svg>
-            </figure>
-    
-            <!-- Image -->
-            <img src="{% static 'images/zavod.webp' %}" class="rounded-3 position-relative" alt="">
-    
-            
+        <div class="row py-lg-7">
+          <div class="col-lg-6 ms-auto">
+            <h5 class="badge text-bg-white mb-3"><i class="bi bi-star-fill text-warning me-2"></i>Featured</h5>
+            <h2 class="mb-4 text-white">Start Your Day With
+              <span class="position-relative z-index-9">Black Coffee
+                <!-- SVG START -->
+                <span class="position-absolute top-50 start-50 translate-middle z-index-n1 d-none d-md-block mt-3">
+                  <svg width="300px" height="21.5px" viewBox="0 0 445.5 21.5">
+                    <path class="fill-success" d="M409.9,2.6c-9.7-0.6-19.5-1-29.2-1.5c-3.2-0.2-6.4-0.2-9.7-0.3c-7-0.2-14-0.4-20.9-0.5 c-3.9-0.1-7.8-0.2-11.7-0.3c-1.1,0-2.3,0-3.4,0c-2.5,0-5.1,0-7.6,0c-11.5,0-23,0-34.5,0c-2.7,0-5.5,0.1-8.2,0.1 c-6.8,0.1-13.6,0.2-20.3,0.3c-7.7,0.1-15.3,0.1-23,0.3c-12.4,0.3-24.8,0.6-37.1,0.9c-7.2,0.2-14.3,0.3-21.5,0.6 c-12.3,0.5-24.7,1-37,1.5c-6.7,0.3-13.5,0.5-20.2,0.9C112.7,5.3,99.9,6,87.1,6.7C80.3,7.1,73.5,7.4,66.7,8 C54,9.1,41.3,10.1,28.5,11.2c-2.7,0.2-5.5,0.5-8.2,0.7c-5.5,0.5-11,1.2-16.4,1.8c-0.3,0-0.7,0.1-1,0.1c-0.7,0.2-1.2,0.5-1.7,1 C0.4,15.6,0,16.6,0,17.6c0,1,0.4,2,1.1,2.7c0.7,0.7,1.8,1.2,2.7,1.1c6.6-0.7,13.2-1.5,19.8-2.1c6.1-0.5,12.3-1,18.4-1.6 c6.7-0.6,13.4-1.1,20.1-1.7c2.7-0.2,5.4-0.5,8.1-0.7c10.4-0.6,20.9-1.1,31.3-1.7c6.5-0.4,13-0.7,19.5-1.1c2.7-0.1,5.4-0.3,8.1-0.4 c10.3-0.4,20.7-0.8,31-1.2c6.3-0.2,12.5-0.5,18.8-0.7c2.1-0.1,4.2-0.2,6.3-0.2c11.2-0.3,22.3-0.5,33.5-0.8 c6.2-0.1,12.5-0.3,18.7-0.4c2.2-0.1,4.4-0.1,6.7-0.1c11.5-0.1,23-0.2,34.6-0.4c7.2-0.1,14.4-0.1,21.6-0.1c12.2,0,24.5,0.1,36.7,0.1 c2.4,0,4.8,0.1,7.2,0.2c6.8,0.2,13.5,0.4,20.3,0.6c5.1,0.2,10.1,0.3,15.2,0.4c3.6,0.1,7.2,0.4,10.8,0.6c10.6,0.6,21.1,1.2,31.7,1.8 c2.7,0.2,5.4,0.4,8,0.6c2.9,0.2,5.8,0.4,8.6,0.7c0.4,0.1,0.9,0.2,1.3,0.3c1.1,0.2,2.2,0.2,3.2-0.4c0.9-0.5,1.6-1.5,1.9-2.5 c0.6-2.2-0.7-4.5-2.9-5.2c-1.9-0.5-3.9-0.7-5.9-0.9c-1.4-0.1-2.7-0.3-4.1-0.4c-2.6-0.3-5.2-0.4-7.9-0.6 C419.7,3.1,414.8,2.9,409.9,2.6z"></path>
+                  </svg>
+                </span>
+                <!-- SVG END -->
+              </span>
+            </h2>
+            <p class="text-white mb-4">Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do. Water timed folly right aware if oh truth. Large above be to means. Dashwood does provide stronger is.</p>
+            <a href="#" class="btn btn-primary mb-0">Check Listing</a>
           </div>
-          <!-- Left side END -->
-    
-          <!-- Right side START -->
-          <div class="col-lg-6">
-            <h2 class="mb-3 mb-lg-5">ТОО "ЦЕНТР СТАЛЬНОГО ПРОКАТА "ЦСП"</h2>
-            <p class="mb-3 mb-lg-5">ТОО "ЦЕНТР СТАЛЬНОГО ПРОКАТА "ЦСП" – молодая, но динамично развивающаяся компания, специализирующаяся на поставках металлопроката и комплексных решениях для строительства. <br><br> Мы уже зарекомендовали себя как надежный партнер благодаря высококвалифицированным специалистам, которые всегда готовы помочь, подсказать и предложить оптимальные решения. Качество продукции и индивидуальный подход – наши главные приоритеты.</p>
-    
-    
-          </div>
-          <!-- Right side END -->
         </div>
       </div>
-
-      <style>
-        .fill-warning {
-            fill: #5353ec !important;
-        }
-      </style>
     </section>
 
+    <section class="pt-0 pt-sm-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <!-- Card -->
+            <div class="card bg-dark p-3">
+              <div class="card-body border border-2 border-dashed border-white rounded position-relative">
+                <!-- Scissor Svg -->
+                <figure class="position-absolute top-0 start-0 mt-n3 ms-3">
+                  <svg class="pt-1" width="30.1px" height="23.4px" viewBox="0 0 30.1 23.4" style="enable-background:new 0 0 30.1 23.4;" xml:space="preserve">
+                    <path class="fill-white" d="M30.1,4.4c0,0-1.9-1.6-3.4-0.7c-1.2,0.7-8.9,4.5-12.3,6.2L9.6,7.2c0.5-0.9,0.6-2,0.3-3C9.6,2.8,8.6,1.6,7.2,0.8 C4.7-0.6,1.7-0.1,0.5,2C0,3-0.1,4,0.2,5.1c0.4,1.3,1.3,2.6,2.7,3.4C3.5,8.8,4.1,9,4.8,9.1v0c0,0,0,0,0,0c0.1,0,0.1,0,0.2,0 c4,0.6,6,1.7,7,2.5c-1,0.8-3,1.9-7,2.5c-0.1,0-0.1,0-0.2,0c0,0,0,0,0,0l0,0c-0.6,0.1-1.3,0.3-1.9,0.7c-1.4,0.8-2.3,2-2.7,3.4 c-0.3,1-0.2,2.1,0.3,3.1c1.2,2.1,4.2,2.7,6.7,1.2c1.4-0.8,2.3-2,2.7-3.4c0.3-1,0.2-2.1-0.3-3l4.8-2.8c3.4,1.7,11.1,5.6,12.3,6.2 c1.6,0.9,3.4-0.7,3.4-0.7l-12.7-7.3L30.1,4.4z M7.5,6C7,7,5.4,7.2,4,6.4C3.2,5.9,2.6,5.2,2.4,4.5C2.3,4.1,2.3,3.6,2.6,3.2 c0.5-1,2.2-1.1,3.5-0.3C6.9,3.3,7.4,4,7.6,4.8C7.7,5.1,7.8,5.6,7.5,6z M7.6,18.6c-0.2,0.8-0.8,1.5-1.6,1.9c-1.4,0.8-3,0.6-3.5-0.3 c-0.3-0.4-0.2-0.9-0.1-1.3C2.6,18.1,3.2,17.4,4,17c1.4-0.8,3-0.6,3.5,0.3C7.8,17.8,7.7,18.2,7.6,18.6z"></path>
+                  </svg>
+                </figure>
+                <!-- Scissor Svg -->
+                <figure class="position-absolute bottom-0 end-0 mb-n3 me-3">
+                  <svg class="pb-1" width="30.1px" height="23.4px" viewBox="0 0 30.1 23.4" style="enable-background:new 0 0 30.1 23.4;" xml:space="preserve">
+                    <path class="fill-white" d="M0,19c0,0,1.9,1.6,3.4,0.7c1.2-0.7,8.8-4.6,12.2-6.3l4.8,2.7c-0.5,0.9-0.6,2-0.3,3c0.4,1.3,1.3,2.5,2.7,3.3 c2.5,1.4,5.5,0.9,6.7-1.3c0.5-0.9,0.6-2,0.3-3.1c-0.4-1.3-1.3-2.5-2.7-3.3c-0.6-0.3-1.3-0.6-1.9-0.7l0,0c0,0,0,0,0,0 c-0.1,0-0.1,0-0.2,0c-4-0.6-6-1.7-7-2.5c1-0.8,3-1.9,7-2.5c0.1,0,0.1,0,0.2,0c0,0,0,0,0,0l0,0C26,9,26.6,8.7,27.2,8.4 c1.4-0.8,2.3-2.1,2.7-3.4c0.3-1,0.2-2.1-0.4-3.1c-1.2-2.1-4.2-2.6-6.7-1.2c-1.4,0.8-2.3,2.1-2.7,3.4c-0.3,1-0.2,2.1,0.3,3L15.7,10 C12.3,8.3,4.6,4.5,3.4,3.8C1.8,2.9,0,4.5,0,4.5l12.7,7.2L0,19z M22.6,17.3c0.5-1,2.1-1.1,3.5-0.4c0.8,0.4,1.4,1.2,1.6,1.9 c0.1,0.3,0.2,0.8-0.1,1.3c-0.5,1-2.1,1.1-3.5,0.4c-0.8-0.5-1.4-1.2-1.6-1.9C22.4,18.2,22.4,17.7,22.6,17.3z M22.4,4.7 C22.6,4,23.2,3.3,24,2.8c1.3-0.8,3-0.6,3.5,0.3c0.3,0.4,0.2,0.9,0.1,1.3c-0.2,0.8-0.8,1.5-1.6,1.9c-1.3,0.8-3,0.6-3.5-0.3 C22.3,5.6,22.3,5.1,22.4,4.7z"></path>
+                  </svg>
+                </figure>
+    
+                <!-- Title -->
+                <h2 class="text-white">Get an Extra 45% Discount Code</h2>
+                <!-- Content -->
+                <div class="d-flex justify-content-between flex-wrap">
+                  <h4 class="fw-light text-white mb-0">On all restaurant deals</h4>
+                  <a href="#" class="text-warning fs-4 stretched-link">Use Code: BOOK56</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-
+   
     <!-- БЛОК О НАС -->
 
     <section class="pt-0 mt-5 mb-5">
