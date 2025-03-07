@@ -38,53 +38,9 @@
 
     
     <!-- Header START -->
-    <header class="header-transparent">
-      <!-- Logo Nav START -->
-      <nav class="navbar navbar-dark navbar-expand-xl">
-        <div class="container-fluid px-md-5">
-          <!-- Logo START -->
-          <a class="navbar-brand" href="/">
-            <img class="navbar-brand-item" style="height: 60px;" src="{% static 'images/logotip.png' %}" alt="logo">
-          </a>
-
-
-          <!-- Logo END -->
+    {% block header %}
     
-          <!-- Responsive navbar toggler -->
-          <button class="navbar-toggler ms-auto me-3 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-animation">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-          </button>
-    
-          <!-- Main navbar START -->
-          <div class="navbar-collapse collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll mx-auto">
-    
-              <!-- Nav item Link -->
-              <li class="nav-item"> <a class="nav-link" href="#">Главная</a> </li>
-    
-              <!-- Nav item Link -->
-              <li class="nav-item"> <a class="nav-link" href="#">Услуги</a> </li>
-    
-              <!-- Nav item Link -->
-              <li class="nav-item"> <a class="nav-link" href="#">Контакты</a> </li>
-    
-              <!-- Nav item Link -->
-              <li class="nav-item"> <a class="nav-link" href="#">О компании</a> </li>
-    
-            </ul>
-          </div>
-          <!-- Main navbar END -->
-    
-         
-    
-        </div>
-      </nav>
-      <!-- Logo Nav END -->
-    </header>
+    {% endblock %}
     <!-- Header END -->
 
     <!-- **************** MAIN CONTENT START **************** -->

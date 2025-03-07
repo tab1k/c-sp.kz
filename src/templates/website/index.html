@@ -51,6 +51,58 @@
   </script>
 {% endblock %}
 
+{% block header %}
+
+<header class="header-transparent">
+  <!-- Logo Nav START -->
+  <nav class="navbar navbar-dark navbar-expand-xl">
+    <div class="container-fluid px-md-5">
+      <!-- Logo START -->
+      <a class="navbar-brand" href="/">
+        <img class="navbar-brand-item" style="height: 60px;" src="{% static 'images/logotip.png' %}" alt="logo">
+      </a>
+
+
+      <!-- Logo END -->
+
+      <!-- Responsive navbar toggler -->
+      <button class="navbar-toggler ms-auto me-3 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-animation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+
+      <!-- Main navbar START -->
+      <div class="navbar-collapse collapse" id="navbarCollapse">
+        <ul class="navbar-nav navbar-nav-scroll mx-auto">
+
+          <!-- Nav item Link -->
+          <li class="nav-item"> <a class="nav-link" href="{% url 'website:index' %}">Главная</a> </li>
+
+          <!-- Nav item Link -->
+          <li class="nav-item"> <a class="nav-link" href="{% url 'website:services' %}">Услуги</a> </li>
+
+          <!-- Nav item Link -->
+          <li class="nav-item"> <a class="nav-link" href="{% url 'website:contacts' %}">Контакты</a> </li>
+
+          <!-- Nav item Link -->
+          <li class="nav-item"> <a class="nav-link" href="{% url 'website:about' %}">О компании</a> </li>
+
+        </ul>
+      </div>
+      <!-- Main navbar END -->
+
+     
+
+    </div>
+  </nav>
+  <!-- Logo Nav END -->
+</header>
+
+{% endblock %}
+
 {% block content %}
   <main>
     <section class="position-relative py-8 py-sm-9" style="background-image:url('{% static 'images/bg_header.jpeg' %}'); background-position: center left; background-size: cover;">
@@ -165,9 +217,11 @@
     <div class="container" style="margin-top: 70px; margin-bottom: 120px; background: url('{% static 'images/tech/background.png' %}'); background-repeat: no-repeat; background-size: cover;">
       <h4 class="about-company-bottom__title mb-4" style="color: #262a31;"><a href="{% url 'website:category' %}">Каталог</a></h4>
       <div class="grid">
+    
         {% for category in categories|slice:':8' %}
           <a href="{{ category.get_absolute_url }}">
-            <div class="grid-item {% if forloop.first %}big{% endif %}" style="background-image: url('{% static 'images/tech/chernyi.jpg' %}');">
+            <div class="grid-item {% if forloop.first %}big{% endif %}" 
+                style="background-image: url('{% if category.image %}{{ category.image.url }}{% else %}{% static 'images/tech/chernyi.jpg' %}{% endif %}');">
               <span>{{ category.name }}</span>
             </div>
           </a>
@@ -182,7 +236,7 @@
 
     <!-- БЛОК Дополнительно -->
 
-    <section class="pt-0 mt-5 mb-5">
+    <section class="pt-0 mb-5">
       <div class="container">
         <h3 class="mb-4">Этапы создания заказа</h3>
         <div class="row g-4 g-lg-5 justify-content-center mt-4">
