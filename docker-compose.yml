@@ -1,15 +1,45 @@
-version: '3'
+version: '3.8'
 
 services:
-  web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: gunicorn --bind 0.0.0.0:8000 website.wsgi:application
-    volumes:
-      - ./src:/app
-      - ./src/staticfiles:/app/staticfiles
+  django:
+    build: .
+    container_name: django_app
+    restart: always
     ports:
       - "8000:8000"
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
     environment:
       - DJANGO_SETTINGS_MODULE=website.settings
+    entrypoint: ["/app/docker-entrypoint.sh"]
+
+  postgres:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: csp_db
+      POSTGRES_USER: tab1k
+      POSTGRES_PASSWORD: TOBI8585
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_proxy
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - django
+    volumes:
+      - ./src/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./src/static:/static
+      - ./src/media:/media
+
+volumes:
+  postgres_data:

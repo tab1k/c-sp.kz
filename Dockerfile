@@ -1,35 +1,23 @@
-# Используем официальный образ Python 3.10 на основе Slim
-FROM python:3.10-slim
+# Используем официальный образ Python
+FROM python:3.10
 
-# Установка переменной окружения для отключения буферизации вывода Python (полезно для логов)
+ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Установка системных зависимостей для PostgreSQL и компиляции
-RUN apt-get update && apt-get install -y \
-    gcc \
-    libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
+WORKDIR /app  
 
-# Установка рабочей директории
-WORKDIR /app
+RUN apt-get update && apt-get install -y postgresql-client && rm -rf /var/lib/apt/lists/*
 
-# Копирование requirements.txt в контейнер
-COPY requirements.txt /app/requirements.txt
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt && \
+    pip install --no-cache-dir psycopg2-binary  # Устанавливаем psycopg2-binary
 
-# Установка зависимостей из requirements.txt
-RUN pip install --no-cache-dir -r /app/requirements.txt
+COPY src /app
 
-# Установим gunicorn, если он не указан в requirements.txt
-RUN pip install --no-cache-dir gunicorn
+COPY docker-entrypoint.sh /app/docker-entrypoint.sh
+RUN chmod +x /app/docker-entrypoint.sh
 
-# Копирование проекта в контейнер
-COPY ./src /app
+ENTRYPOINT ["/app/docker-entrypoint.sh"]
 
-# Сбор статических файлов (если нужно для проекта)
-RUN python manage.py collectstatic --noinput
-
-# Экспорт порта для сервера
 EXPOSE 8000
-
-# Команда для запуска приложения через Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "website.wsgi:application"]
