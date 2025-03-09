@@ -403,3 +403,10 @@ def search_products(request):
         results = [{'name': 'Ничего не найдено', 'type': 'none'}]
 
     return JsonResponse({'results': results})
+
+
+
+from django.shortcuts import render
+
+def custom_404(request, exception):
+    return render(request, '404.html', status=404)

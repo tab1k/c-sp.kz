@@ -22,4 +22,5 @@ urlpatterns = [
 
 
     path('search/', search_products, name='search_products'),
+
 ]
