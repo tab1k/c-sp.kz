@@ -8,10 +8,13 @@ ENV PYTHONUNBUFFERED 1
 # Создаём рабочую директорию
 WORKDIR /app  
 
-# Обновляем `apt` и устанавливаем PostgreSQL-клиент
+# Обновляем `apt` и устанавливаем PostgreSQL-клиент и необходимые зависимости
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    postgresql-client && \
+    postgresql-client gcc libpq-dev && \
     rm -rf /var/lib/apt/lists/*
+
+# Устанавливаем psycopg2-binary вручную
+RUN pip install --no-cache-dir psycopg2-binary
 
 # Копируем и устанавливаем зависимости
 COPY requirements.txt /app/
