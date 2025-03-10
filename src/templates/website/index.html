@@ -87,23 +87,30 @@
         <div class="navbar-collapse collapse" id="navbarCollapse">
           <ul class="navbar-nav navbar-nav-scroll mx-auto">
             <!-- Nav item Link -->
+
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'website:index' %}">Главная</a>
+              <a class="nav-link" href="{% url 'website:category' %}"><b style="color: #032655;">Каталог</b></a>
+            </li>
+
+            
+
+            <li class="nav-item">
+              <a style="color: #032655;" class="nav-link" href="{% url 'website:index' %}">Главная</a>
             </li>
 
             <!-- Nav item Link -->
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'website:services' %}">Услуги</a>
+              <a style="color: #032655;" class="nav-link" href="{% url 'website:services' %}">Услуги</a>
             </li>
 
             <!-- Nav item Link -->
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'website:contacts' %}">Контакты</a>
+              <a style="color: #032655;" class="nav-link" href="{% url 'website:contacts' %}">Контакты</a>
             </li>
 
             <!-- Nav item Link -->
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'website:about' %}">О компании</a>
+              <a style="color: #032655;" class="nav-link" href="{% url 'website:about' %}">О компании</a>
             </li>
 
             <style>
@@ -188,6 +195,47 @@
 
     <!-- НАЧАЛО КАТЕГОРИЙ -->
 
+    <div class="marquee-container">
+      <div class="marquee">
+        <span>🔥 Добро пожаловать на наш сайт! 🚀 Новые акции уже доступны! 🎉 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🔥 Добро пожаловать на наш сайт! 🚀 Новые акции уже доступны! 🎉</span>
+      </div>
+    </div>
+    
+    <style>
+      .marquee-container {
+        width: 100%;
+        overflow: hidden;
+        background: #032655;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 10px 0;
+        white-space: nowrap;
+        position: relative;
+      }
+    
+      .marquee {
+        display: flex;
+        width: 200%;
+        animation: marquee 10s linear infinite;
+      }
+    
+      .marquee span {
+        display: inline-block;
+        width: 100%;
+        padding-right: 50px; /* Отступ между повторениями */
+      }
+    
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+    </style>
+
     <style>
       .container {
         margin: auto;
@@ -256,7 +304,8 @@
         }
       }
     </style>
-    <div class="container" style="margin-top: 70px; margin-bottom: 50px; background: url('{% static 'images/tech/background.png' %}'); background-repeat: no-repeat; background-size: cover;">
+
+    <div class="container" style="margin-top: 20px; margin-bottom: 50px; background: url('{% static 'images/tech/background.png' %}'); background-repeat: no-repeat; background-size: cover;">
       <h4 class="about-company-bottom__title mb-4" style="color: #262a31;"><a href="{% url 'website:category' %}">Каталог</a></h4>
       <div class="grid">
         {% for category in categories|slice:':8' %}
@@ -275,278 +324,135 @@
 
     <!-- КОНЕЦ КАТЕГОРИЙ -->
 
-    <div class="marquee-container">
-      <div class="marquee">
-        <span>🔥 Добро пожаловать на наш сайт! 🚀 Новые акции уже доступны! 🎉 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🔥 Добро пожаловать на наш сайт! 🚀 Новые акции уже доступны! 🎉</span>
+    
+    
+
+    <section class="pb-0 p-0 pb-2 mt-5">
+      <div class="container">
+        <div class="about-us">
+          <div class="about-content">
+              <h2 style="color: white;">О компании</h2>
+              <p style="color: white;">Мы — надежный поставщик металлопроката, работающий на рынке более 10 лет. 
+                Предлагаем широкий ассортимент продукции для строительства, машиностроения и производства.</p>
+              <p style="color: white;">Наша цель — обеспечить клиентов качественным металлом по выгодным ценам.</p>
+              <button>Подробнее</button>
+          </div>
+          <div class="about-image">
+              <img src="{% static 'images/tech/cartinka.jpg' %}" alt="Металлопрокат">
+          </div>
+      </div>
+  
+      <style>
+       
+        
+        .about-us {
+            display: flex;
+            align-items: center;
+            background: #032655; /* Темно-синий фон */
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            max-width: 100%;
+            color: white; /* Белый текст */
+        }
+        
+        .about-content {
+            flex: 1;
+            padding-right: 20px;
+        }
+        
+        .about-content h2 {
+            font-size: 26px;
+            margin-bottom: 16px;
+            color: #f0f0f0;
+        }
+        
+        .about-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.9; /* Чуть менее яркий текст */
+        }
+        
+        .about-content button {
+            background: white;
+            color: #032655;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        
+        .about-content button:hover {
+            background: #f0f0f0;
+        }
+        
+        .about-image {
+            flex: 1;
+            text-align: right;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .about-us {
+                flex-direction: column;
+                text-align: center;
+            }
+            .about-content {
+                padding-right: 0;
+            }
+            .about-image {
+                text-align: center;
+                margin-top: 20px;
+            }
+        }
+        
+        
+      </style>
+      </div>
+    </section>
+
+
+    
+
+    <div class="container" style="margin-top: 20px; margin-bottom: 50px; background: url('{% static 'images/tech/background.png' %}'); background-repeat: no-repeat; background-size: cover;">
+      <h4 class="about-company-bottom__title mb-4" style="color: #262a31;"><a href="{% url 'website:category' %}">Спектр услуг</a></h4>
+      <div class="grid">
+
+        <a href="{% url 'website:services' %}">
+          <div class="grid-item" style="background-image: url('{% static 'images/tech/gibka.jpeg' %}');">
+            <span>Гибка листового проката</span>
+          </div>
+        </a>
+
+        <a href="{% url 'website:services' %}">
+          <div class="grid-item" style="background-image: url('{% static 'images/tech/lazer.jpg' %}');">
+            <span>Лазерная резка металла</span>
+          </div>
+        </a>
+
+        <a href="{% url 'website:services' %}">
+          <div class="grid-item" style="background-image: url('{% static 'images/tech/prof.jpeg' %}');">
+            <span>Профнастил</span>
+          </div>
+        </a>
+
+        <a href="{% url 'website:services' %}">
+          <div class="grid-item" style="background-image: url('{% static 'images/sys.jpeg' %}');">
+            <span>Система вентиляции</span>
+          </div>
+        </a>
+
+        <div class="grid-item more">
+          <a href="{% url 'website:services' %}" style="color: #032655;"><span>Ещё →</span></a>
+        </div>
       </div>
     </div>
-    
-    <style>
-      .marquee-container {
-        width: 100%;
-        overflow: hidden;
-        background: #032655;
-        color: white;
-        font-size: 20px;
-        font-weight: bold;
-        padding: 10px 0;
-        white-space: nowrap;
-        position: relative;
-      }
-    
-      .marquee {
-        display: flex;
-        width: 200%;
-        animation: marquee 10s linear infinite;
-      }
-    
-      .marquee span {
-        display: inline-block;
-        width: 100%;
-        padding-right: 50px; /* Отступ между повторениями */
-      }
-    
-      @keyframes marquee {
-        from {
-          transform: translateX(0);
-        }
-        to {
-          transform: translateX(-50%);
-        }
-      }
-    </style>
-    
-
-    <section class="pb-0 p-0 pb-5 mt-5">
-      <div class="container z-index-9">
-        <div class="row">
-          <div class="col-lg-10 m-auto text-center">
-            <h2>ТОО "Центр Стального Проката"</h2>
-            <p class="lead"> ТОО "Центр Стального Проката" — ваш надежный партнер в сфере комплексных поставок строительных материалов. <br> Мы обеспечиваем высококачественным металлопрокатом и сопутствующими материалами, помогая реализовать проекты любой сложности. <br> Доверьтесь профессионалам — мы заботимся о вашем успехе!</p>
-
-            <!-- List -->
-            <ul class="list-inline hstack gap-4 flex-wrap justify-content-center mt-4">
-              <li class="list-inline-item">
-                <h5 class="mb-0 fw-normal">
-                  <i class="bi bi-telephone fa-fw text-primary me-1"></i>Свяжитесь с нами
-                </h5>
-              </li>
-              <li class="list-inline-item">
-                <h5 class="mb-0 fw-normal">
-                  <i class="bi bi-clock fa-fw text-warning me-1"></i>Режим работы: 09:00 - 18:00
-                </h5>
-              </li>
-              <li class="list-inline-item">
-                <h5 class="mb-0 fw-normal">
-                  <i class="bi bi-truck fa-fw text-success me-1"></i>Доставка по всей стране
-                </h5>
-              </li>
-              <li class="list-inline-item">
-                <h5 class="mb-0 fw-normal">
-                  <i class="bi bi-box fa-fw text-danger me-1"></i>Широкий ассортимент металлопроката
-                </h5>
-              </li>
-              <li class="list-inline-item">
-                <h5 class="mb-0 fw-normal">
-                  <i class="bi bi-cash fa-fw text-info me-1"></i>Гибкие условия оплаты
-                </h5>
-              </li>
-            </ul>
-            
-
-            <!-- Button and rating -->
-            <div class="d-sm-flex justify-content-center align-items-center mt-4">
-              <!-- Rating -->
-              <div class="d-flex justify-content-center align-items-center text-start me-0 me-sm-4">
-                <h3 class="me-2 mb-0">5</h3>
-                <div>
-                  <ul class="list-inline mb-0">
-                    <li class="list-inline-item me-0 small">
-                      <i class="fas fa-star text-warning"></i>
-                    </li>
-                    <li class="list-inline-item me-0 small">
-                      <i class="fas fa-star text-warning"></i>
-                    </li>
-                    <li class="list-inline-item me-0 small">
-                      <i class="fas fa-star text-warning"></i>
-                    </li>
-                    <li class="list-inline-item me-0 small">
-                      <i class="fas fa-star text-warning"></i>
-                    </li>
-                    <li class="list-inline-item me-0 small">
-                      <i class="fas fa-star text-warning"></i>
-                    </li>
-                  </ul>
-                  <p class="mb-0 small">Клиенты любят нас!</p>
-                </div>
-              </div>
-              <!-- Button -->
-              <div class="position-relative d-inline-block mt-3">
-                <a href="#" class="btn btn-lg mb-0 px-4" style="color: white; background-color: #032655; position: relative;">
-                  Оставить заявку
-                </a>
-                <i class="bi bi-star-fill text-warning position-absolute" style="top: 1px;right: 9px;font-size: 1rem;"></i>
-              </div>
-              
-            </div>
-          </div>
-        </div> <!-- Row END -->
-      </div>
-    </section>
-
-    
-
-    <section class="pt-5 pb-0 pb-5">
-      <div class="container-fluid px-lg-5">
-        <!-- Title -->
-        <div class="row mb-4">
-          <div class="col-12">
-            <h3>Спектр услуг</h2>
-          </div>
-        </div>
-
-        <!-- Slider START -->
-        <div class="tiny-slider arrow-round arrow-blur rounded-3 overflow-hidden">
-          <div class="tns-outer" id="tns1-ow">
-            <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">
-              slide <span class="current">10 to 13</span> of 7
-            </div>
-            <div id="tns1-mw" class="tns-ovh">
-              <div class="tns-inner" id="tns1-iw">
-                <div class="tiny-slider-inner tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" data-autoplay="true" data-arrow="true" data-dots="false" data-items-xl="4" data-items-lg="3" data-items-md="2" data-items-xs="1" id="tns1" style="transform: translate3d(-42.8571%, 0px, 0px);">
-                  <div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-                    <div class="card card-metro overflow-hidden">
-                      <img src="{% static 'images/tech/polimer.jpeg' %}" alt="" />
-                      <!-- Image overlay -->
-                      <div class="card-img-overlay d-flex">
-                        <!-- Info -->
-                        <div class="card-text mt-auto">
-                          <h4><a href="#" class="text-white stretched-link">Полимерная покраска</a></h4>
-                          
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                
-                  <div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-                    <div class="card card-metro overflow-hidden">
-                      <img src="{% static 'images/tech/sandwich.jpeg' %}" alt="" />
-                      <!-- Image overlay -->
-                      <div class="card-img-overlay d-flex">
-                        <!-- Info -->
-                        <div class="card-text mt-auto">
-                          <h4><a href="#" class="text-white stretched-link">Сэндвич панели</a></h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-                    <div class="card card-metro overflow-hidden">
-                      <img src="{% static 'images/pr.jpeg' %}" alt="" />
-                      <!-- Image overlay -->
-                      <div class="card-img-overlay d-flex">
-                        <!-- Info -->
-                        <div class="card-text mt-auto">
-                          <h4><a href="#" class="text-white stretched-link">Профнастил</a></h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-                    <div class="card card-metro overflow-hidden">
-                      <img src="{% static 'images/lz.jpeg' %}" alt="" />
-                      <!-- Image overlay -->
-                      <div class="card-img-overlay d-flex">
-                        <!-- Info -->
-                        <div class="card-text mt-auto">
-                          <h4><a href="#" class="text-white stretched-link">Лазерная резка</a></h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-                    <div class="card card-metro overflow-hidden">
-                      <img src="{% static 'images/tech/logistic.jpeg' %}" alt="" />
-                      <!-- Image overlay -->
-                      <div class="card-img-overlay d-flex">
-                        <!-- Info -->
-                        <div class="card-text mt-auto">
-                          <h4><a href="#" class="text-white stretched-link">Логистика</a></h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-                    <div class="card card-metro overflow-hidden">
-                      <img src="{% static 'images/sys.jpeg' %}" alt="" />
-                      <!-- Image overlay -->
-                      <div class="card-img-overlay d-flex">
-                        <!-- Info -->
-                        <div class="card-text mt-auto">
-                          <h4><a href="#" class="text-white stretched-link">Система вентиляции</a></h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Card item START -->
-                  <div class="tns-item" id="tns1-item0" aria-hidden="true" tabindex="-1">
-                    <div class="card card-metro overflow-hidden">
-                      <img src="{% static 'images/tech/valc.jpeg' %}" alt="" />
-                      <!-- Image overlay -->
-                      <div class="card-img-overlay d-flex">
-                        <!-- Info -->
-                        <div class="card-text mt-auto">
-                          <h4><a href="#" class="text-white stretched-link">Вальцовка листового проката</a></h4>
-                          <p class="text-white mb-2">We focus a great deal on the understanding of behavioral psychology and influence</p>
-                          <button class="btn btn-link text-white p-0 mb-0">Explore now <i class="fa-solid fa-arrow-right-long fa-fw"></i></button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Card item END -->
-
-                  <div class="tns-item" id="tns1-item0" aria-hidden="true" tabindex="-1">
-                    <div class="card card-metro overflow-hidden">
-                      <img src="{% static 'images/gibbka.jpeg' %}" alt="" />
-                      <!-- Image overlay -->
-                      <div class="card-img-overlay d-flex">
-                        <!-- Info -->
-                        <div class="card-text mt-auto">
-                          <h4><a href="#" class="text-white stretched-link">Гибка листового проката</a></h4>
-                          <p class="text-white mb-2">We focus a great deal on the understanding of behavioral psychology and influence</p>
-                          <button class="btn btn-link text-white p-0 mb-0">Explore now <i class="fa-solid fa-arrow-right-long fa-fw"></i></button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Card item START -->
-                  <div class="tns-item" id="tns1-item1" aria-hidden="true" tabindex="-1">
-                    <div class="card card-metro overflow-hidden">
-                      <img src="{% static 'images/tech/decor.jpeg' %}" alt="" />
-                      <!-- Image overlay -->
-                      <div class="card-img-overlay d-flex">
-                        <!-- Info -->
-                        <div class="card-text mt-auto">
-                          <h4><a href="#" class="text-white stretched-link">Декоративная резка металла</a></h4>
-                          <p class="text-white mb-2">Understand that theory alone isn't going to get the job done.</p>
-                          <button class="btn btn-link text-white p-0 mb-0">Explore now <i class="fa-solid fa-arrow-right-long fa-fw"></i></button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Card item END -->
-                </div>
-              </div>
-            </div>
-            <div class="tns-controls" aria-label="Carousel Navigation" tabindex="0">
-              <button type="button" data-controls="prev" tabindex="-1" aria-controls="tns1"><i class="bi bi-arrow-left"></i></button><button type="button" data-controls="next" tabindex="-1" aria-controls="tns1"><i class="bi bi-arrow-right"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- БЛОК ПАРТНЕРЫ -->
 
