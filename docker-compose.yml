@@ -38,8 +38,8 @@ services:
       - django
     volumes:
       - ./src/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./src/static:/static
-      - ./src/media:/media
+      - ./src/staticfiles:/app/staticfiles
+      - ./src/media:/app/media
 
 volumes:
   postgres_data:
