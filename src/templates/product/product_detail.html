@@ -189,10 +189,8 @@
                         <div class="mb-2 mb-lg-0">
                             <h1 class="fs-2">{{ product.name.upper }} </h1>
                             <!-- Location -->
-                            <p class="fw-bold mb-0"><i class="bi bi-geo-alt me-2"></i>5855 W Century Blvd, Los Angeles - 90045
-                                <a href="#" class="ms-2 text-decoration-underline" data-bs-toggle="modal" data-bs-target="#mapmodal">
-                                    <i class="bi bi-eye-fill me-1"></i>View On Map
-                                </a>
+                            <p class="fw-bold mb-0"><i class="bi bi-geo-alt me-2"></i>Казахстан, г.
+                                
                             </p>
                         </div>
     
@@ -237,8 +235,10 @@
             <div class="row g-2">
                 <!-- Image -->
                 <div class="w-100">
-                    <a data-glightbox="" data-gallery="gallery" href="{{ product.image.url }}">
-                        <div class="card card-grid-lg card-element-hover card-overlay-hover overflow-hidden" style="height: 200px; background-image:url('{{ product.image.url }}'); background-position: center left; background-size: cover;">
+                    <a data-glightbox="" data-gallery="gallery" href="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/tech/cartinka.jpg' %}{% endif %}">
+                        <div class="card card-grid-lg card-element-hover card-overlay-hover overflow-hidden" 
+                             style="height: 200px; background-image:url('{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/tech/cartinka.jpg' %}{% endif %}'); 
+                             background-position: center left; background-size: cover;">
                             <!-- Card hover element -->
                             <div class="hover-element position-absolute w-100 h-100">
                                 <i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
