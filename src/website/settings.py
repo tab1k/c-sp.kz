@@ -136,8 +136,8 @@ DEBUG_PROPAGATE_EXCEPTIONS = False
 STATIC_URL = "static/"
 
 # Путь к каталогу, в котором будут собраны статические файлы
-STATIC_ROOT = os.path.join(BASE_DIR, 'src', 'staticfiles')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'src', 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Добавьте это, чтобы Django знал, где искать статические файлы внутри приложений
 STATICFILES_DIRS = [
