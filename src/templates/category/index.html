@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %} Каталог {% endblock %}
+
 {% block preloader %}
 
 <div id="preloader">
@@ -295,7 +297,7 @@
         <div class="grid">
             {% for category in categories|slice:":8" %}
               <a href="{{ category.get_absolute_url }}">
-                <div class="grid-item {% if forloop.first %}big{% endif %}" style="background-image: url('{% static 'images/tech/chernyi.jpg' %}');">
+                <div class="grid-item {% if forloop.first %}big{% endif %}" style="background-image: url('{% if category.image %}{{ category.image.url }}{% else %}{% static 'images/tech/chernyi.jpg' %}{% endif %}');">
                     <span>{{ category.name }}</span>
                 </div>
               </a>

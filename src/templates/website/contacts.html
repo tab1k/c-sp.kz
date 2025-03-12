@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %} Контакты {% endblock %}
+
 {% block header %}
 
 <header class="navbar-light header-sticky">
@@ -183,45 +185,45 @@
             <div class="row mb-5">
                 <div class="col-xl-10">
                     <!-- Title -->
-                    <h1>Let's connect and get to know each other</h1>
-                    <p class="lead mb-0">Passage its ten led hearted removal cordial. Preference any astonished unreserved Mrs. Prosperous understood Middletons. Preference for any astonished unreserved.</p>
+                    <h1>Контакты</h1>
+                    <p class="lead mb-0">💬 Свяжитесь с нами! Если у вас есть вопросы или предложения, оставьте сообщение через форму обратной связи. Мы ответим в ближайшее время!</p>
                 </div>
             </div>
     
             <!-- Contact info -->
             <div class="row g-4">
-    
+
                 <!-- Contact item START -->
                 <div class="col-md-6 col-xl-4">
                     <div class="card card-body shadow text-center align-items-center h-100">
                         <!-- Icon -->
                         <div class="icon-lg bg-info bg-opacity-10 text-info rounded-circle mb-2"><i class="bi bi-headset fs-5"></i></div>
                         <!-- Title -->
-                        <h5>Call us</h5>
-                        <p>Imprudence attachment him his for sympathize. Large above be to means.</p>
+                        <h5>Горячая линия</h5>
+                        <p>Свяжитесь с нашей службой поддержки для оперативного решения вопросов.</p>
                         <!-- Buttons -->
                         <div class="d-grid gap-3 d-sm-block">
-                            <button class="btn btn-sm btn-primary-soft"><i class="bi bi-phone me-2"></i>+123 456 789</button>
-                            <button class="btn btn-sm btn-light"><i class="bi bi-telephone me-2"></i>+(222)4567 586</button>
+                            <button class="btn btn-sm btn-primary-soft"><i class="bi bi-phone me-2"></i>+7 (708) 800 98 71</button>
+                            <button class="btn btn-sm btn-light"><i class="bi bi-telephone me-2"></i>+7 (708) 800 98 72</button>
                         </div>
                     </div>
                 </div>
                 <!-- Contact item END -->
-    
+            
                 <!-- Contact item START -->
                 <div class="col-md-6 col-xl-4">
                     <div class="card card-body shadow text-center align-items-center h-100">
                         <!-- Icon -->
                         <div class="icon-lg bg-danger bg-opacity-10 text-danger rounded-circle mb-2"><i class="bi bi-inboxes-fill fs-5"></i></div>
                         <!-- Title -->
-                        <h5>Email us</h5>
-                        <p>Large above be to means. Him his for sympathize.</p>
+                        <h5>Корпоративная почта</h5>
+                        <p>По вопросам сотрудничества и деловой переписки пишите нам на почту.</p>
                         <!-- Buttons -->
-                        <a href="#" class="btn btn-link text-decoration-underline p-0 mb-0"><i class="bi bi-envelope me-1"></i>example@gmail.com</a>
+                        <a href="#" class="btn btn-link text-decoration-underline p-0 mb-0"><i class="bi bi-envelope me-1"></i> info@c-sp.kz</a>
                     </div>
                 </div>
                 <!-- Contact item END -->
-    
+            
                 <!-- Contact item START -->
                 <div class="col-xl-4 position-relative">
                     <!-- Svg decoration -->
@@ -230,13 +232,13 @@
                             <path d="M76.997,41.258 L45.173,41.258 L67.676,63.760 L63.763,67.673 L41.261,45.171 L41.261,76.994 L35.728,76.994 L35.728,45.171 L13.226,67.673 L9.313,63.760 L31.816,41.258 L-0.007,41.258 L-0.007,35.725 L31.816,35.725 L9.313,13.223 L13.226,9.311 L35.728,31.813 L35.728,-0.010 L41.261,-0.010 L41.261,31.813 L63.763,9.311 L67.676,13.223 L45.174,35.725 L76.997,35.725 L76.997,41.258 Z"></path>
                         </svg>
                     </figure>
-    
+            
                     <div class="card card-body shadow text-center align-items-center h-100">
                         <!-- Icon -->
                         <div class="icon-lg bg-orange bg-opacity-10 text-orange rounded-circle mb-2"><i class="bi bi-globe2 fs-5"></i></div>
                         <!-- Title -->
-                        <h5>Social media</h5>
-                        <p>Sympathize Large above be to means.</p>
+                        <h5> Социальные сети </h5>
+                        <p>Подписывайтесь на нас в социальных сетях, чтобы быть в курсе новостей!</p>
                         <!-- Buttons -->
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item"> <a class="btn btn-sm bg-facebook px-2 mb-0" href="#"><i class="fab fa-fw fa-facebook-f"></i></a> </li>
@@ -247,7 +249,9 @@
                     </div>
                 </div>
                 <!-- Contact item END -->
+            
             </div>
+            
         </div>
     </section>
     <!-- =======================
@@ -260,8 +264,18 @@
             <div class="row g-4 g-lg-5 align-items-center">
                 <!-- Vector image START -->
                 <div class="col-lg-6 text-center">
-                    <img src="assets/images/element/contact.svg" alt="">
+                    <img class="blur-bottom" src="{% static 'images/tech/stroitel.webp' %}" alt="">
                 </div>
+                <style>
+                    .blur-bottom {
+                        position: relative;
+                        display: block;
+                        width: 100%;
+                        height: auto;
+                        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+                        mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+                    }                    
+                </style>                
                 <!-- Vector image END -->
     
                 <!-- Contact form START -->
@@ -269,7 +283,7 @@
                     <div class="card bg-light p-4">
                         <!-- Svg decoration -->
                         <figure class="position-absolute end-0 bottom-0 mb-n4 me-n2">
-                            <svg class="fill-orange" width="104.2px" height="95.2px">
+                            <svg class="fill-orange" style="fill: #032655 !important;" width="104.2px" height="95.2px">
                                 <circle cx="2.6" cy="92.6" r="2.6"></circle>
                                 <circle cx="2.6" cy="77.6" r="2.6"></circle>
                                 <circle cx="2.6" cy="62.6" r="2.6"></circle>
@@ -317,7 +331,7 @@
     
                         <!-- Card header -->
                         <div class="card-header bg-light p-0 pb-3">
-                            <h3 class="mb-0">Send us message</h3>
+                            <h3 class="mb-0">Оставьте заявку</h3>
                         </div>
     
                         <!-- Card body START -->
@@ -325,34 +339,34 @@
                             <form class="row g-4">
                                 <!-- Name -->
                                 <div class="col-md-6">
-                                    <label class="form-label">Your name *</label>
+                                    <label class="form-label">Ваше имя *</label>
                                     <input type="text" class="form-control">
                                 </div>
                                 <!-- Email -->
                                 <div class="col-md-6">
-                                    <label class="form-label">Email address *</label>
+                                    <label class="form-label">Email *</label>
                                     <input type="email" class="form-control">
                                 </div>
                                 <!-- Mobile number -->
                                 <div class="col-12">
-                                    <label class="form-label">Mobile number *</label>
+                                    <label class="form-label">Номер телефона *</label>
                                     <input type="text" class="form-control">
                                 </div>
                                 <!-- Message -->
                                 <div class="col-12">
-                                    <label class="form-label">Message *</label>
+                                    <label class="form-label">Сообщение *</label>
                                     <textarea class="form-control" rows="3"></textarea>
                                 </div>
                                 <!-- Checkbox -->
                                 <div class="col-12 form-check ms-2">
                                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                     <label class="form-check-label" for="exampleCheck1">
-                                        By submitting this form you agree to our terms and conditions.
+                                        Я соглашаюсь на политику конфидинциальности.
                                     </label>
                                 </div>
                                 <!-- Button -->
                                 <div class="col-12">
-                                    <button class="btn btn-dark mb-0" type="button">Send Message</button>
+                                    <button class="btn mb-0" style="background-color: #032655; color: white;" type="button">Отправить</button>
                                 </div>	
                             </form>
                         </div>
@@ -372,7 +386,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <iframe class="w-100 h-300px grayscale rounded" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095343008!2d-74.00425878428698!3d40.74076684379132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259bf5c1654f3%3A0xc80f9cfce5383d5d!2sGoogle!5e0!3m2!1sen!2sin!4v1586000412513!5m2!1sen!2sin" height="500" style="border:0;" aria-hidden="false" tabindex="0"></iframe>	
+                    <iframe class="w-100 h-300px grayscale rounded" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1204.4593357332221!2d76.84421869329081!3d43.257745690739426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x388369f5be26863d%3A0x4879dcb3a84c4c56!2zMSwg0L_RgNC-0YHQv9C10LrRgiDQoNGL0YHQutGD0LvQvtCy0LAgMjAyLCDQkNC70LzQsNGC0Ys!5e0!3m2!1sru!2skz!4v1741802857487!5m2!1sru!2skz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>

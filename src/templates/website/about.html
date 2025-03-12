@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %} О компании {% endblock %}
+
 {% block header %}
 
 <header class="navbar-light header-sticky">
@@ -174,33 +176,60 @@
 {% endblock %}
 
 {% block content %}
-<section>
-	<div class="container">
-		<div class="row">
-			<!-- Client logo START -->
-			<div class="col-12">
-				<div class="bg-light rounded-3 p-5">
-					<!-- Title -->
-					<h5 class="text-center mb-4 mb-md-5">Trusted by more than 900 companies around the world</h5>
+<div class="container mt-1">
+  <div class="hero">
+      <h1 style="color: white;">О нашей компании</h1>
+      <p>Мы создаем инновационные решения для вашего успеха</p>
+  </div>
+  <div class="row mt-5 text-center">
+      <div class="col-md-4">
+          <div class="card p-4 shadow-lg">
+              <h3>Наши ценности</h3>
+              <p>Мы верим в качество, инновации и надежность.</p>
+          </div>
+      </div>
+      <div class="col-md-4">
+          <div class="card p-4 shadow-lg">
+              <h3>Наша миссия</h3>
+              <p>Доставлять лучшие решения для наших клиентов.</p>
+          </div>
+      </div>
+      <div class="col-md-4">
+          <div class="card p-4 shadow-lg">
+              <h3>Наши достижения</h3>
+              <p>Более 10 лет опыта и тысячи довольных клиентов.</p>
+          </div>
+      </div>
+  </div>
+</div>
 
-					<!-- Slider START -->
-					<div class="tiny-slider arrow-round">
-						<div class="tns-outer" id="tns1-ow"><div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">16 to 22</span>  of 6</div><div id="tns1-mw" class="tns-ovh"><div class="tns-inner" id="tns1-iw"><div class="tiny-slider-inner  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" data-arrow="false" data-autoplay="true" data-edge="2" data-dots="false" data-gutter="80" data-items-xl="5" data-items-lg="4" data-items-md="3" data-items-sm="2" data-items-xs="1" id="tns1" style="transform: translate3d(-57.1429%, 0px, 0px);"><div class="item tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1"><img src="assets/images/client/02.svg" alt=""> </div><div class="item tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1"><img src="assets/images/client/08.svg" alt=""> </div><div class="item tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1"><img src="assets/images/client/05.svg" alt=""> </div><div class="item tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1"><img src="assets/images/client/06.svg" alt=""> </div><div class="item tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1"><img src="assets/images/client/03.svg" alt=""> </div><div class="item tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1"><img src="assets/images/client/01.svg" alt=""> </div><div class="item tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1"><img src="assets/images/client/02.svg" alt=""> </div><div class="item tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1"><img src="assets/images/client/08.svg" alt=""> </div><div class="item tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1"><img src="assets/images/client/05.svg" alt=""> </div><div class="item tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1"><img src="assets/images/client/06.svg" alt=""> </div><div class="item tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1"><img src="assets/images/client/03.svg" alt=""> </div>
-							<!-- Slide item START -->
-							<div class="item tns-item" id="tns1-item0" aria-hidden="true" tabindex="-1"><img src="assets/images/client/01.svg" alt=""> </div> 
-							<div class="item tns-item" id="tns1-item1" aria-hidden="true" tabindex="-1"><img src="assets/images/client/02.svg" alt=""> </div> 
-							<div class="item tns-item" id="tns1-item2" aria-hidden="true" tabindex="-1"><img src="assets/images/client/08.svg" alt=""> </div> 
-							<div class="item tns-item" id="tns1-item3" aria-hidden="true" tabindex="-1"><img src="assets/images/client/05.svg" alt=""> </div> 
-							<div class="item tns-item tns-slide-active" id="tns1-item4"><img src="assets/images/client/06.svg" alt=""> </div>
-							<div class="item tns-item tns-slide-active" id="tns1-item5"><img src="assets/images/client/03.svg" alt=""> </div> 
-							<!-- Slide item END -->
-						<div class="item tns-item tns-slide-cloned tns-slide-active"><img src="assets/images/client/01.svg" alt=""> </div><div class="item tns-item tns-slide-cloned tns-slide-active"><img src="assets/images/client/02.svg" alt=""> </div><div class="item tns-item tns-slide-cloned tns-slide-active"><img src="assets/images/client/08.svg" alt=""> </div><div class="item tns-item tns-slide-cloned tns-slide-active"><img src="assets/images/client/05.svg" alt=""> </div><div class="item tns-item tns-slide-cloned tns-slide-active"><img src="assets/images/client/06.svg" alt=""> </div><div class="item tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1"><img src="assets/images/client/03.svg" alt=""> </div><div class="item tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1"><img src="assets/images/client/01.svg" alt=""> </div><div class="item tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1"><img src="assets/images/client/02.svg" alt=""> </div><div class="item tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1"><img src="assets/images/client/08.svg" alt=""> </div><div class="item tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1"><img src="assets/images/client/05.svg" alt=""> </div><div class="item tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1"><img src="assets/images/client/06.svg" alt=""> </div></div></div></div></div>
-					</div>
-					<!-- Slider END -->
-				</div>	
-			</div>	
-			<!-- Client logo END -->
-		</div>
-	</div>
-</section>
+<style>
+  body {
+      background-color: #ffffff;
+      color: #032655;
+      font-family: 'Arial', sans-serif;
+  }
+  .hero {
+      background: linear-gradient(135deg, #032655 30%, #0056b3 100%);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+      border-radius: 15px;
+  }
+  .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+  }
+  .hero p {
+      font-size: 1.2rem;
+  }
+  .card {
+      border: none;
+      transition: transform 0.3s ease-in-out;
+  }
+  .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+</style>
 {% endblock %}

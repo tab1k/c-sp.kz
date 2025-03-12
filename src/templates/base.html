@@ -2,16 +2,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>csp</title>
+    <title>{% block title %}  {% endblock %}</title>
 
     <!-- Meta Tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="author" content="Webestica.com" />
+    <meta name="author" content="c-sp.kz" />
     <meta name="description" content="ЦЕНТР СТАЛЬНОГО ПРОКАТА 'ЦСП' " />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link rel="shortcut icon" href="{% static 'images/logotip.png' %}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -91,7 +92,7 @@
             </ul>
             <!-- copyright text -->
             <div class="text-body-secondary text-primary-hover mt-3">
-              Copyrights ©2025 IT. Build by <a href="https://www.workbench.kz/" class="text-body-secondary">WorkBench</a>.
+              Copyrights ©2025 IT. Build by <a href="https://www.instagram.com/tab1kkz/" class="text-body-secondary">Tabigat Karbayev.</a>.
             </div>
           </div>
         </div>
