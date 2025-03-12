@@ -232,9 +232,7 @@ class ProductListView(FilterView, ListView):
         """ Фильтруем товары только по текущей категории и запросу поиска """
         slug = self.kwargs.get('slug')
         category = get_object_or_404(Category, slug=slug)
-        queryset = category.products.all()
-
-        # Применяем фильтр только по названию
+        queryset = category.products.all().order_by('id')  # Добавляем сортировку
         return ProductFilter(self.request.GET, queryset=queryset).qs
 
     def get_context_data(self, **kwargs):
