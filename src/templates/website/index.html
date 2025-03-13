@@ -1,69 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block preloader %}
-  <div id="preloader">
-    <img src="{% static 'images/preloader.png' %}" alt="Loading..." id="gear" />
-  </div>
-
-  <style>
-    #preloader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-    
-    #gear {
-      width: 80px;
-      height: 80px;
-      animation: rotate 1s linear infinite;
-      filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.2));
-    }
-    
-    @keyframes rotate {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    .navbar-toggler .navbar-toggler-animation span {
-      -webkit-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out;
-      -webkit-transform: rotateZ(0deg);
-      transform: rotateZ(0deg);
-      height: 2px;
-      background: #032655;
-      display: block;
-      position: absolute;
-      width: 100%;
-      border-radius: 30px;
-    }
-  </style>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // Ждём 1.5 секунды и скрываем прелоадер
-      setTimeout(function () {
-        let preloader = document.getElementById('preloader')
-        if (preloader) {
-          preloader.style.opacity = '0' // Плавное исчезновение
-          setTimeout(() => preloader.remove(), 500) // Удаляем после исчезновения
-        }
-      }, 1000)
-    })
-  </script>
-{% endblock %}
-
 {% block title %} Главная {% endblock %}
 
 {% block header %}
@@ -97,22 +34,22 @@
             
 
             <li class="nav-item">
-              <a style="color: #032655;" class="nav-link" href="{% url 'website:index' %}">Главная</a>
+              <a style="color: #032655;" class="nav-link" href="{% url 'website:index' %}"><b style="color: #032655;">Главная</b></a>
             </li>
 
             <!-- Nav item Link -->
             <li class="nav-item">
-              <a style="color: #032655;" class="nav-link" href="{% url 'website:services' %}">Услуги</a>
+              <a style="color: #032655;" class="nav-link" href="{% url 'website:services' %}"><b style="color: #032655;">Услуги</b></a>
             </li>
 
             <!-- Nav item Link -->
             <li class="nav-item">
-              <a style="color: #032655;" class="nav-link" href="{% url 'website:contacts' %}">Контакты</a>
+              <a style="color: #032655;" class="nav-link" href="{% url 'website:contacts' %}"><b style="color: #032655;">Контакты</b></a>
             </li>
 
             <!-- Nav item Link -->
             <li class="nav-item">
-              <a style="color: #032655;" class="nav-link" href="{% url 'website:about' %}">О компании</a>
+              <a style="color: #032655;" class="nav-link" href="{% url 'website:about' %}"><b style="color: #032655;">О компании</b></a>
             </li>
 
             <style>
@@ -163,7 +100,7 @@
         <div class="row">
           <div class="col-xl-8 py-xl-8">
             <h1 class="display-4 text-white mb-3" style="text-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3);">Ваш надежный партнер в строительстве!</h1>
-            <h5 class="text-white mb-3">Полный спектр поставок!</h5>
+            <h5 class="text-white mb-3" style="text-shadow: 1px 1px 15px rgba(0, 0, 0, 1);">Полный спектр поставок!</h5>
             <a href="#" class="btn btn-lg mb-0" style="background-color: #032655; color: white;">Заявка в 1 клик!</a>
             
           </div>
