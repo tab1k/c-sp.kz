@@ -389,7 +389,7 @@
                         {% if category.children.exists %}
                             {% for subcategory in category.children.all %}
                           <a href="{{ subcategory.get_absolute_url }}">
-                            <div class="grid-item {% if forloop.first %}big{% endif %}" style="background-image: url('{% static 'images/tech/chernyi.jpg' %}');">
+                            <div class="grid-item {% if forloop.first %}big{% endif %}" style="background-image: url('{% if subcategory.image %}{{ subcategory.image.url }}{% else %}{% static 'images/tech/chernyi.jpg' %}{% endif %}');">
                                 <span>{{ subcategory.name }}</span>
                             </div>
                           </a>
