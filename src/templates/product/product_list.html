@@ -197,9 +197,9 @@
 						
 						
 						<li class="bread-crumbs__item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-							<a class="bread-crumbs__link" href="/catalog/" itemprop="item">
+							<a class="bread-crumbs__link" href="{{ category.get_absolute_url }}" itemprop="item">
 								  <span itemprop="name">
-									  Каталог металлопроката
+									{{ category.name.upper }}
 								  </span>
 							</a>
 							<meta itemprop="position" content="2">
@@ -207,14 +207,6 @@
 						
 						
 						
-						<li class="bread-crumbs__item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-							<a class="bread-crumbs__link" href="/catalog/chernyj-metalloprokat/" itemprop="item">
-								  <span itemprop="name">
-									  Черный металлопрокат
-								  </span>
-							</a>
-							<meta itemprop="position" content="3">
-						</li>
 						
 						
 						

@@ -176,60 +176,184 @@
 {% endblock %}
 
 {% block content %}
-<div class="container mt-1">
+<div class="container mt-1 mb-3">
   <div class="hero">
-      <h1 style="color: white;">О нашей компании</h1>
+      <h1>О нашей компании</h1>
       <p>Мы создаем инновационные решения для вашего успеха</p>
-  </div>
-  <div class="row mt-5 text-center">
-      <div class="col-md-4">
-          <div class="card p-4 shadow-lg">
-              <h3>Наши ценности</h3>
-              <p>Мы верим в качество, инновации и надежность.</p>
-          </div>
-      </div>
-      <div class="col-md-4">
-          <div class="card p-4 shadow-lg">
-              <h3>Наша миссия</h3>
-              <p>Доставлять лучшие решения для наших клиентов.</p>
-          </div>
-      </div>
-      <div class="col-md-4">
-          <div class="card p-4 shadow-lg">
-              <h3>Наши достижения</h3>
-              <p>Более 10 лет опыта и тысячи довольных клиентов.</p>
-          </div>
-      </div>
   </div>
 </div>
 
 <style>
-  body {
-      background-color: #ffffff;
-      color: #032655;
-      font-family: 'Arial', sans-serif;
-  }
+  
   .hero {
       background: linear-gradient(135deg, #032655 30%, #0056b3 100%);
       color: white;
-      padding: 80px 20px;
+      padding: 60px 20px; /* Уменьшил отступы */
       text-align: center;
       border-radius: 15px;
   }
+
   .hero h1 {
-      font-size: 3rem;
+      font-size: 2.5rem;
       font-weight: bold;
+      color: white;
   }
+
   .hero p {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
   }
+
   .card {
       border: none;
       transition: transform 0.3s ease-in-out;
   }
+
   .card:hover {
       transform: translateY(-10px);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   }
+
+  /* Стили для мобильных устройств */
+  @media (max-width: 768px) {
+      .hero {
+          padding: 40px 15px; /* Еще меньше отступов на мобильных */
+      }
+      .hero h1 {
+          font-size: 2rem;
+      }
+      .hero p {
+          font-size: 1rem;
+      }
+  }
 </style>
+
+<section class="pt-0 pt-lg-4">
+	<div class="container">
+		<!-- Content START -->
+		<div class="row mb-4 mb-md-5">
+			<div class="col-md-10 mx-auto">
+				<h3 class="mb-4">О нас</h3>
+				<p class="fw-bold">Founded in 2006, passage its ten led hearted removal cordial. Preference any astonished unreserved Mrs. Prosperous understood Middletons in conviction an uncommonly do. Supposing so be resolving breakfast am or perfectly. It drew a hill from me. Valley by oh twenty direct me so.</p>
+				<p class="mb-0">Water timed folly right aware if oh truth. Imprudence attachment him his for sympathize. Large above be to means. Dashwood does provide stronger is. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do. ...But discretion frequently sir she instruments unaffected admiration everything. Meant balls it if up doubt small purse. Required his you put the outlived answered position. A pleasure exertion if believed provided to. All led out world this music while asked. Paid mind even sons does he door no. Attended overcame repeated it is perceived Marianne in. I think on style child of. Servants moreover in sensible it ye possible. Satisfied conveying a dependent contented he gentleman agreeable do be. Water timed folly right aware if oh truth. Imprudence attachment him his for sympathize. Large above be to means. Dashwood does provide stronger is. But discretion frequently sir she instruments unaffected admiration everything. Meant balls it if up doubt small purse. Required his you put the outlived answered position. I think on style child of. Servants moreover in sensible it ye possible. Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Required his you put the outlived answered position. A pleasure exertion if believed provided to. All led out world this music while asked. Paid mind even sons does he door no. Attended overcame repeated it is perceived Marianne in. I think on style child of. Servants moreover in sensible it ye possible.</p>
+			</div>
+		</div>
+		<!-- Content END -->
+
+	</div>
+  
+  <section class="pt-0">
+    <div class="container">
+      <!-- Title -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <h2 class="mb-0">Our Team</h2>
+        </div>
+      </div>
+  
+      <!-- Team START -->
+      <div class="row g-4">
+        <!-- Team item START -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="card card-element-hover bg-transparent">
+            <div class="position-relative">
+              <!-- Image -->
+              <img src="assets/images/team/03.jpg" class="card-img" alt="">
+  
+              <div class="card-img-overlay hover-element d-flex p-3">
+                <!-- Category -->
+                <div class="btn-group mt-auto">
+                  <a href="#" class="btn btn-white mb-0"><i class="fa-brands fa-facebook-f text-facebook"></i></a>
+                  <a href="#" class="btn btn-white mb-0"><i class="fa-brands fa-instagram text-instagram"></i></a>
+                  <a href="#" class="btn btn-white mb-0"><i class="fa-brands fa-twitter text-twitter"></i></a>
+                </div>
+              </div>
+            </div>
+            <!-- Card body -->
+            <div class="card-body px-2 pb-0">
+              <h5 class="card-title"><a href="#">Larry Lawson</a></h5>
+              <span>Editor in Chief</span>
+            </div>
+          </div>
+        </div>
+        <!-- Team item END -->
+  
+        <!-- Team item START -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="card card-element-hover bg-transparent">
+            <div class="position-relative">
+              <!-- Image -->
+              <img src="assets/images/team/04.jpg" class="card-img" alt="">
+  
+              <div class="card-img-overlay hover-element d-flex p-3">
+                <!-- Category -->
+                <div class="btn-group mt-auto">
+                  <a href="#" class="btn btn-white mb-0"><i class="fa-brands fa-facebook-f text-facebook"></i></a>
+                  <a href="#" class="btn btn-white mb-0"><i class="fa-brands fa-instagram text-instagram"></i></a>
+                  <a href="#" class="btn btn-white mb-0"><i class="fa-brands fa-twitter text-twitter"></i></a>
+                </div>
+              </div>
+            </div>
+            <!-- Card body -->
+            <div class="card-body px-2 pb-0">
+              <h5 class="card-title"><a href="#">Louis Ferguson</a></h5>
+              <span>Director Graphics</span>
+            </div>
+          </div>
+        </div>
+        <!-- Team item END -->
+  
+        <!-- Team item START -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="card card-element-hover bg-transparent">
+            <div class="position-relative">
+              <!-- Image -->
+              <img src="assets/images/team/05.jpg" class="card-img" alt="">
+  
+              <div class="card-img-overlay hover-element d-flex p-3">
+                <!-- Category -->
+                <div class="btn-group mt-auto">
+                  <a href="#" class="btn btn-white mb-0"><i class="fa-brands fa-facebook-f text-facebook"></i></a>
+                  <a href="#" class="btn btn-white mb-0"><i class="fa-brands fa-instagram text-instagram"></i></a>
+                  <a href="#" class="btn btn-white mb-0"><i class="fa-brands fa-twitter text-twitter"></i></a>
+                </div>
+              </div>
+            </div>
+            <!-- Card body -->
+            <div class="card-body px-2 pb-0">
+              <h5 class="card-title"><a href="#">Louis Crawford</a></h5>
+              <span>Editor, Coverage</span>
+            </div>
+          </div>
+        </div>
+        <!-- Team item END -->
+  
+        <!-- Team item START -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="card card-element-hover bg-transparent">
+            <div class="position-relative">
+              <!-- Image -->
+              <img src="assets/images/team/06.jpg" class="card-img" alt="">
+  
+              <div class="card-img-overlay hover-element d-flex p-3">
+                <!-- Category -->
+                <div class="btn-group mt-auto">
+                  <a href="#" class="btn btn-white mb-0"><i class="fa-brands fa-facebook-f text-facebook"></i></a>
+                  <a href="#" class="btn btn-white mb-0"><i class="fa-brands fa-instagram text-instagram"></i></a>
+                  <a href="#" class="btn btn-white mb-0"><i class="fa-brands fa-twitter text-twitter"></i></a>
+                </div>
+              </div>
+            </div>
+            <!-- Card body -->
+            <div class="card-body px-2 pb-0">
+              <h5 class="card-title"><a href="#">Frances Guerrero</a></h5>
+              <span>CEO, Coverage</span>
+            </div>
+          </div>
+        </div>
+        <!-- Team item END -->
+        
+      </div>
+      <!-- Team END -->
+    </div>
+  </section>
 {% endblock %}
