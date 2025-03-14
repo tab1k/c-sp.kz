@@ -248,59 +248,13 @@
         <h4 class=" mb-3" style="color: #262a31;">Услуги</h4>
         <div class="grid">
             
-              <a href="#">
-                <div class="grid-item" style="background-image: url('{% static 'images/tech/lazer.jpg' %}');">
-                    <span>Профнастил</span>
-                </div>
-              </a>
-
-              <a href="#">
-                <div class="grid-item" style="background-image: url('{% static 'images/tech/sandwich.jpeg' %}');">
-                    <span>Сэндвич панели</span>
-                </div>
-              </a>
-
-              <a href="#">
-                <div class="grid-item" style="background-image: url('{% static 'images/tech/lazer.jpg' %}');">
-                    <span>Лазерная резка</span>
-                </div>
-              </a>
-
-              <a href="#">
-                <div class="grid-item" style="background-image: url('{% static 'images/tech/gibka.jpeg' %}');">
-                    <span>Гибка листового проката</span>
-                </div>
-              </a>
-
-              <a href="#">
-                <div class="grid-item" style="background-image: url('{% static 'images/tech/polimer.jpeg' %}');">
-                    <span>Полимерная покраска</span>
-                </div>
-              </a>
-
-              <a href="#">
-                <div class="grid-item" style="background-image: url('{% static 'images/sys.jpeg' %}');">
-                    <span>Система вентиляции</span>
-                </div>
-              </a>
-
-              <a href="#">
-                <div class="grid-item" style="background-image: url('{% static 'images/tech/decor.jpeg' %}');">
-                    <span>Декоративная резка</span>
-                </div>
-              </a>
-
-              <a href="#">
-                <div class="grid-item" style="background-image: url('{% static 'images/tech/logistic.jpeg' %}');">
-                    <span style="color: #032655;">Логистика</span>
-                </div>
-              </a>
-
-              <a href="#">
-                <div class="grid-item" style="background-image: url('{% static 'images/tech/valc.jpeg' %}');">
-                    <span>Вальцовка листового проката</span>
-                </div>
-              </a>
+          {% for service in services %}
+            <a href="#">
+              <div class="grid-item" style="background-image: url('{% if service.image %}{{ service.image.url }}{% else %}{% static 'images/default-service.jpg' %}{% endif %}');">
+                <span>{{ service.name }}</span>
+              </div>
+                </a>
+          {% endfor %}
             
         </div>
       </div>

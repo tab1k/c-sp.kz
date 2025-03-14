@@ -28,3 +28,6 @@ class ProductAdmin(admin.ModelAdmin):
     autocomplete_fields = ['category']
     search_fields = ('name', 'category__name')
     ordering = ('name',)
+    
+
+admin.site.register(Service)

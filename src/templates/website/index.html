@@ -361,29 +361,13 @@
       <h4 class="about-company-bottom__title mb-4" style="color: #262a31;"><a href="{% url 'website:category' %}">Спектр услуг</a></h4>
       <div class="grid">
 
+        {% for service in services|slice:":4" %}
         <a href="{% url 'website:services' %}">
-          <div class="grid-item" style="background-image: url('{% static 'images/tech/gibka.jpeg' %}');">
-            <span>Гибка листового проката</span>
-          </div>
+            <div class="grid-item" style="background-image: url('{% if service.image %}{{ service.image.url }}{% else %}{% static 'images/default-service.jpg' %}{% endif %}');">
+                <span>{{ service.name }}</span>
+            </div>
         </a>
-
-        <a href="{% url 'website:services' %}">
-          <div class="grid-item" style="background-image: url('{% static 'images/tech/lazer.jpg' %}');">
-            <span>Лазерная резка металла</span>
-          </div>
-        </a>
-
-        <a href="{% url 'website:services' %}">
-          <div class="grid-item" style="background-image: url('{% static 'images/tech/prof.jpeg' %}');">
-            <span>Профнастил</span>
-          </div>
-        </a>
-
-        <a href="{% url 'website:services' %}">
-          <div class="grid-item" style="background-image: url('{% static 'images/sys.jpeg' %}');">
-            <span>Система вентиляции</span>
-          </div>
-        </a>
+        {% endfor %}
 
         <div class="grid-item more">
           <a href="{% url 'website:services' %}" style="color: #032655;"><span>Ещё →</span></a>

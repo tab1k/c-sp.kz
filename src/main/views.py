@@ -12,7 +12,7 @@ from django.views.generic import TemplateView
 from django.views.generic import ListView
 from django.shortcuts import get_object_or_404
 from django_filters.views import FilterView
-from .models import Product, Category
+from .models import Product, Category, Service
 from .filters import ProductFilter
 import re
 from django.views.generic import DetailView
@@ -25,6 +25,7 @@ class IndexPageView(TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['services'] = Service.objects.only('name', 'image')
         # Передаем категории и их продукты
         context['categories'] = (
             Category.objects.filter(parent__isnull=True)
@@ -67,6 +68,12 @@ class AjaxableTemplateView(TemplateView):
 
 class ServiceViewPage(AjaxableTemplateView):
     template_name = 'website/services.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['services'] = Service.objects.only('name', 'image')
+        
+        return context
 
 
 class AboutViewPage(AjaxableTemplateView):

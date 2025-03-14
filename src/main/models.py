@@ -65,3 +65,17 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('website:product_detail', kwargs={'slug': self.slug})
+    
+    
+    
+
+class Service(models.Model):
+    name = models.CharField(max_length=255, blank=False, null=False)
+    image = models.ImageField(max_length=255, blank=False, null=False, verbose_name="Картинка услуг")
+    
+    class Meta:
+        verbose_name = "Услуга"
+        verbose_name_plural = "Услуги"
+
+    def __str__(self):
+        return self.name
