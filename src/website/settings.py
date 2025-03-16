@@ -145,6 +145,8 @@ STATICFILES_DIRS = [
 ]
 MEDIA_URL = '/media/'
 
+CSRF_TRUSTED_ORIGINS = ["https://c-sp.kz", "https://www.c-sp.kz"]
+
 
 
 # Default primary key field type
