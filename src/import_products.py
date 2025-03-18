@@ -2,11 +2,13 @@ import os
 import json
 import django
 from django.utils.text import slugify
-from main.models import Category, Product  # Убедись, что путь правильный
+
 
 # Настрой Django (если запускаешь вне manage.py)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "website.settings")  
 django.setup()
+
+from main.models import Category, Product 
 
 def import_products():
     category_slug = input("Введите slug категории: ").strip()
