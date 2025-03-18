@@ -148,7 +148,6 @@ MEDIA_URL = '/media/'
 CSRF_TRUSTED_ORIGINS = ["https://c-sp.kz", "https://www.c-sp.kz"]
 
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
