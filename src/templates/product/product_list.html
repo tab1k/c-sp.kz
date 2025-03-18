@@ -193,6 +193,15 @@
 							</a>
 							<meta itemprop="position" content="1">
 						</li>
+
+						<li class="bread-crumbs__item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+							<a class="bread-crumbs__link" href="{% url 'website:category' %}" itemprop="item">
+								  <span itemprop="name">
+									  Каталог
+								  </span>
+							</a>
+							<meta itemprop="position" content="1">
+						</li>
 						
 						
 						
@@ -482,7 +491,7 @@
                         <a href="{{ product.get_absolute_url }}">
                             <div class="product-info" style="justify-content: space-between;">
                                 <div class="d-flex" style="align-items: center;">
-									<img class="product-logo" src="{% static 'images/tech/truba.webp' %}">
+									<img class="product-logo" src="{% if product.category.image %}{{ product.category.image.url }}{% else %}{% static 'images/tech/truba.webp' %}{% endif %}">
                                 	<div class="product-name" style="margin-left: 10px;"><p style="margin: 0;">{{ product.name }}</p></div>
 								</div>
                                 <button class="btn btn-sm btn-primary mb-0" style="background-color: #f5f5f5; border: 1px solid #e3e5e8; color: #262a31;">Купить</button>
