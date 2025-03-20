@@ -2,7 +2,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>{% block title %}  {% endblock %}</title>
+    <title>
+      {% block title %}
+
+      {% endblock %}
+    </title>
 
     <!-- Meta Tags -->
     <meta charset="utf-8" />
@@ -20,7 +24,7 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{% static 'images/logotip.png' %}" />
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}" />
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -54,9 +58,98 @@
         }
       }
       </script>
-      
-  </head>
 
+    {% block extra_head %}
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-EMLGZR9BB8"></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16938977339"></script>
+
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+
+        // Настройка GA4
+        gtag('js', new Date());
+        gtag('config', 'G-EMLGZR9BB8'); // GA4
+
+        // Настройка Google Ads
+        gtag('config', 'AW-16938977339'); // Google Ads
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Отслеживание кликов по ссылкам (телефон, WhatsApp, email)
+            document.body.addEventListener("click", function (event) {
+                let target = event.target.closest("a");
+                if (!target) return;
+
+                let href = target.getAttribute("href") || "";
+
+                if (href.startsWith("tel:")) {
+                    gtag("event", "call_click", { 
+                        event_category: "Engagement", 
+                        event_label: href
+                    });
+                } else if (href.startsWith("https://wa.me")) {
+                    gtag("event", "whatsapp_click", { 
+                        event_category: "Engagement", 
+                        event_label: href
+                    });
+                } else if (href.startsWith("mailto:")) {
+                    gtag("event", "email_click", { 
+                        event_category: "Engagement", 
+                        event_label: href
+                    });
+                }
+            });
+
+            // Отслеживание отправки всех форм
+            document.body.addEventListener("submit", function (event) {
+                let form = event.target;
+                if (!form || form.tagName !== "FORM") return;
+
+                let actionUrl = form.getAttribute("action") || "unknown_form";
+
+                let formData = new FormData(form);
+                let formValues = {};
+                formData.forEach((value, key) => {
+                    formValues[key] = value;
+                });
+
+                // Собираем пользовательские данные
+                let userData = {
+                    name: formValues["name"] || formValues["full_name"] || "",
+                    email: formValues["email"] || formValues["user_email"] || "",
+                    phone: formValues["phone"] || formValues["user_phone"] || ""
+                };
+
+                // Отправка события в GA4
+                gtag("event", "form_submit", {
+                    event_category: "Form",
+                    event_label: actionUrl,
+                    method: "submit",
+                    form_id: form.getAttribute("id") || "unknown",
+                    user_name: userData.name,
+                    user_email: userData.email,
+                    user_phone: userData.phone
+                });
+
+                // Отправка события в Google Ads
+                gtag("event", "conversion", {
+                    'send_to': 'AW-16938977339/ZjGhCMLh7-YEEMuZ8L8D',
+                    'event_category': "Conversion",
+                    'event_label': actionUrl,
+                    'user_name': userData.name,
+                    'user_email': userData.email,
+                    'user_phone': userData.phone
+                });
+
+                // **Удаляем редирект**, чтобы не мешать работе сайта
+            });
+        });
+      </script>
+
+      <meta name="google-site-verification" content="BvLZ301Bw6adphgfTDU261gx-lqSxKCl5y_tUCukCg0" />
+    {% endblock %}
+  </head>
 
   <body>
     <!-- Header START -->
@@ -84,7 +177,7 @@
             <!-- Logo -->
             <img class="mx-auto h-60px" src="{% static 'images/logotip.png' %}" style="filter: drop-shadow(0px 0px 12px white);" alt="logo" />
 
-            <p class="mt-3 text-white">ТОО "Центр Стального Проката" — ваш надежный партнер в сфере комплексных поставок строительных материалов. </p>
+            <p class="mt-3 text-white">ТОО "Центр Стального Проката" — ваш надежный партнер в сфере комплексных поставок строительных материалов.</p>
             <!-- Links -->
             <ul class="nav justify-content-between text-primary-hover mt-3 mt-md-0">
               <li class="nav-item">
@@ -102,16 +195,12 @@
               <li class="nav-item">
                 <a class="nav-link p-2 text-white" href="{% url 'website:about' %}">О компании</a>
               </li>
-              
-              
             </ul>
             <!-- Social media button -->
             <ul class="list-inline mt-3 mb-0">
-              
               <li class="list-inline-item">
                 <a class="btn btn-white btn-sm shadow px-2 text-instagram" href="#"><i class="fab fa-fw fa-instagram"></i></a>
               </li>
-              
             </ul>
             <!-- copyright text -->
             <div class="text-body-secondary text-primary-hover mt-3">
@@ -132,8 +221,8 @@
         position: relative;
       }
     </style>
-    <!--   =======================
-Footer END   -->
+    <!--    =======================
+Footer END    -->
 
     <!-- Modal START -->
     <div class="modal fade" id="map360" aria-hidden="true">

@@ -203,8 +203,20 @@
                         <p>Свяжитесь с нашей службой поддержки для оперативного решения вопросов.</p>
                         <!-- Buttons -->
                         <div class="d-grid gap-3 d-sm-block">
-                            <button class="btn btn-sm btn-primary-soft"><i class="bi bi-phone me-2"></i>+7 (708) 800 98 71</button>
-                            <button class="btn btn-sm btn-light"><i class="bi bi-telephone me-2"></i>+7 (708) 800 98 72</button>
+                            <button class="btn btn-sm btn-primary-soft" onclick="callNumber('+77088009871')">
+                                <i class="bi bi-phone me-2"></i>+7 (708) 800 98 71
+                            </button>
+                            
+                            <button class="btn btn-sm btn-light" onclick="callNumber('+77088009872')">
+                                <i class="bi bi-telephone me-2"></i>+7 (708) 800 98 72
+                            </button>
+                            
+                            <script>
+                                function callNumber(phoneNumber) {
+                                    window.location.href = "tel:" + phoneNumber;
+                                }
+                            </script>
+                            
                         </div>
                     </div>
                 </div>
