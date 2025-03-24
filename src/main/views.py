@@ -161,6 +161,14 @@ class CategoryDetailView(DetailView):
         ).order_by('id').only('id', 'name')
 
         return context
+    
+    
+
+class ServicesDetailView(DetailView):
+    model = Service
+    template_name = 'website/service_detail.html'
+    context_object_name = 'service'
+    
 
 
 class ProductListView(FilterView, ListView):
