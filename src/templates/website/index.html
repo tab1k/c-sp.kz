@@ -158,18 +158,18 @@
       .marquee {
         display: flex;
         width: 200%;
-        animation: marquee 10s linear infinite;
+        animation: marquee 11s linear infinite;
       }
     
       .marquee span {
         display: inline-block;
         width: 100%;
-        padding-right: 50px; /* Отступ между повторениями */
+        padding-right: 50px;
       }
     
       @keyframes marquee {
         from {
-          transform: translateX(0);
+          transform: translateX(50%);
         }
         to {
           transform: translateX(-50%);

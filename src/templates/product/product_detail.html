@@ -190,6 +190,15 @@
                         <!-- Title -->
                         <div class="mb-2 mb-lg-0">
                             <h1 class="fs-2">{{ product.name.upper }} </h1>
+                            <style>
+                                h1.fs-2 {
+                                    word-break: break-word; /* Перенос длинных слов */
+                                    overflow-wrap: break-word;
+                                    white-space: normal; /* Разрешаем перенос строк */
+                                    max-width: 100%; /* Гарантируем, что заголовок не выйдет за пределы */
+                                }
+                                
+                            </style>
                             <!-- Location -->
                             <p class="fw-bold mb-0"><i class="bi bi-geo-alt me-2"></i>Казахстан, г.Алматы
                                 
