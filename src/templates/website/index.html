@@ -62,7 +62,7 @@
         </div>
 
         <div class="nav flex-row ms-xl-auto d-none d-md-flex">
-          <button class="preorder-btn"><i class="bi bi-calendar-week me-2"></i>Предварительный заказ</button>
+          <button data-bs-toggle="modal" data-bs-target="#LeadModal" class="preorder-btn"><i class="bi bi-calendar-week me-2"></i>Предварительный заказ</button>
 
           <style>
             .preorder-btn {
@@ -101,7 +101,8 @@
           <div class="col-xl-8 py-xl-8">
             <h1 class="display-4 text-white mb-3" style="text-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3);">Ваш надежный партнер в строительстве!</h1>
             <h5 class="text-white mb-3" style="text-shadow: 1px 1px 15px rgba(0, 0, 0, 1);">Полный спектр поставок!</h5>
-            <a href="#" class="btn btn-lg mb-0" style="background-color: #032655; color: white;">Заявка в 1 клик!</a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#LeadModal" class="btn btn-lg mb-0" style="background-color: #032655; color: white;">Заявка в 1 клик!</a>
+            
             
           </div>
         </div> <!-- Row END -->
@@ -400,7 +401,7 @@
             </div>
             <!-- Content and input -->
             <div class="col-lg-4 text-lg-end">
-              <a href="/" style="background-color: #032655; color: white;" class="btn btn-lg mb-0">Оставить заявку</a>
+              <a data-bs-toggle="modal" data-bs-target="#LeadModal" style="background-color: #032655; color: white;" class="btn btn-lg mb-0">Оставить заявку</a>
               <i class="bi bi-star-fill text-warning position-absolute" style="top: 1px;right: 9px;font-size: 1rem;"></i>
             </div>
             
