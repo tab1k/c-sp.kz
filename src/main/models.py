@@ -76,12 +76,12 @@ class Service(models.Model):
     description = models.TextField(blank=True, verbose_name="Описание")
     
     def save(self, *args, **kwargs):
-        if not self.slug:
+        if not self.slug:  # Заполняем slug, если он не указан вручную
             base_slug = slugify(self.name)
             slug = base_slug
             counter = 1
 
-            while Product.objects.filter(slug=slug).exists():
+            while Service.objects.filter(slug=slug).exists():
                 slug = f"{base_slug}-{counter}"
                 counter += 1
 
