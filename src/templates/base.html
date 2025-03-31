@@ -263,6 +263,12 @@
     <!--     =======================
 Footer END     -->
 
+      
+
+    <div id="call-container">
+      <a href="tel:+7 (708) 800 81 88" class="call-float"><i class="fas fa-phone"></i></a>
+    </div>
+
     <!-- Контейнер WhatsApp-кнопки с облаком -->
     <div id="whatsapp-container">
       <a href="https://wa.me/77088009874?text=👋%20Здравствуйте!%20Я%20пишу%20вам%20с%20*c-sp.kz*.%20хочу%20узнать%20подробнее%20о%20ваших%20услугах%20🚀" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
@@ -271,6 +277,32 @@ Footer END     -->
 
     <!-- Стили для кнопки и облака -->
     <style>
+
+      #call-container {
+        position: fixed;
+        bottom: 90px; /* Размещаем чуть выше WhatsApp */
+        right: 20px;
+        z-index: 9999;
+    }
+
+    .call-float {
+        background-color: #032655;
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        text-decoration: none;
+        transition: transform 0.3s ease;
+    }
+
+    .call-float:hover {
+        transform: scale(1.1);
+    }
       /* Контейнер WhatsApp */
       #whatsapp-container {
         position: fixed;
