@@ -253,16 +253,27 @@
             <div class="row g-2">
                 <!-- Image -->
                 <div class="w-100">
-                    <a data-glightbox="" data-gallery="gallery" href="{% if service.image %}{{ service.image.url }}{% else %}{% static 'images/tech/cartinka.jpg' %}{% endif %}">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal">
                         <div class="card card-grid-lg card-element-hover card-overlay-hover overflow-hidden" 
                              style="height: 200px; background-image:url('{% if service.image %}{{ service.image.url }}{% else %}{% static 'images/tech/cartinka.jpg' %}{% endif %}'); 
                              background-position: center left; background-size: cover;">
-                            <!-- Card hover element -->
                             <div class="hover-element position-absolute w-100 h-100">
                                 <i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
                             </div>
                         </div>
                     </a>
+                    
+                    <!-- Модальное окно -->
+                    <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body text-center">
+                                    <img src="{% if service.image %}{{ service.image.url }}{% else %}{% static 'images/tech/cartinka.jpg' %}{% endif %}" 
+                                         class="img-fluid" alt="Product Image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
