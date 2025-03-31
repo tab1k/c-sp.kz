@@ -189,6 +189,81 @@
                     <div class="d-lg-flex justify-content-lg-between mb-1">
                         <!-- Title -->
                         <div class="mb-2 mb-lg-0">
+                            <div class="bread-crumbs">
+                                <div class="">
+                                    <ul class="bread-crumbs__list" itemscope="" itemtype="https://schema.org/BreadcrumbList">
+                                        
+                                        
+                                        <li class="bread-crumbs__item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                                            <a class="bread-crumbs__link" href="/" itemprop="item">
+                                                  <span itemprop="name">
+                                                      Главная
+                                                  </span>
+                                            </a>
+                                            <meta itemprop="position" content="1">
+                                        </li>
+                
+                                        <li class="bread-crumbs__item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                                            <a class="bread-crumbs__link" href="{% url 'main:category' %}" itemprop="item">
+                                                  <span itemprop="name">
+                                                      Каталог
+                                                  </span>
+                                            </a>
+                                            <meta itemprop="position" content="1">
+                                        </li>
+                                    
+                                        
+                                        <li class="bread-crumbs__item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                                            <a class="bread-crumbs__link" href="{{ product.get_absolute_url }}" itemprop="item">
+                                                  <span itemprop="name">
+                                                    {{ product.name.upper }}
+                                                  </span>
+                                            </a>
+                                            <meta itemprop="position" content="2">
+                                        </li>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                
+                            <style>
+                                .bread-crumbs__list {
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                    margin: 0;
+                                
+                                    margin-bottom: 8px;
+                                    padding: 0;
+                                    list-style-type: none;
+                                }
+                                .bread-crumbs__item {
+                                    display: flex;
+                                    align-items: center;
+                                    margin-bottom: 8px;
+                                }
+                                .bread-crumbs__link {
+                                    color: #999;
+                                    font-weight: 700;
+                                    font-size: 12px;
+                                    text-transform: uppercase;
+                                    letter-spacing: .01em;
+                                }
+                
+                                .bread-crumbs__item::after {
+                                    content: url('{% static 'images/tech/rigth.svg' %}');
+                                    display: flex;
+                                    align-items: center;
+                                    margin: 0 9px;
+                                    width: 7px;
+                                    height: 10px;
+                                    color: #d3d6db;
+                                }
+                            </style>
                             <h1 class="fs-2">{{ product.name.upper }} </h1>
                             <style>
                                 h1.fs-2 {
@@ -263,16 +338,27 @@
             <div class="row g-2">
                 <!-- Image -->
                 <div class="w-100">
-                    <a data-glightbox="" data-gallery="gallery" href="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/tech/cartinka.jpg' %}{% endif %}">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal">
                         <div class="card card-grid-lg card-element-hover card-overlay-hover overflow-hidden" 
                              style="height: 200px; background-image:url('{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/tech/cartinka.jpg' %}{% endif %}'); 
                              background-position: center left; background-size: cover;">
-                            <!-- Card hover element -->
                             <div class="hover-element position-absolute w-100 h-100">
                                 <i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
                             </div>
                         </div>
                     </a>
+                    
+                    <!-- Модальное окно -->
+                    <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body text-center">
+                                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/tech/cartinka.jpg' %}{% endif %}" 
+                                         class="img-fluid" alt="Product Image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

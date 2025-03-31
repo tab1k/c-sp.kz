@@ -250,7 +250,7 @@
     <div class="container" style="margin-top: 20px; margin-bottom: 50px; background: url('{% static 'images/tech/background.png' %}'); background-repeat: no-repeat; background-size: cover;">
       <h4 class="about-company-bottom__title mb-4" style="color: #262a31;"><a href="{% url 'website:category' %}">Каталог</a></h4>
       <div class="grid">
-        {% for category in categories|slice:':8' %}
+        {% for category in categories|slice:':10' %}
           <a href="{{ category.get_absolute_url }}">
             <div class="grid-item {% if forloop.first %}big{% endif %}"
               style="background-image: url('{% if category.image %}{{ category.image.url }}{% else %}{% static 'images/tech/chernyi.jpg' %}{% endif %}');">
