@@ -284,7 +284,7 @@
                         <ul class="list-inline text-end">
                             <!-- Share icon -->
                             <div class="d-flex align-items-center justify-content-between">
-                                <a class="link-back d-lg-none me-3" href="{% if category.parent %}{{ category.parent.get_absolute_url }}{% else %}{% url 'main:category' %}{% endif %}">
+                                <a class="link-back d-lg-none me-3" href="{% if category.parent %}{{ category.parent.get_absolute_url }}{% else %}{% url 'website:category' %}{% endif %}">
                                     Назад
                                 </a>
                             
