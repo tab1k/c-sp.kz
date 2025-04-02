@@ -267,64 +267,16 @@
 
         <div class="container mb-3 mt-1 p-0">
             <div class="categories">
-				
-			<a href="{% url 'website:services' %}">
-				<div class="category">
-					<img src="{% static 'images/tech/servicesss.png' %}" alt="Доставка" />
-					<span>Спектр услуг</span>
-				</div>
-			</a>
-
-			<a href="https://c-sp.kz/profnastil/products/">
-				<div class="category">
-					<img src="{% static 'images/tech/proff.png' %}" alt="Доставка" />
-					<span>Профнастил</span>
-				</div>
-			</a>
-			
-			<a href="https://c-sp.kz/besshovnye-stalnye-truby/products/">
-				<div class="category">
-					<img src="{% static 'images/tech/truba.webp' %}" alt="Бургеры" />
-					<span>Труба бесшовная</span>
-				</div>
-			</a>
-			
-			<a href="https://c-sp.kz/goryachekatanye-listy/products/">
-				<div class="category">
-					<img src="{% static 'images/tech/listy.webp' %}" alt="Пицца" />
-					<span>Лист горячекатаный</span>
-				</div>
-			</a>
-            
-			<a href="https://c-sp.kz/sendvich-paneli/products/">
-				<div class="category">
-					<img src="{% static 'images/tech/san.png' %}" alt="Бургеры" />
-					<span>Сэндвич панели</span>
-				</div>
-			</a>
-			
-			<a href="https://c-sp.kz/category/nerzhaveyushie-listy/">
-				<div class="category">
-					<img src="{% static 'images/tech/listy.webp' %}" alt="Пицца" />
-					<span>Лист нержавеющий</span>
-				</div>
-			</a>
-
-        
-            <div class="category">
-                <img src="{% static 'images/tech/truba.webp' %}" alt="Бургеры" />
-                <span>Труба круглая стальная</span>
-            </div>
-			
-			<a href="https://c-sp.kz/category/ploskiy-stalnoy-prokat/">
-				<div class="category">
-					<img src="{% static 'images/tech/listy.webp' %}" alt="Пицца" />
-					<span>Листы</span>
-				</div>
-			</a>
-    
-            
-            </div>
+				{% for category in similar_categories %}
+					<a href="{{ category.get_absolute_url }}">
+						<div class="category">
+							<img style="border-radius: 10px;" src="{% if category.image %}{{ category.image.url }}{% else %}{% static 'images/tech/default.jpg' %}{% endif %}" 
+								 alt="{{ category.name }}" />
+							<span>{{ category.name }}</span>
+						</div>
+					</a>
+				{% endfor %}
+			</div>
         </div>
   
       <style>
