@@ -283,19 +283,52 @@
                         <!-- Buttons -->
                         <ul class="list-inline text-end">
                             <!-- Share icon -->
-                            <li class="list-inline-item dropdown">
-                                <!-- Share button -->
-                                <a href="#" class="btn btn-sm btn-light px-2" role="button" id="dropdownShare" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-fw fa-share-alt"></i>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <a class="link-back d-lg-none me-3" href="{% if category.parent %}{{ category.parent.get_absolute_url }}{% else %}{% url 'main:category' %}{% endif %}">
+                                    Назад
                                 </a>
-                                <!-- Dropdown button -->
-                                <ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded" aria-labelledby="dropdownShare">
-                                    <li><a class="dropdown-item" href="#" id="share-facebook"><i class="fab fa-facebook-square me-2"></i>Facebook</a></li>
-                                    <li><a class="dropdown-item" href="#" id="share-whatsapp"><i class="fab fa-whatsapp me-2"></i>WhatsApp</a></li>
-                                    <li><a class="dropdown-item" href="#" id="share-telegram"><i class="fab fa-telegram me-2"></i>Telegram</a></li>
-                                    <li><a class="dropdown-item" href="#" id="copy-link"><i class="fa-solid fa-copy me-2"></i>Копировать</a></li>
-                                </ul>
-                            </li>
+                            
+                                <li class="list-inline-item dropdown">
+                                    <a href="#" class="btn btn-sm btn-light px-2 mb-0"  role="button" id="dropdownShare" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-solid fa-fw fa-share-alt"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded" aria-labelledby="dropdownShare">
+                                        <li><a class="dropdown-item" href="#" id="share-facebook"><i class="fab fa-facebook-square me-2"></i>Facebook</a></li>
+                                        <li><a class="dropdown-item" href="#" id="share-whatsapp"><i class="fab fa-whatsapp me-2"></i>WhatsApp</a></li>
+                                        <li><a class="dropdown-item" href="#" id="share-telegram"><i class="fab fa-telegram me-2"></i>Telegram</a></li>
+                                        <li><a class="dropdown-item" href="#" id="copy-link"><i class="fa-solid fa-copy me-2"></i>Копировать</a></li>
+                                    </ul>
+                                </li>
+                            </div>
+
+                            <style>
+                                .link-back {
+                                display: inline-flex;
+                                align-items: center;
+                           
+                                padding: 8px 8px 6px;
+                                padding-left: 28px;
+                                color: #262a31;
+                                font-weight: 700;
+                                font-size: 12px;
+                                letter-spacing: .01em;
+                                text-transform: uppercase;
+                                background-color: #f5f7f8;
+                                border-radius: 8px;
+                                position: relative;
+                                line-height: 13px;
+                                }
+                                .link-back:before {
+                                    content: "";
+                                    position: absolute;
+                                    transform: translateY(-50%);
+                                    top: 50%;
+                                    left: 8px;
+                                    width: 16px;
+                                    height: 16px;
+                                    background: url('{% static 'images/tech/arrow-left.svg' %}');
+                                }
+                            </style>
                             
                             <script>
                                 document.addEventListener("DOMContentLoaded", function () {
