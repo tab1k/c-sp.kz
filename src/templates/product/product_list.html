@@ -516,24 +516,59 @@
 					<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/css/intlTelInput.min.css">
 
 					<div class="container my-5 p-0">
-					  <div class="rounded-5 p-5 text-white" style="background: linear-gradient(90deg, #1E3C72, #2A5298)">
-						<h4 class="fw-bold text-white">Не нашли, что искали?</h4>
-						<p class="mb-4" style="color: #d2d2d2;">Оставьте Ваш телефон и мы перезвоним Вам для уточнения и расчета заказа</p>
-			
-						<form class="row g-2">
-						  <div class="col-md-4">
-							<input type="text" class="form-control rounded-pill" placeholder="Имя" required>
-						  </div>
-						  <div class="col-md-4">
-							<input type="tel" id="phone" class="form-control rounded-pill" required>
-						  </div>
-						  <div class="col-md-4">
-							<button type="submit" class="btn btn-warning text-white rounded-pill px-4 py-2" style="background-color: #ec7b4f; width: 100%;">Отправить</button>
-						  </div>
-						</form>
-					  </div>
-					</div>
+						<div class="rounded-5 p-5 text-white" style="background: linear-gradient(90deg, #1E3C72, #2A5298); position: relative;">
+						  <h4 class="fw-bold text-white">Не нашли, что искали?</h4>
+						  <p class="mb-4" style="color: #d2d2d2;">Оставьте Ваш телефон и мы перезвоним Вам для уточнения и расчета заказа</p>
+					  
+						  <button data-bs-toggle="modal" data-bs-target="#LeadModal" class="circle-button">
+							<span class="arrow-up">↑</span>
+						  </button>
+						</div>
 
+									  
+						<style>
+							/* Для мобильных устройств */
+							@media (max-width: 768px) {
+							  .p-5 {
+								padding: 2rem !important;
+							  }
+							}
+						  </style>
+						  
+					  
+						<style>
+								
+						  .circle-button {
+							width: 50px;
+							height: 50px;
+							border-radius: 50%;
+							background-color: white;
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							border: 2px solid black; /* Черная рамка */
+							position: absolute;
+							right: 20px;   /* Расстояние от правого края */
+							transform: translateY(-50%); /* Центрирование по вертикали */
+							cursor: pointer; /* Указатель при наведении */
+						  }
+					  
+						  .arrow-up {
+							font-size: 24px; /* Размер стрелки */
+							color: black; /* Цвет стрелки */
+							transform: rotate(45deg); /* Поворот стрелки на 45 градусов */
+						  }
+					  
+						  .circle-button:hover {
+							background-color: #f0f0f0; /* Светлый фон при наведении */
+						  }
+					  
+						  .circle-button:focus {
+							outline: none; /* Убираем рамку при фокусе */
+						  }
+						</style>
+					  </div>
+					  
 					<style>
 						.iti {
 							position: relative;
