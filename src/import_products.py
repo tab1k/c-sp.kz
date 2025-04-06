@@ -70,7 +70,7 @@ def import_products_from_file(json_file, category_slug):
     print(f"✅ Добавлено {count} товаров в категорию '{category.name}'")
 
 def import_all_products():
-    base_path = '/path/to/your/json/files/listovoi'  # Укажи путь до папки с JSON-файлами
+    base_path = '/app/src/listovoi'  # Укажи путь до папки с JSON-файлами
 
     # Проходим по каждому JSON-файлу и импортируем товары
     for folder_name, category_slug in url_to_slug_mapping.items():
