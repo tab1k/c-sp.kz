@@ -249,11 +249,7 @@
         {% for category in categories|slice:':10' %}
           <a href="{{ category.get_absolute_url }}">
             <div class="grid-item {% if forloop.first %}big{% endif %}"
-              style="background-image: url('{% if category.image %}
-                {{ category.image.url }}
-              {% else %}
-                {% static 'images/tech/chernyi.jpg' %}
-              {% endif %}');">
+              style="background-image: url('{% if category.image %} {{ category.image.url }} {% else %} {% static 'images/tech/chernyi.jpg' %} {% endif %}');">
               <span>{{ category.name }}</span>
             </div>
           </a>
