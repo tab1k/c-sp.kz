@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Главная {% endblock %}
+{% block title %}
+  Главная
+{% endblock %}
 
 {% block header %}
   <header class="header-transparent">
@@ -30,8 +32,6 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'website:category' %}"><b style="color: #032655;">Каталог</b></a>
             </li>
-
-            
 
             <li class="nav-item">
               <a style="color: #032655;" class="nav-link" href="{% url 'website:index' %}"><b style="color: #032655;">Главная</b></a>
@@ -101,14 +101,10 @@
           <div class="col-xl-8 py-xl-8">
             <h1 class="display-4 text-white mb-3" style="text-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3);">Ваш надежный партнер в строительстве!</h1>
             <h5 class="text-white mb-3" style="text-shadow: 1px 1px 15px rgba(0, 0, 0, 1);">Полный спектр поставок!</h5>
-            <a href="#" data-bs-toggle="modal" data-bs-target="#LeadModal" class="btn btn-lg mb-0" style="background-color: #032655; color: white;">Заявка в 1 клик!</a>
-            
-            
+            <a href="#" data-bs-toggle="modal" data-bs-target="#LeadModal" class="btn btn-lg mb-0" style="background-color: #032655; color: white;"><i class="bi bi-telephone-fill me-2"></i> Заказать звонок</a>
           </div>
         </div> <!-- Row END -->
       </div>
-
-      
     </section>
 
     <style>
@@ -142,7 +138,7 @@
         <span>🔹 Снижаем ваши расходы на строительство! 💰 Выгодные цены, 🚚 быстрая доставка и 🏆 безупречное качество! ✨ 🔹</span>
       </div>
     </div>
-    
+
     <style>
       .marquee-container {
         width: 100%;
@@ -155,19 +151,19 @@
         white-space: nowrap;
         position: relative;
       }
-    
+      
       .marquee {
         display: flex;
         width: 200%;
         animation: marquee 11s linear infinite;
       }
-    
+      
       .marquee span {
         display: inline-block;
         width: 100%;
         padding-right: 50px;
       }
-    
+      
       @keyframes marquee {
         from {
           transform: translateX(50%);
@@ -253,123 +249,69 @@
         {% for category in categories|slice:':10' %}
           <a href="{{ category.get_absolute_url }}">
             <div class="grid-item {% if forloop.first %}big{% endif %}"
-              style="background-image: url('{% if category.image %}{{ category.image.url }}{% else %}{% static 'images/tech/chernyi.jpg' %}{% endif %}');">
+              style="background-image: url('{% if category.image %}
+                {{ category.image.url }}
+              {% else %}
+                {% static 'images/tech/chernyi.jpg' %}
+              {% endif %}');">
               <span>{{ category.name }}</span>
             </div>
           </a>
         {% endfor %}
-        
       </div>
     </div>
 
     <!-- КОНЕЦ КАТЕГОРИЙ -->
 
-    
-    
-
-    <section class="pb-0 p-0 pb-2 mt-5">
-      <div class="container">
-        <div class="about-us">
-          <div class="about-content">
-              <h2 style="color: white;">О компании</h2>
-              <p style="color: white;">Мы — надежный поставщик металлопроката, работающий на рынке более 10 лет. 
-                Предлагаем широкий ассортимент продукции для строительства, машиностроения и производства.</p>
-              <p style="color: white;">Наша цель — обеспечить клиентов качественным металлом по выгодным ценам.</p>
-              <button onclick="window.location.href='{% url 'website:about' %}'">Подробнее</button>
+    <div class="container-xl mt-5">
+      <div class="row">
+        <div class="col-12 mb-4">
+          <h2 class="text-center">Услуги ВЭД по странам — экспорт и импорт</h2>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <p class="fw-bold" style="color: black;">Наша компания осуществляет целый комплекс мероприятий, связанных с закупкой и поставкой товаров за рубеж.</p>
+            <p>Сюда входит и поиск необходимого товара в России, его полное таможенное оформление на территории РФ, доставка товара до склада Покупателя. Такое комплексное решение крайне выгодно предприятиям, желающим приобрести товар в России.</p>
           </div>
-          <div class="about-image">
-              <img src="{% static 'images/tech/cartinka.jpg' %}" alt="Металлопрокат">
+          <div class="col-md-6">
+            <ul class="list-unstyled">
+              <li style="color: #032655;" class="mb-3">
+                <span><b style="color: #032655; margin-right: 5px;">•</b></span> Экспорт товаров из России на внешние рынки
+              </li>
+              <li style="color: #032655;" class="mb-3">
+                <span><b style="color: #032655; margin-right: 5px;">•</b></span> Импорт товаров из стран Азии, Европейского союза и СНГ
+              </li>
+              <li style="color: #032655;" class="mb-3">
+                <span><b style="color: #032655; margin-right: 5px;">•</b></span> Таможенные услуги
+              </li>
+              <li style="color: #032655;" class="mb-3">
+                <span><b style="color: #032655; margin-right: 5px;">•</b></span> Аутсорсинг внешнеэкономической деятельности
+              </li>
+            </ul>
           </div>
+        </div>
+        <div class="col-12">
+          <div class="card">
+            <img src="{% static 'images/map.svg' %}" class="card-img-top" alt="Карта" width="1110" height="581" />
+          </div>
+        </div>
       </div>
-  
-      <style>
-       
-        
-        .about-us {
-            display: flex;
-            align-items: center;
-            background: #032655; /* Темно-синий фон */
-            padding: 50px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            max-width: 100%;
-            color: white; /* Белый текст */
-        }
-        
-        .about-content {
-            flex: 1;
-            padding-right: 20px;
-        }
-        
-        .about-content h2 {
-            font-size: 26px;
-            margin-bottom: 16px;
-            color: #f0f0f0;
-        }
-        
-        .about-content p {
-            font-size: 16px;
-            line-height: 1.6;
-            opacity: 0.9; /* Чуть менее яркий текст */
-        }
-        
-        .about-content button {
-            background: white;
-            color: #032655;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-        
-        .about-content button:hover {
-            background: #f0f0f0;
-        }
-        
-        .about-image {
-            flex: 1;
-            text-align: right;
-        }
-        
-        .about-image img {
-            max-width: 100%;
-            border-radius: 8px;
-        }
-        
-        @media (max-width: 768px) {
-            .about-us {
-                flex-direction: column;
-                text-align: center;
-            }
-            .about-content {
-                padding-right: 0;
-            }
-            .about-image {
-                text-align: center;
-                margin-top: 20px;
-            }
-        }
-        
-        
-      </style>
-      </div>
-    </section>
-
-
-    
+    </div>
 
     <div class="container" style="margin-top: 20px; margin-bottom: 50px; background: url('{% static 'images/tech/background.png' %}'); background-repeat: no-repeat; background-size: cover;">
       <h4 class="about-company-bottom__title mb-4" style="color: #262a31;"><a href="{% url 'website:category' %}">Спектр услуг</a></h4>
       <div class="grid">
-
-        {% for service in services|slice:":4" %}
-        <a href="{% url 'website:services' %}">
-            <div class="grid-item" style="background-image: url('{% if service.image %}{{ service.image.url }}{% else %}{% static 'images/default-service.jpg' %}{% endif %}');">
-                <span>{{ service.name }}</span>
+        {% for service in services|slice:':4' %}
+          <a href="{% url 'website:services' %}">
+            <div class="grid-item"
+              style="background-image: url('{% if service.image %}
+                {{ service.image.url }}
+              {% else %}
+                {% static 'images/default-service.jpg' %}
+              {% endif %}');">
+              <span>{{ service.name }}</span>
             </div>
-        </a>
+          </a>
         {% endfor %}
 
         <div class="grid-item more">
@@ -378,9 +320,184 @@
       </div>
     </div>
 
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <!-- FAQ Section -->
+    <div class="container-xl mt-5 mb-3">
+      <div class="row">
+        <div class="col-lg-8  mb-4">
+          <h4 class="fw-bold text-dark">Вы спрашивали — мы отвечаем</h2>
+        </div>
+
+        <div class="col-lg-12">
+          <div class="accordion" id="faqAccordion">
+            <!-- Вопрос 1 -->
+            <div class="accordion-item border-0 mb-3 rounded-3" style="background-color: #f9f9f9;">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed bg-transparent text-dark fw-semibold rounded-4 px-4 py-3" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                  Какая продукция имеется в наличии на складе?
+                  <i class="bi bi-plus-lg ms-auto text-secondary fs-5"></i>
+                </button>
+              </h2>
+              <div id="faq1" class="accordion-collapse collapse">
+                <div class="accordion-body px-4">Здесь можно указать текстовый ответ на данный вопрос.</div>
+              </div>
+            </div>
+
+            <!-- Вопрос 2 -->
+            <div class="accordion-item border-0 mb-3 rounded-3" style="background-color: #f9f9f9;">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed bg-transparent text-dark fw-semibold rounded-4 px-4 py-3" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                  Сколько будет стоить доставка металлопроката до г. Астана?
+                  <i class="bi bi-plus-lg ms-auto text-secondary fs-5"></i>
+                </button>
+              </h2>
+              <div id="faq2" class="accordion-collapse collapse">
+                <div class="accordion-body px-4">Здесь можно указать текстовый ответ на данный вопрос.</div>
+              </div>
+            </div>
+
+            <!-- Вопрос 3 -->
+            <div class="accordion-item border-0 mb-3 rounded-3" style="background-color: #f9f9f9;">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed bg-transparent text-dark fw-semibold rounded-4 px-4 py-3" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                  Как я могу оплатить свой заказ?
+                  <i class="bi bi-plus-lg ms-auto text-secondary fs-5"></i>
+                </button>
+              </h2>
+              <div id="faq3" class="accordion-collapse collapse">
+                <div class="accordion-body px-4">Здесь можно указать текстовый ответ на данный вопрос.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional Custom Style -->
+    <style>
+      .accordion-button::after {
+        display: none !important; /* Убираем стандартный Bootstrap-значок */
+      }
+      
+      .accordion-button:not(.collapsed) i.bi-plus-lg::before {
+        content: '\f068'; /* меняем на минус при открытии (f068 = bi-dash-lg) */
+      }
+      
+      .accordion-button {
+        box-shadow: none !important;
+        transition: background 0.2s ease-in-out;
+      }
+      
+      .accordion-button:hover {
+        background-color: #f0f4ff;
+      }
+      
+      .accordion-body {
+        background-color: #fff;
+        border-radius: 0 0 1rem 1rem;
+      }
+    </style>
+
+    <!-- -->
+
+    <div class="container mb-3 p-0">
+      <div class="categories m-3">
+        
+          <a href="#">
+            <div class="category">
+              <span>Арматура</span>
+            </div>
+          </a>
+
+          <a href="#">
+            <div class="category">
+              <span>Арматура</span>
+            </div>
+          </a>
+
+
+          <a href="#">
+            <div class="category">
+              <span>Арматура</span>
+            </div>
+          </a>
+
+
+          <a href="#">
+            <div class="category">
+              <span>Арматура</span>
+            </div>
+          </a>
+
+          <a href="#">
+            <div class="category">
+              <span>Арматура</span>
+            </div>
+          </a>
+
+          <a href="#">
+            <div class="category">
+              <span>Арматура</span>
+            </div>
+          </a>
+       
+      </div>
+  </div>
+
+  <style>
+    .categories {
+      display: flex;
+      overflow-x: auto;
+      gap: 15px;
+      white-space: nowrap;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .categories::-webkit-scrollbar {
+      display: none;
+    }
+    .category {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      background: #f5f5f5;
+      border-radius: 10px;
+      text-align: center;
+      min-width: 80px;
+    }
+    .icon-wrapper {
+      width: 50px;
+      height: 50px;
+      background: #f5f5f5;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+    .icon-wrapper svg {
+      width: 24px;
+      height: 24px;
+      fill: #333;
+    }
+    .category img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 5px;
+    }
+    .category span {
+      font-size: 14px;
+      color: #333;
+    }
+  </style>
+
     <!-- БЛОК ПАРТНЕРЫ -->
 
-    <section class="py-0 mb-5">
+    <section class="py-0 mb-5 mt-4">
       <div class="container position-relative">
         <div class="bg-light rounded-3 position-relative p-4 p-sm-5">
           <!-- Svg decoration -->
@@ -394,7 +511,7 @@
             <div class="col-lg-8">
               <!-- Title -->
               <div class="d-flex">
-                <h3>Сэкономьте время, оставьте заявку! </h3>
+                <h3>Сэкономьте время, оставьте заявку!</h3>
                 <img src="assets/images/element/04.svg" class="h-40px ms-3" alt="" />
               </div>
               <p class="mb-3 mb-lg-0">Или, позвоните нам, и мы ответим на все ваши вопросы.</p>
@@ -404,11 +521,9 @@
               <a data-bs-toggle="modal" data-bs-target="#LeadModal" style="background-color: #032655; color: white;" class="btn btn-lg mb-0">Оставить заявку</a>
               <i class="bi bi-star-fill text-warning position-absolute" style="top: 1px;right: 9px;font-size: 1rem;"></i>
             </div>
-            
           </div> <!-- Row END -->
         </div>
       </div>
     </section>
-
   </main>
 {% endblock %}

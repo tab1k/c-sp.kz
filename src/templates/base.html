@@ -12,11 +12,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="author" content="c-sp.kz" />
-    <meta name="keywords" content="стальной прокат, металлопрокат Казахстан, ЦСП, металлоконструкции" />
-    <meta name="description" content="Центр стального проката ЦСП – металлопрокат в Казахстане. Широкий ассортимент стали и металлоконструкций по доступным ценам." />
+
+    <!-- SEO Meta -->
+    <meta name="keywords" content="ЦСП, центр стального проката, c-sp, csp, стальной прокат, металлопрокат, металлопрокат Казахстан, металлоконструкции, купить металл, металлобаза Казахстан, металлопрокат Алматы, арматура, уголок, швеллер, труба стальная" />
+    <meta name="description" content="ЦСП – Центр стального проката. Крупнейший поставщик металлопроката и металлоконструкций в Казахстане. Весь ассортимент: арматура, уголок, швеллер, трубы и др. Прямые поставки, выгодные цены." />
 
     <meta property="og:title" content="ЦСП – Центр стального проката" />
-    <meta property="og:description" content="Крупнейший поставщик стального проката в Казахстане." />
+    <meta property="og:description" content="Металлопрокат в Казахстане. Арматура, швеллер, уголок, трубы – всё в наличии. ЦСП – надежный поставщик." />
     <meta property="og:image" content="https://c-sp.kz/static/images/logotip.png" />
     <meta property="og:url" content="https://c-sp.kz" />
     <meta property="og:type" content="website" />
@@ -41,6 +43,8 @@
 
     <!-- Theme CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
     <script type="application/ld+json">
       {
@@ -170,37 +174,150 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-          <script data-b24-form="inline/1/9r92z8" data-skip-moving="true">(function(w,d,u){var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);})(window,document,'https://cdn-ru.bitrix24.kz/b32852022/crm/form/loader_1.js');</script>
-          <style>
-            .b24-form {
-              overflow: hidden !important;
-            }
-            .modal-header {
-              border-bottom: none;
-              padding-bottom: 0px;
-            }
-
-            .b24-form-header {
-              padding: 0px 31px 5px;
-            }
-
-            .b24-form-header-title {
-              font-weight: bold;
-            }
-
-            .b24-form-btn {
-              border-radius: 12px;
-              background-color: #032655;
-            }
-
-            .b24-form-control-string .b24-form-control, .b24-form-control-list .b24-form-control, .b24-form-control-text .b24-form-control, .b24-form-control-select .field-item {
-              border-radius: 12px;
-            }
-          </style>
+            <div class="form-wrapper">
+              <!-- Карточка товара -->
+              <div id="product-info" class="product-card d-flex align-items-center gap-3">
+                <img id="product-photo" src="https://cdn-icons-png.flaticon.com/512/4492/4492933.png" alt="Труба" class="product-img">
+                <div>
+                  <a href="#" id="product-url" target="_blank">
+                    <p id="product-name" class="product-title mb-1"></p>
+                  </a>
+                  <p id="product-meta" class="product-meta">Арт.145-251994 <span class="product-status">В наличии</span></p>
+                </div>
+              </div>
+          
+              <!-- Bitrix24 форма -->
+              <script data-b24-form="inline/1/9r92z8" data-skip-moving="true">
+                (function(w,d,u){
+                  var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);
+                  var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
+                })(window,document,'https://cdn-ru.bitrix24.kz/b32852022/crm/form/loader_1.js');
+              </script>
+            </div>
+          
+            <style>
+              .form-wrapper {
+                max-width: 420px;
+                width: 100%;
+                margin: 0 auto;
+              }
+          
+              .product-card {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                background-color: #fff;
+                padding: 16px;
+                border-radius: 16px;
+                border: 1px solid #e7e7e9;
+                margin-bottom: 20px;
+              }
+          
+              .product-img {
+                width: 60px;
+                height: 60px;
+                border-radius: 12px;
+                object-fit: cover;
+              }
+          
+              .product-title {
+                font-weight: 600;
+                font-size: 16px;
+                color: #212529;
+                margin: 0;
+                text-decoration: none;
+              }
+          
+              .product-meta {
+                font-size: 14px;
+                color: #6c757d;
+                margin: 0;
+              }
+          
+              .product-status {
+                color: #198754;
+                font-weight: 500;
+              }
+          
+              .b24-form {
+                overflow: hidden !important;
+              }
+          
+              .modal-header {
+                border-bottom: none;
+                padding-bottom: 0px;
+              }
+          
+              .b24-form-header {
+                padding: 0px 31px 5px;
+              }
+          
+              .b24-form-header-title {
+                font-weight: bold;
+              }
+          
+              .b24-form-btn {
+                border-radius: 12px;
+                background-color: #032655;
+              }
+          
+              .b24-form-control-string .b24-form-control,
+              .b24-form-control-list .b24-form-control,
+              .b24-form-control-text .b24-form-control,
+              .b24-form-control-select .field-item {
+                border-radius: 12px;
+              }
+            </style>
           </div>
+          
         </div>
       </div>
     </div>
+
+    <script>
+      $(document).ready(function () {
+        $('#LeadModal').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget);
+          var productName = button.data('product-name');
+          var productUrl = button.data('product-url');
+          var productArticle = button.data('product-article');
+          var productPhoto = button.data('product-photo');
+    
+          var modal = $(this);
+          var productBlock = modal.find('#product-info');     // блок с товаром
+          var formHeader = $('.b24-form-header');             // заголовок формы
+    
+          if (productName) {
+            // Показать блок с товаром
+            productBlock.removeClass('d-none');
+            formHeader.addClass('d-none'); // скрыть заголовок формы
+    
+            // Обновить данные в блоке
+            modal.find('#product-name').text(productName);
+            modal.find('#product-url').attr('href', productUrl || "#");
+            modal.find('#product-meta').html((productArticle || '') + ' <span class="product-status">В наличии</span>');
+            modal.find('#product-photo').attr('src', productPhoto || 'https://cdn-icons-png.flaticon.com/512/4492/4492933.png');
+          } else {
+            // Скрыть блок с товаром
+            productBlock.addClass('d-none');
+            formHeader.removeClass('d-none'); // показать заголовок формы
+    
+            // Очистить данные
+            modal.find('#product-name').text("");
+            modal.find('#product-url').attr('href', "#");
+            modal.find('#product-meta').text("");
+            modal.find('#product-photo').attr('src', "");
+          }
+        });
+      });
+    </script>
+    
+    
+
+    
+    
+    
+    
     <!-- **************** MAIN CONTENT END **************** -->
 
     <!-- ======================= Footer START -->
@@ -441,5 +558,8 @@ Footer END     -->
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/100747262" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
+
+    
+  
   </body>
 </html>
