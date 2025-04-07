@@ -529,6 +529,48 @@
 						});
 					</script>
 
+					<div class="container-xl mt-5">
+						<div class="row p-0">
+						  <div class="col-12 mb-3">
+							<h4 class="about-company-bottom__title" style="color: #262a31;"><a href="{% url 'website:about' %}">{{ category.name }} </a></h4>
+						  </div>
+						  <div class="row">
+							<div class="col-md-6 mb-2">
+							  <p class="fw-bold" style="color: black;">"Центр стального проката" – надежный поставщик строительных материалов в Казахстане.  </p>
+							  <p class="fw-bold" style="color: black;"> Что такое {{ category.name}} ?</p>
+				  
+							  <p style="color: black;">
+								{% if category.about %}
+									{{ category.about }}
+								{% else %}
+									Наши опытные менеджеры всегда готовы помочь с выбором продукции, подобрать оптимальное решение под ваши задачи и бюджет. Мы гарантируем качество материалов и своевременные поставки.
+								{% endif %}
+							</p>
+							
+							</div>
+							<div class="col-md-6">
+							  <ul class="list-unstyled">
+								<p style="color: #032655;">
+									<b>{{ category.name }} имеет несколько подкатегорий, а именно:</b>
+								</p>
+								{% for subcategory in subcategories %}
+									<!-- 3. Выводим название каждой подкатегории -->
+									<li style="color: #032655;" class="mb-3">
+										<span><b style="color: #032655; margin-right: 5px;">•</b></span>
+										{{ subcategory.name }}  <!-- Выводим название подкатегории -->
+									</li>
+								{% empty %}
+									<!-- 4. Сообщение, если подкатегорий нет -->
+									<li>Нет подкатегорий</li>
+								{% endfor %}
+							</ul>
+							
+							</div>
+						  </div>
+						  
+						</div>
+					  </div>
+
 
 					<!-- intl-tel-input CSS -->
 					<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/css/intlTelInput.min.css">
