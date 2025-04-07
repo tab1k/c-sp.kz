@@ -314,6 +314,8 @@
                                     }
                                 </script>
 							</div>
+
+              
 							
 							
 						</form><!-- Form End -->
@@ -421,8 +423,70 @@
 
 				</div>
 
-        <div class="container-xl mt-5">
+        <div class="container-xl mt-3">
           <div class="row p-0">
+
+            <div class="container my-3 p-0 mb-4">
+              <div class="rounded-5 p-5 text-white" style="background: linear-gradient(90deg, #1E3C72, #2A5298); position: relative;">
+                <h4 class="fw-bold text-white">Не нашли, что искали?</h4>
+                <p class="mb-4" style="color: #d2d2d2;">Оставьте Ваш телефон и мы перезвоним Вам для уточнения и расчета заказа</p>
+              
+                <button data-bs-toggle="modal" data-bs-target="#LeadModal" class="circle-button">
+                <span class="arrow-up">↑</span>
+                </button>
+              </div>
+  
+                      
+              <style>
+                /* Для мобильных устройств */
+                @media (max-width: 768px) {
+                  .p-5 {
+                  padding: 2rem !important;
+                  }
+                }
+                </style>
+                
+              
+              <style>
+                  
+                .circle-button {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: 2px solid black; /* Черная рамка */
+                position: absolute;
+                right: 20px;   /* Расстояние от правого края */
+                transform: translateY(-50%); /* Центрирование по вертикали */
+                cursor: pointer; /* Указатель при наведении */
+                }
+              
+                .arrow-up {
+                font-size: 24px; /* Размер стрелки */
+                color: black; /* Цвет стрелки */
+                transform: rotate(45deg); /* Поворот стрелки на 45 градусов */
+                }
+              
+                .circle-button:hover {
+                background-color: #f0f0f0; /* Светлый фон при наведении */
+                }
+              
+                .circle-button:focus {
+                outline: none; /* Убираем рамку при фокусе */
+                }
+              </style>
+              </div>
+              
+            <style>
+              .iti {
+                position: relative;
+                width: 100%;
+                display: inline-block;
+              }						
+            </style>
             <div class="col-12 mb-3">
               <h4 class="about-company-bottom__title" style="color: #262a31;"><a href="{% url 'website:about' %}">{{ category.name }} </a></h4>
             </div>
@@ -442,20 +506,26 @@
               </div>
               <div class="col-md-6">
                 <ul class="list-unstyled">
-                  <p style="color: #032655;">
-                      <b>{{ category.name }} имеет несколько подкатегорий, а именно:</b>
-                  </p>
+                  {% if subcategories %}
+                      <p style="color: #032655;">
+                          <b>{{ category.name }} имеет несколько подкатегорий, а именно:</b>
+                      </p>
+                  {% endif %}
+              
                   {% for subcategory in subcategories %}
-                      <!-- 3. Выводим название каждой подкатегории -->
                       <li style="color: #032655;" class="mb-3">
                           <span><b style="color: #032655; margin-right: 5px;">•</b></span>
-                          {{ subcategory.name }}  <!-- Выводим название подкатегории -->
+                          {{ subcategory.name }}
                       </li>
                   {% empty %}
-                      <!-- 4. Сообщение, если подкатегорий нет -->
-                      <li>Нет подкатегорий</li>
+                      <li style="color: #032655;" class="mb-3">
+                          <p><b>Не нашли подходящую подкатегорию?</b></p>
+                          <p>Позвоните нам прямо сейчас — наши специалисты подберут нужный товар и проконсультируют вас!</p>
+                          <p><b>☎️ Телефон: <a href="tel:+77770001122" style="color: #032655;">+7 (777) 000-11-22</a></b></p>
+                      </li>
                   {% endfor %}
-              </ul>
+                </ul>
+              
               
               </div>
             </div>
