@@ -180,6 +180,8 @@ class CategoryDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         category = self.object
+        
+        subcategories = category.children.all()
 
         # Получаем все категории
         all_categories = Category.objects.only('id', 'parent_id')
@@ -211,7 +213,7 @@ class CategoryDetailView(DetailView):
             cache.set(cache_key, products, timeout=60 * 15)
 
         # Пагинация
-        paginator = Paginator(products, 20)
+        paginator = Paginator(products, 15)
         page_number = self.request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
@@ -226,6 +228,7 @@ class CategoryDetailView(DetailView):
             'page_obj': page_obj,
             'categories': top_categories,
             'total_products': total_products,
+            'subcategories': subcategories,
         })
         return context
     

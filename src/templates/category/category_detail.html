@@ -247,10 +247,6 @@
 			<aside class="col-xl-4 col-xxl-3">
 				<!-- Responsive offcanvas body START -->
 				<div class="offcanvas-xl offcanvas-end" tabindex="-1" id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
-					<div class="offcanvas-header">
-						<h5 class="offcanvas-title" id="offcanvasSidebarLabel">Advance Filters</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasSidebar" aria-label="Close"></button>
-					</div>
 					<div class="offcanvas-body flex-column p-3 p-xl-0">
 						<form class="rounded-3 shadow">
               <style>
@@ -424,6 +420,50 @@
                     </div>
 
 				</div>
+
+        <div class="container-xl mt-5">
+          <div class="row p-0">
+            <div class="col-12 mb-3">
+              <h4 class="about-company-bottom__title" style="color: #262a31;"><a href="{% url 'website:about' %}">{{ category.name }} </a></h4>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-2">
+                <p class="fw-bold" style="color: black;">"Центр стального проката" – надежный поставщик строительных материалов в Казахстане.  </p>
+                <p class="fw-bold" style="color: black;"> Что такое {{ category.name}} ?</p>
+    
+                <p style="color: black;">
+                  {% if category.about %}
+                      {{ category.about }}
+                  {% else %}
+                      Наши опытные менеджеры всегда готовы помочь с выбором продукции, подобрать оптимальное решение под ваши задачи и бюджет. Мы гарантируем качество материалов и своевременные поставки.
+                  {% endif %}
+              </p>
+              
+              </div>
+              <div class="col-md-6">
+                <ul class="list-unstyled">
+                  <p style="color: #032655;">
+                      <b>{{ category.name }} имеет несколько подкатегорий, а именно:</b>
+                  </p>
+                  {% for subcategory in subcategories %}
+                      <!-- 3. Выводим название каждой подкатегории -->
+                      <li style="color: #032655;" class="mb-3">
+                          <span><b style="color: #032655; margin-right: 5px;">•</b></span>
+                          {{ subcategory.name }}  <!-- Выводим название подкатегории -->
+                      </li>
+                  {% empty %}
+                      <!-- 4. Сообщение, если подкатегорий нет -->
+                      <li>Нет подкатегорий</li>
+                  {% endfor %}
+              </ul>
+              
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+        
 
         <div class="mt-4">
           <a href="#" data-bs-toggle="modal" data-bs-target="#LeadModal" class="d-flex align-items-center">
