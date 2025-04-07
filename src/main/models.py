@@ -45,6 +45,10 @@ class Product(models.Model):
     class Meta:
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
+        
+        indexes = [
+            models.Index(fields=['category']),
+        ]
 
     def __str__(self):
         return self.name

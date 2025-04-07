@@ -34,28 +34,26 @@ class IndexPageView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['services'] = Service.objects.only('name', 'image')
         
-        # Передаем категории и их продукты
+        # Передаем категории и их продукты (оптимизировано)
         context['categories'] = (
             Category.objects.filter(parent__isnull=True)
             .order_by('id')
-            .prefetch_related('children__children__children', 'products')  # Предзагрузка продуктов
+            .prefetch_related('children', 'children__products')
         )
 
         # Попробуем получить случайные товары из кеша
         random_products = cache.get('random_products')
         
-        # Если товаров нет в кеше или кеш устарел, получаем новые случайные товары
         if not random_products:
-            # Получаем все продукты
-            all_products = list(Product.objects.all())
-            # Выбираем 5 случайных товаров
-            random_products = random.sample(all_products, min(5, len(all_products)))
-            
+            # Получаем 5 случайных товаров с использованием SQL
+            random_products = Product.objects.order_by('?')[:5]
+
             # Кешируем случайные товары на 24 часа
             cache.set('random_products', random_products, timeout=86400)  # timeout = 86400 секунд (24 часа)
 
         context['random_products'] = random_products
         return context
+
     
     
 class ProcheeCategoryView(TemplateView):
@@ -148,6 +146,8 @@ class CategoryViewPage(TemplateView):
         return context
 
 
+from collections import defaultdict
+
 class CategoryDetailView(DetailView):
     model = Category
     template_name = 'category/category_detail.html'
@@ -156,17 +156,17 @@ class CategoryDetailView(DetailView):
     def get_queryset(self):
         return Category.objects.prefetch_related(
             'children',
-            'products'
+            'products'  # Используем prefetch_related для множественных связей
         ).select_related('parent').order_by('id')
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
 
+        # Редиректим, если нет потомков
         if not self.object.children.exists():
             return redirect('website:product_list', slug=self.object.slug)
 
         return super().get(request, *args, **kwargs)
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -175,14 +175,14 @@ class CategoryDetailView(DetailView):
         # Получаем все категории
         all_categories = Category.objects.only('id', 'parent_id')
 
-        # Собираем id текущей категории и всех её потомков (без рекурсии в Python)
+        # Строим дерево в памяти с использованием defaultdict
+        children_map = defaultdict(list)
+        for cat in all_categories:
+            children_map[cat.parent_id].append(cat.id)
+
+        # Собираем все id категорий и их потомков
         category_ids = set()
         stack = [category.id]
-
-        # Строим дерево в памяти
-        children_map = {}
-        for cat in all_categories:
-            children_map.setdefault(cat.parent_id, []).append(cat.id)
 
         while stack:
             current_id = stack.pop()
@@ -191,24 +191,26 @@ class CategoryDetailView(DetailView):
 
         # Получаем продукты одним запросом по всем нужным категориям
         products = Product.objects.filter(category_id__in=category_ids).select_related('category').distinct()
-        
-        total_products = products.count()
 
         # Пагинация
         paginator = Paginator(products, 20)
         page_number = self.request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
-        # Главные категории (для меню, например)
+        # Получаем количество продуктов через пагинатор
+        total_products = page_obj.paginator.count
+
+        # Главные категории для меню
         top_categories = Category.objects.filter(parent__isnull=True).only('id', 'name')
 
-        # Передаём в шаблон
+        # Передаем данные в шаблон
         context.update({
             'page_obj': page_obj,
             'categories': top_categories,
             'total_products': total_products,
         })
         return context
+
     
 
 class ServicesDetailView(DetailView):
