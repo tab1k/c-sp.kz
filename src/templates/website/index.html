@@ -396,7 +396,7 @@
 
     
 
-    <section class="pt-0 pt-sm-0">
+    <section class="pt-sm-5" style="background-color: #f5f7f8;">
       <div class="container">
         <!-- Title -->
         <div class="row mb-4 mb-sm-5">
@@ -422,14 +422,16 @@
                   </div>
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title me-2"><a href="directory-detail.html">{{ product.name }}</a></h5>
+                  <h5 class="card-title me-2"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h5>
                   <ul class="list-group list-group-borderless mb-0">
                     <li class="list-group-item small pb-0">
                       <i class="bi bi-pin-map-fill fa-fw h6 small mb-0"></i> {{ product.description|slice:":30" }}...
                     </li>
-                    <li class="list-group-item small pb-0">
-                      <i class="bi bi-telephone-fill fa-fw h6 small mb-0"></i> +7 (708) 800 81 88
+                    <li class="list-group-item small pb-0" style="color: #032655;">
+                      <i class="bi bi-telephone-fill fa-fw h6 small mb-0"></i>
+                      <a href="tel:+77088008188" style="color: #032655;">+7 (708) 800 81 88</a>
                     </li>
+                    
                   </ul>
                 </div>
                 <div class="card-footer border-top">
