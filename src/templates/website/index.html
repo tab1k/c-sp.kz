@@ -105,6 +105,7 @@
           </div>
         </div> <!-- Row END -->
       </div>
+      
     </section>
 
     <style>
@@ -289,20 +290,73 @@
             </ul>
           </div>
         </div>
-        <div class="col-12">
-          <div class="card">
-            <img src="{% static 'images/met.jpg' %}" class="card-img-top" alt="Карта" width="1110" height="581" />
-          </div>
-          <style>
-            img.card-img-top {
-              height: 75%;
-              width: 75%;
-              margin: 0 auto;
-          }
-          </style>
-        </div>
+        
       </div>
     </div>
+
+    <div class="container mb-4 mt-1 p-0">
+      <div class="categories m-3">
+        {% for category in categories|slice:':30' %}
+        
+          <a href="#">
+            <div class="category">
+              <span>{{ category.name }}</span>
+            </div>
+          </a>
+        
+        {% endfor %}
+       
+      </div>
+    </div>
+
+    <style>
+      .categories {
+        display: flex;
+        overflow-x: auto;
+        gap: 15px;
+        white-space: nowrap;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .categories::-webkit-scrollbar {
+        display: none;
+      }
+      .category {
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        background: #f5f5f5;
+        border-radius: 10px;
+        text-align: center;
+        min-width: 80px;
+      }
+      .icon-wrapper {
+        width: 50px;
+        height: 50px;
+        background: #f5f5f5;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5px;
+      }
+      .icon-wrapper svg {
+        width: 24px;
+        height: 24px;
+        fill: #333;
+      }
+      .category img {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 5px;
+      }
+      .category span {
+        font-size: 14px;
+        color: #333;
+      }
+    </style>
 
     <div class="container" style="margin-top: 20px; margin-bottom: 50px; background: url('{% static 'images/tech/background.png' %}'); background-repeat: no-repeat; background-size: cover;">
       <h4 class="about-company-bottom__title mb-4" style="color: #262a31;"><a href="{% url 'website:category' %}">Спектр услуг</a></h4>
@@ -448,98 +502,7 @@
 
     <!-- -->
 
-    <div class="container mb-3 p-0">
-      <div class="categories m-3">
-        
-          <a href="#">
-            <div class="category">
-              <span>Арматура</span>
-            </div>
-          </a>
-
-          <a href="#">
-            <div class="category">
-              <span>Арматура</span>
-            </div>
-          </a>
-
-
-          <a href="#">
-            <div class="category">
-              <span>Арматура</span>
-            </div>
-          </a>
-
-
-          <a href="#">
-            <div class="category">
-              <span>Арматура</span>
-            </div>
-          </a>
-
-          <a href="#">
-            <div class="category">
-              <span>Арматура</span>
-            </div>
-          </a>
-
-          <a href="#">
-            <div class="category">
-              <span>Арматура</span>
-            </div>
-          </a>
-       
-      </div>
-  </div>
-
-  <style>
-    .categories {
-      display: flex;
-      overflow-x: auto;
-      gap: 15px;
-      white-space: nowrap;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-    .categories::-webkit-scrollbar {
-      display: none;
-    }
-    .category {
-      flex: 0 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 10px;
-      background: #f5f5f5;
-      border-radius: 10px;
-      text-align: center;
-      min-width: 80px;
-    }
-    .icon-wrapper {
-      width: 50px;
-      height: 50px;
-      background: #f5f5f5;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 5px;
-    }
-    .icon-wrapper svg {
-      width: 24px;
-      height: 24px;
-      fill: #333;
-    }
-    .category img {
-      width: 40px;
-      height: 40px;
-      margin-bottom: 5px;
-    }
-    .category span {
-      font-size: 14px;
-      color: #333;
-    }
-  </style>
+    
 
     <!-- БЛОК ПАРТНЕРЫ -->
 
