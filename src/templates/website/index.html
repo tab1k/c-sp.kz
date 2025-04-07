@@ -298,11 +298,10 @@
       <div class="categories m-3">
         {% for category in categories|slice:':30' %}
         
-          <a href="#">
             <div class="category">
-              <span>{{ category.name }}</span>
+              <span><a style="color: black;" href="{{ category.get_absolute_url }}">{{ category.name }}</a></span>
             </div>
-          </a>
+   
         
         {% endfor %}
        
@@ -374,6 +373,117 @@
         </div>
       </div>
     </div>
+
+    <style>
+      /* Ограничение ширины для слайдера */
+      .swiper-container {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden; /* Скрываем все, что выходит за границы */
+      }
+      /* Ожидаемая ширина для карточек */
+      .swiper-slide {
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+
+    <!-- Подключение стилей Swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <!-- Подключение скрипта Swiper -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    
+
+    <section class="pt-0 pt-sm-0">
+      <div class="container">
+        <!-- Title -->
+        <div class="row mb-4 mb-sm-5">
+          <div class="col-12">
+            <h4 class="about-company-bottom__title" style="color: #262a31;"><a href="{% url 'website:about' %}">Популярные товары</a></h4>
+          </div>	
+        </div>
+    
+        <!-- Swiper -->
+        {% if random_products %}
+        <div class="swiper-container">
+          
+          <div class="swiper-wrapper">
+            
+            {% for product in random_products %}
+            <div class="swiper-slide">
+              <div class="card shadow h-100">
+                <div class="position-relative">
+                  <img src="{% if product.image %}{{ product.image.url }}{% elif product.category.image %}{{ product.category.image.url }}{% else %}{% static 'images/tech/cartinka.jpg' %}{% endif %}" class="card-img-top" alt="{{ product.name }}">
+                  <div class="card-img-overlay p-3 z-index-1">
+                
+                    <div class="badge text-bg-success">В наличнии</div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title me-2"><a href="directory-detail.html">{{ product.name }}</a></h5>
+                  <ul class="list-group list-group-borderless mb-0">
+                    <li class="list-group-item small pb-0">
+                      <i class="bi bi-pin-map-fill fa-fw h6 small mb-0"></i> {{ product.description|slice:":30" }}...
+                    </li>
+                    <li class="list-group-item small pb-0">
+                      <i class="bi bi-telephone-fill fa-fw h6 small mb-0"></i> +7 (708) 800 81 88
+                    </li>
+                  </ul>
+                </div>
+                <div class="card-footer border-top">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <a href="{{ product.get_absolute_url }}" class="btn btn-link p-0 mb-0" style="color: #032655;">Посмотреть<i class="bi bi-arrow-right ms-1"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+    
+        
+            <!-- Repeat for other cards as needed -->
+          </div>
+          <!-- Swiper Navigation -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+      {% endif %}
+    </section>
+    
+    <!-- Инициализация Swiper -->
+    <script>
+      var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 'auto',  // Сделать количество слайдов автоматически адаптируемым
+        spaceBetween: 30,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        breakpoints: {
+          // Для меньших экранов, например, 768px, показывать меньше карточек
+          768: {
+            slidesPerView: 1, // Показывать 1 слайд на маленьких экранах
+            spaceBetween: 20
+          },
+          1024: {
+            slidesPerView: 2, // Показывать 2 слайда на средних экранах
+            spaceBetween: 30
+          },
+          1200: {
+            slidesPerView: 3, // Показывать 3 слайда на большом экране
+            spaceBetween: 40
+          }
+        }
+      });
+    </script>
+    
 
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />

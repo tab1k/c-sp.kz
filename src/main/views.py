@@ -17,21 +17,42 @@ from .filters import ProductFilter
 import re
 from django.views.generic import DetailView
 from django.views.generic import TemplateView
+import random
+from django.core.cache import cache
+from datetime import datetime
+from .models import Product
 
 
         
+
 class IndexPageView(TemplateView):
     template_name = 'website/index.html'
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['services'] = Service.objects.only('name', 'image')
+        
         # Передаем категории и их продукты
         context['categories'] = (
             Category.objects.filter(parent__isnull=True)
             .order_by('id')
             .prefetch_related('children__children__children', 'products')  # Предзагрузка продуктов
         )
+
+        # Попробуем получить случайные товары из кеша
+        random_products = cache.get('random_products')
+        
+        # Если товаров нет в кеше или кеш устарел, получаем новые случайные товары
+        if not random_products:
+            # Получаем все продукты
+            all_products = list(Product.objects.all())
+            # Выбираем 5 случайных товаров
+            random_products = random.sample(all_products, min(5, len(all_products)))
+            
+            # Кешируем случайные товары на 24 часа
+            cache.set('random_products', random_products, timeout=86400)  # timeout = 86400 секунд (24 часа)
+
+        context['random_products'] = random_products
         return context
     
     
