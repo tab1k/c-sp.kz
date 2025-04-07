@@ -252,46 +252,46 @@
 					</div>
 					<div class="offcanvas-body flex-column p-3 p-xl-0">
 						<form class="rounded-3 shadow">
-                            <style>
-                                .category-list {
-                                    list-style: none;
-                                    padding: 0;
-                                    margin: 0;
-                                }
+              <style>
+                  .category-list {
+                      list-style: none;
+                      padding: 0;
+                      margin: 0;
+                  }
                             
-                                .category-list li {
-                                    font-size: 18px;
-                                    font-weight: bold;
+                  .category-list li {
+                      font-size: 18px;
+                      font-weight: bold;
                            
-                                    padding: 10px 15px;
-                                    cursor: pointer;
-                                    display: flex;
-                                    justify-content: space-between;
-                                    align-items: center;
-                                }
+                      padding: 10px 15px;
+                      cursor: pointer;
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                  }
                             
-                                .category-list li:hover {
-                                    background-color: #f8f9fa;
-                                }
+                  .category-list li:hover {
+                      background-color: #f8f9fa;
+                  }
                             
-                                .category-list li i {
-                                    font-size: 14px;
-                                    color: #666;
-                                }
+                  .category-list li i {
+                      font-size: 14px;
+                      color: #666;
+                  }
                             
-                                .sub-category {
-                                    font-size: 16px;
-                                    font-weight: normal;
-                                    padding: 5px 10px;
-                                    display: none;
-                                }
+                  .sub-category {
+                      font-size: 16px;
+                      font-weight: normal;
+                      padding: 5px 10px;
+                      display: none;
+                  }
                             
-                                .category-list li.active + .sub-category {
-                                    display: block;
-                                }
+                  .category-list li.active + .sub-category {
+                      display: block;
+                  }
 
                                 
-                            </style>
+              </style>
 							<!-- Hotel type START -->
 							<div class="card card-body rounded-0 rounded-top p-2">
                                 <ul class="category-list">
@@ -442,6 +442,117 @@
             </div>
           </a>
         </div>
+
+        <div class="product-control__found mb-3 mt-3">
+          Найдено <span id="product-count">{{ products.count }}</span> товаров.
+      </div>
+      
+      <div class="vstack" id="listing-table-target">
+          {% for product in products %}
+          <div class="alert border mb-2 bg-white">
+              <div class="product-info justify-content-between">
+                  <div class="d-flex align-items-center">
+                      <img class="product-logo"
+                           src="{% if product.category.image %}{{ product.category.image.url }}{% else %}{% static 'images/tech/truba.webp' %}{% endif %}"
+                           alt="product image">
+                      <div class="product-name ms-2">
+                          <p class="mb-0">
+                              <a href="{{ product.get_absolute_url }}" class="text-dark">{{ product.name }}</a>
+                          </p>
+                      </div>
+                  </div>
+                  <button 
+                      class="btn btn-sm btn-light border text-dark"
+                      data-bs-toggle="modal" 
+                      data-bs-target="#LeadModal" 
+                      data-product-name="{{ product.name }}" 
+                      data-product-url="{{ product.get_absolute_url }}"
+                      data-product-photo="{% if product.category.image %}{{ product.category.image.url }}{% else %}{% static 'images/tech/truba.webp' %}{% endif %}">
+                      Узнать цену
+                  </button>
+              </div>
+          </div>
+          {% empty %}
+          <p>Ничего не нашлось</p>
+          {% endfor %}
+      </div>
+      
+      <!-- Styles -->
+      <style>
+          .product-info {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: 15px;
+          }
+      
+          .product-logo {
+              width: 50px;
+              height: 50px;
+              border-radius: 10px;
+              object-fit: cover;
+          }
+      
+          .product-name {
+              font-size: 14px;
+              font-weight: 600;
+              max-width: 100%;
+              word-break: break-word;
+          }
+      
+          @media (max-width: 768px) {
+              .product-info {
+                  flex-wrap: nowrap;
+              }
+      
+              .product-name {
+                  flex: 1;
+                  min-width: 0;
+                  max-width: 70%;
+              }
+      
+              .btn {
+                  white-space: nowrap;
+                  flex-shrink: 0;
+              }
+          }
+      </style>
+
+      <nav class="d-flex justify-content-center mt-4" aria-label="navigation">
+        <ul class="pagination pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
+            {% if page_obj.has_previous %}
+            <li class="page-item mb-0">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                    <i class="fa-solid fa-angle-left"></i>
+                </a>
+            </li>
+            {% endif %}
+    
+            {% for page in page_range %}
+            <li class="page-item mb-0 {% if page == page_obj.number %}active{% endif %}">
+                <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+            </li>
+            {% endfor %}
+    
+            {% if page_obj.has_next %}
+            <li class="page-item mb-0">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                    <i class="fa-solid fa-angle-right"></i>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    
+    <style>
+        .pagination-primary-soft .page-item.active .page-link {
+            color: #fff;
+            background-color: #032655;
+        }
+    </style>
+      
+
+        
 
         <section class="py-0 mb-5 mt-4 d-block d-xl-none">
           <div class="container position-relative">
