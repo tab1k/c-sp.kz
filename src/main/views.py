@@ -191,6 +191,8 @@ class CategoryDetailView(DetailView):
 
         # Получаем продукты одним запросом по всем нужным категориям
         products = Product.objects.filter(category_id__in=category_ids).select_related('category').distinct()
+        
+        total_products = products.count()
 
         # Пагинация
         paginator = Paginator(products, 20)
@@ -203,7 +205,8 @@ class CategoryDetailView(DetailView):
         # Передаём в шаблон
         context.update({
             'page_obj': page_obj,
-            'categories': top_categories
+            'categories': top_categories,
+            'total_products': total_products,
         })
         return context
     

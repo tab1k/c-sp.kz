@@ -180,11 +180,12 @@
 <section class="pt-0 pb-3">
 	<div class="container">
 		<!-- Background image -->
-		<div class="rounded-3 p-3 p-sm-5 position-relative text-white" 
-     style="background-image: url('{% static 'images/tech/banner4.jpg' %}'); 
-            background-position: center center; 
-            background-repeat: no-repeat; 
+		<div class="rounded-3 p-3 p-sm-5 position-relative text-white"
+     style="background-image: url('{% if category.image %}{{ category.image.url }}{% else %}{% static 'images/tech/banner4.jpg' %}{% endif %}');
+            background-position: center center;
+            background-repeat: no-repeat;
             background-size: cover;">
+
 
     <!-- Затемняющий слой -->
     <div class="position-absolute top-0 start-0 w-100 h-100" 
@@ -444,11 +445,11 @@
         </div>
 
         <div class="product-control__found mb-3 mt-3">
-          Найдено <span id="product-count">{{ products.count }}</span> товаров.
+          Найдено <span id="product-count">{{ total_products }}</span> товаров.
       </div>
       
       <div class="vstack" id="listing-table-target">
-          {% for product in products %}
+          {% for product in page_obj %}
           <div class="alert border mb-2 bg-white">
               <div class="product-info justify-content-between">
                   <div class="d-flex align-items-center">
