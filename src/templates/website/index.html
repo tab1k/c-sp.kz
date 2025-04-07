@@ -357,7 +357,7 @@
       }
     </style>
 
-    <div class="container" style="margin-top: 20px; margin-bottom: 50px; background: url('{% static 'images/tech/background.png' %}'); background-repeat: no-repeat; background-size: cover;">
+    <div class="container" style="margin-top: 20px; margin-bottom: 30px; background: url('{% static 'images/tech/background.png' %}'); background-repeat: no-repeat; background-size: cover;">
       <h4 class="about-company-bottom__title mb-4" style="color: #262a31;"><a href="{% url 'website:category' %}">Спектр услуг</a></h4>
       <div class="grid">
         {% for service in services|slice:':4' %}
@@ -396,12 +396,12 @@
 
     
 
-    <section class="pt-sm-5" style="background-color: #f5f7f8;">
+    <section class="pt-sm-5 pt-4" style="background-color: #f5f7f8;">
       <div class="container">
         <!-- Title -->
         <div class="row mb-4 mb-sm-5">
           <div class="col-12">
-            <h4 class="about-company-bottom__title" style="color: #262a31;"><a href="{% url 'website:about' %}">Популярные товары</a></h4>
+            <h4 class="about-company-bottom__title" style="color: #262a31; margin-bottom: 0px;"><a href="{% url 'website:about' %}">Популярные товары</a></h4>
           </div>	
         </div>
     

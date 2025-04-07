@@ -345,7 +345,7 @@
 					<div class="offcanvas-body flex-column p-3 p-xl-0">
 						<form class="rounded-3 shadow">
 							<!-- Hotel type START -->
-							<div class="card card-body rounded-0 rounded-top p-4">
+							<div class="card card-body rounded-5 p-4">
 								<!-- Title -->
 								<h6 class="mb-3">Поиск</h6>
 								<!-- Hotel Type group -->
@@ -364,7 +364,25 @@
 							</div>
 							<!-- Hotel type END -->
 
-							<!-- <hr class="my-0">   -->
+
+							<div class="mt-3">
+								<a href="#" data-bs-toggle="modal" data-bs-target="#LeadModal" class="d-flex align-items-center">
+								  <div id="product-info" class="product-card d-flex align-items-center gap-3 w-100">
+									<img id="product-photo" src="{% static 'images/download.webp' %}" alt="Труба" class="product-img" style="max-width: 100%; max-height: 300px; object-fit: contain;">
+						  
+									  <div class="d-flex flex-column justify-content-between w-100">
+										  <div class="d-flex ">
+											  <a href="#" data-bs-toggle="modal" data-bs-target="#LeadModal" class="d-flex align-items-center" style="color: black;">
+												  <span>Прайс лист | 100К+ товаров</span>
+											  </a>
+										  </div>
+										  <p id="product-meta" class="product-meta mb-0 mt-2">
+											  <span class="product-status">В наличии</span>
+										  </p>
+									  </div>
+								  </div>
+								</a>
+							</div>
 
 		
 							
@@ -515,7 +533,7 @@
 					<!-- intl-tel-input CSS -->
 					<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/css/intlTelInput.min.css">
 
-					<div class="container my-5 p-0">
+					<div class="container my-3 p-0">
 						<div class="rounded-5 p-5 text-white" style="background: linear-gradient(90deg, #1E3C72, #2A5298); position: relative;">
 						  <h4 class="fw-bold text-white">Не нашли, что искали?</h4>
 						  <p class="mb-4" style="color: #d2d2d2;">Оставьте Ваш телефон и мы перезвоним Вам для уточнения и расчета заказа</p>

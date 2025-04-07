@@ -178,7 +178,52 @@
 {% block content %}
     <!-- НАЧАЛО КАТЕГОРИЙ -->
 
+    
+
     <style>
+
+      .form-wrapper {
+        max-width: 420px;
+        width: 100%;
+        margin: 0 auto;
+      }
+  
+      .product-card {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background-color: #fff;
+        padding: 16px;
+        border-radius: 16px;
+        border: 1px solid #e7e7e9;
+        margin-bottom: 20px;
+      }
+  
+      .product-img {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        object-fit: cover;
+      }
+  
+      .product-title {
+        font-weight: 600;
+        font-size: 16px;
+        color: #212529;
+        margin: 0;
+        text-decoration: none;
+      }
+  
+      .product-meta {
+        font-size: 14px;
+        color: #6c757d;
+        margin: 0;
+      }
+  
+      .product-status {
+        color: #198754;
+        font-weight: 500;
+      }
         .container {
             
               margin: auto;
@@ -244,7 +289,9 @@
               }
           }
       </style>
-      <div class="container mt-3 mb-5">
+
+
+      <div class="container mt-3 mb-4">
         <h4 class=" mb-3" style="color: #262a31;">Каталог</h4>
         <div class="grid">
             {% for category in categories|slice:":10" %}
@@ -259,6 +306,65 @@
             
         </div>
       </div>
+
+      <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div id="product-info" class="product-card d-flex align-items-center gap-3">
+                    <img id="product-photo" src="{% static 'images/download.webp' %}" alt="Труба" class="product-img" style="max-width: 100%; max-height: 300px; object-fit: contain;">
+    
+                    <div class="d-flex flex-column justify-content-between w-100">
+                        <div class="d-flex justify-content-between">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#LeadModal" class="d-flex align-items-center" style="color: black;">
+                                <span>Прайс лист | 100К+ товаров</span>
+                            </a>
+                        </div>
+                        <p id="product-meta" class="product-meta mb-0 mt-2">
+                            <span class="product-status">В наличии</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-12 col-md-4 d-none d-md-block">
+              <div id="product-info" class="product-card d-flex align-items-center gap-3">
+                  <img id="product-photo" src="{% static 'images/wp.webp' %}" alt="Труба" class="product-img" style="max-width: 100%; max-height: 300px; object-fit: contain;">
+                  <div class="d-flex flex-column justify-content-between w-100">
+                      <div class="d-flex justify-content-between">
+                          <a href="https://wa.me/77088008188" class="d-flex align-items-center" style="color: black;">
+
+                              <span>Связаться по WhatsApp</span>
+                          </a>
+                      </div>
+                      <p id="product-meta" class="product-meta mb-0 mt-2">
+                          <span class="product-status">В наличии</span>
+                      </p>
+                  </div>
+              </div>
+          </div>
+  
+          <!-- Карточка для звонка -->
+          <div class="col-12 col-md-4 d-none d-md-block">
+              <div id="product-info" class="product-card d-flex align-items-center gap-3">
+                  <img id="product-photo" src="{% static 'images/tel.webp' %}" alt="Труба" class="product-img" style="max-width: 100%; max-height: 300px; object-fit: contain;">
+                  <div class="d-flex flex-column justify-content-between w-100">
+                      <div class="d-flex justify-content-between">
+                          <a href="tel:+77088008188" class="d-flex align-items-center" style="color: black;">
+                              <span>Получить моментально</span>
+                          </a>
+                      </div>
+                      <p id="product-meta" class="product-meta mb-0 mt-2">
+                          <span class="product-status">В наличии</span>
+                      </p>
+                  </div>
+              </div>
+          </div>
+
+        </div>
+      </div>
+    
+    
+    
 
       <section class="py-0 mb-5 mt-4">
         <div class="container position-relative">
