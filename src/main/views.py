@@ -17,12 +17,19 @@ from .filters import ProductFilter
 import re
 from django.views.generic import DetailView
 from django.views.generic import TemplateView
-import random
 from django.core.cache import cache
 from datetime import datetime
 from .models import Product
 from django.core.paginator import Paginator
 from django.db.models import Q
+from collections import defaultdict
+from django.shortcuts import redirect
+from django.core.paginator import Paginator
+from django.db.models import Count
+import random
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
+
 
 
         
@@ -146,12 +153,14 @@ class CategoryViewPage(TemplateView):
         return context
 
 
-from collections import defaultdict
-
 class CategoryDetailView(DetailView):
     model = Category
     template_name = 'category/category_detail.html'
     context_object_name = 'category'
+
+    @method_decorator(cache_page(60 * 15))  # Кэшируем страницу на 15 минут
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
     def get_queryset(self):
         return Category.objects.prefetch_related(
@@ -189,8 +198,17 @@ class CategoryDetailView(DetailView):
             category_ids.add(current_id)
             stack.extend(children_map.get(current_id, []))
 
-        # Получаем продукты одним запросом по всем нужным категориям
-        products = Product.objects.filter(category_id__in=category_ids).select_related('category').distinct()
+        # Используем кэш для списка продуктов
+        cache_key = f'category_{category.id}_products'
+        products = cache.get(cache_key)
+
+        if not products:
+            # Получаем продукты одним запросом по всем нужным категориям и сортируем их случайным образом
+            products = Product.objects.filter(category_id__in=category_ids).select_related('category').distinct()
+            products = products.order_by('?')  # Сортируем случайным образом
+
+            # Кэшируем результат на 15 минут
+            cache.set(cache_key, products, timeout=60 * 15)
 
         # Пагинация
         paginator = Paginator(products, 20)
@@ -210,7 +228,6 @@ class CategoryDetailView(DetailView):
             'total_products': total_products,
         })
         return context
-
     
 
 class ServicesDetailView(DetailView):
