@@ -434,6 +434,7 @@
                     
                   </ul>
                 </div>
+             
                 <div class="card-footer border-top">
                   <div class="d-flex justify-content-between align-items-center">
                     <a href="{{ product.get_absolute_url }}" class="btn btn-link p-0 mb-0" style="color: #032655;">Посмотреть<i class="bi bi-arrow-right ms-1"></i></a>
@@ -441,6 +442,42 @@
                 </div>
               </div>
             </div>
+            <style>
+              .card-img-top {
+                object-fit: cover; /* Обрезать изображение, чтобы оно заполнило контейнер */
+                height: 200px; /* Установить фиксированную высоту для всех изображений */
+                width: 100%; /* Ширина изображения будет всегда 100% от контейнера */
+              }
+              .card-body {
+                height: 250px; /* Ограничиваем высоту тела карточки */
+                overflow: hidden; /* Обрезаем все, что выходит за пределы */
+              }
+              
+              .card-title {
+                white-space: nowrap; /* Запрещаем перенос строки в названии */
+                overflow: hidden; /* Обрезаем текст, который выходит за пределы */
+                text-overflow: ellipsis; /* Добавляем многоточие, если текст слишком длинный */
+              }
+              
+              .card-text {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+              .card {
+                height: 450px; /* Задайте фиксированную высоту для карточки */
+              }
+              
+              .card-body {
+                flex: 1;
+                overflow: hidden;
+              }
+              
+              .card-footer {
+                margin-top: auto; /* Располагаем футер внизу карточки */
+              }
+                                          
+            </style>
             {% endfor %}
     
         
