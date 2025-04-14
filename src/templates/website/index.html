@@ -5,110 +5,84 @@
   Главная
 {% endblock %}
 
-{% block header %}
-  <header class="header-transparent">
-    <!-- Logo Nav START -->
-    <nav class="navbar navbar-dark navbar-expand-xl">
-      <div class="container-fluid px-md-5">
-        <!-- Logo START -->
-        <a class="navbar-brand" href="/"><img class="navbar-brand-item" style="height: 80px; filter: drop-shadow(2px 4px 6px white);" src="{% static 'images/logotip.png' %}" alt="logo" /></a>
 
-        <!-- Logo END -->
-
-        <!-- Responsive navbar toggler -->
-        <button class="navbar-toggler ms-auto me-3 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-animation">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-        </button>
-
-        <!-- Main navbar START -->
-        <div class="navbar-collapse collapse" id="navbarCollapse">
-          <ul class="navbar-nav navbar-nav-scroll mx-auto">
-            <!-- Nav item Link -->
-
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'website:category' %}"><b style="color: #032655;">Каталог</b></a>
-            </li>
-
-            <li class="nav-item">
-              <a style="color: #032655;" class="nav-link" href="{% url 'website:index' %}"><b style="color: #032655;">Главная</b></a>
-            </li>
-
-            <!-- Nav item Link -->
-            <li class="nav-item">
-              <a style="color: #032655;" class="nav-link" href="{% url 'website:services' %}"><b style="color: #032655;">Услуги</b></a>
-            </li>
-
-            <!-- Nav item Link -->
-            <li class="nav-item">
-              <a style="color: #032655;" class="nav-link" href="{% url 'website:contacts' %}"><b style="color: #032655;">Контакты</b></a>
-            </li>
-
-            <!-- Nav item Link -->
-            <li class="nav-item">
-              <a style="color: #032655;" class="nav-link" href="{% url 'website:about' %}"><b style="color: #032655;">О компании</b></a>
-            </li>
-
-            <style>
-              a.nav-link {
-                color: #032655;
-                font-size: 18px;
-              }
-            </style>
-          </ul>
-        </div>
-
-        <div class="nav flex-row ms-xl-auto d-none d-md-flex">
-          <button data-bs-toggle="modal" data-bs-target="#LeadModal" class="preorder-btn"><i class="bi bi-calendar-week me-2"></i>Предварительный заказ</button>
-
-          <style>
-            .preorder-btn {
-              background: transparent;
-              border: 2px solid #032655; /* Синий цвет границы */
-              color: #032655; /* Цвет текста */
-              font-size: 14px;
-              font-weight: 500;
-              padding: 10px 25px;
-              border-radius: 30px; /* Закругление */
-              cursor: pointer;
-              transition: all 0.3s ease;
-            }
-            
-            .preorder-btn:hover {
-              background: #032655;
-              color: white;
-            }
-          </style>
-        </div>
-        <!-- Main navbar END -->
-      </div>
-    </nav>
-    <!-- Logo Nav END -->
-  </header>
-{% endblock %}
 
 {% block content %}
   <main>
-    <section class="position-relative py-8 py-sm-9" style="background-image:url('{% static 'images/bg_header.jpeg' %}'); background-position: center left; background-size: cover;">
+    <section class="position-relative py-3 py-lg-7">
+      <!-- Background Video -->
+      <video autoplay muted loop playsinline class="background-video">
+        <source src="{% static 'video/video2.mp4' %}" type="video/mp4" />Ваш браузер не поддерживает видео.
+      </video>
       <!-- Background dark overlay -->
-      <div class="bg-overlay"></div>
-
+      <div class="bg-overlay opacity-8"></div>
       <div class="container z-index-9 position-relative">
-        <div class="row">
-          <div class="col-xl-8 py-xl-8">
-            <h1 class="display-4 text-white mb-3" style="text-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3);">Ваш надежный партнер в строительстве!</h1>
-            <h5 class="text-white mb-3" style="text-shadow: 1px 1px 15px rgba(0, 0, 0, 1);">Полный спектр поставок!</h5>
-            <a href="#" data-bs-toggle="modal" data-bs-target="#LeadModal" class="btn btn-lg mb-0" style="background-color: #032655; color: white;"><i class="bi bi-telephone-fill me-2"></i> Заказать звонок</a>
+        <div class="row py-sm-5">
+          <!-- Title -->
+          <div class="col-xl-10 m-auto text-center">
+            <h6 class="text-white fw-normal mb-3"></h6>
+            <h2 class="text-white mb-0" style="text-align: -webkit-auto;">
+              Ведущий транстерминальный поставщик металлопроката
+                        по всему 
+              <span class="position-relative z-index-9 d-block">
+                Казахстану
+              </span>
+            </h2>
           </div>
+
+          <!-- Search START -->
+          <div class="col-xl-10 mx-auto">
+            <div class="bg-blur bg-white bg-opacity-10 border border-light border-opacity-25 rounded-3 p-4 mt-5">
+              <!-- Form START -->
+              <form class="row g-3 justify-content-center align-items-center">
+                <div class="col-lg-5">
+                  <!-- Input: Номер телефона -->
+
+                  <div class="position-relative">
+                    <input id="phone-input" class="form-control form-control-lg ps-5" type="tel" placeholder="+7 (___) ___-__-__" required />
+                    <span class="position-absolute top-50 start-0 translate-middle ps-5"><i class="bi bi-telephone fs-5"></i></span>
+                  </div>
+
+                  <script>
+                    $(document).ready(function () {
+                      $('#phone-input').inputmask('+7 (999) 999-99-99')
+                    })
+                  </script>
+                </div>
+
+                <div class="col-lg-5">
+                  <!-- Input: Сообщение -->
+                  <div class="position-relative">
+                    <input class="form-control form-control-lg ps-5" type="text" placeholder="Введите ваше сообщение..." required />
+                    <span class="position-absolute top-50 start-0 translate-middle ps-5"><i class="bi bi-chat-text fs-5"></i></span>
+                  </div>
+                </div>
+
+                <div class="col-lg-2 d-grid">
+                  <!-- Кнопка отправки -->
+                  <button type="submit" class="btn btn-lg mb-0" style="background-color: gray; color: white; border: 1px solid #999797;">Заявка</button>
+                </div>
+              </form>
+              <!-- Form END -->
+            </div>
+          </div>
+
+          <!-- Search END -->
         </div> <!-- Row END -->
       </div>
-      
     </section>
 
     <style>
+      .background-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+      }
+      
       .bg-overlay {
         position: absolute;
         top: 0;
@@ -130,50 +104,14 @@
           padding-bottom: 1rem !important;
         }
       }
+      
+      .navbar-toggler .navbar-toggler-animation span {
+        background: white;
+      }
     </style>
+
 
     <!-- НАЧАЛО КАТЕГОРИЙ -->
-
-    <div class="marquee-container">
-      <div class="marquee">
-        <span>🔹 Снижаем ваши расходы на строительство! 💰 Выгодные цены, 🚚 быстрая доставка и 🏆 безупречное качество! ✨ 🔹</span>
-      </div>
-    </div>
-
-    <style>
-      .marquee-container {
-        width: 100%;
-        overflow: hidden;
-        background: #032655;
-        color: white;
-        font-size: 20px;
-        font-weight: bold;
-        padding: 10px 0;
-        white-space: nowrap;
-        position: relative;
-      }
-      
-      .marquee {
-        display: flex;
-        width: 200%;
-        animation: marquee 11s linear infinite;
-      }
-      
-      .marquee span {
-        display: inline-block;
-        width: 100%;
-        padding-right: 50px;
-      }
-      
-      @keyframes marquee {
-        from {
-          transform: translateX(50%);
-        }
-        to {
-          transform: translateX(-50%);
-        }
-      }
-    </style>
 
     <style>
       .container {
@@ -241,6 +179,18 @@
         .big {
           grid-column: span 3;
         }
+      }
+      .grid-item {
+        background-size: cover;
+        background-position: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+      }
+    
+      .grid-item:hover {
+          transform: scale(1.05); /* Небольшой зум */
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Лёгкая тень при наведении */
+          z-index: 2; /* Чтобы не перекрывался другими блоками */
       }
     </style>
 
