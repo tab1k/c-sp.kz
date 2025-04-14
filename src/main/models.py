@@ -27,6 +27,14 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         return reverse('website:category_detail', kwargs={'slug': self.slug})
+    
+    def get_ancestors(self):
+        category = self
+        ancestors = []
+        while category:
+            ancestors.insert(0, category)
+            category = category.parent
+        return ancestors
 
 
 class Product(models.Model):

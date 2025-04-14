@@ -1,36 +1,22 @@
-from django.db.models import Prefetch
-from django.views import View
-from django.views.generic import TemplateView
-from .models import *
-from django.shortcuts import redirect
-from django.http import JsonResponse
-from django.views.generic import DetailView, ListView
+from datetime import datetime
+import random
+import re
+from collections import defaultdict
+
+from django.core.cache import cache
 from django.core.paginator import Paginator
+from django.db.models import Q, Prefetch, Count
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
-from django.views.generic import TemplateView
-from django.views.generic import ListView
-from django.shortcuts import get_object_or_404
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.views import View
+from django.views.generic import TemplateView, ListView, DetailView
 from django_filters.views import FilterView
+
 from .models import Product, Category, Service
 from .filters import ProductFilter
-import re
-from django.views.generic import DetailView
-from django.views.generic import TemplateView
-from django.core.cache import cache
-from datetime import datetime
-from .models import Product
-from django.core.paginator import Paginator
-from django.db.models import Q
-from collections import defaultdict
-from django.shortcuts import redirect
-from django.core.paginator import Paginator
-from django.db.models import Count
-import random
-from django.views.decorators.cache import cache_page
-from django.utils.decorators import method_decorator
-
-
 
         
 
@@ -290,6 +276,7 @@ class ProductListView(FilterView, ListView):
 
         context['page_range'] = page_range
         context['current_page'] = current_page
+        context['ancestors'] = category.get_ancestors()
         return context
 
 
@@ -300,8 +287,18 @@ class ProductDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        product = self.object  # Сохраняем объект, чтобы не делать повторные запросы к БД
+        product = self.object
+
+        # Распарсенные данные из названия
         context['parsed_data'] = self.parse_product_name(product.name)
+
+        # Категория товара
+        category = product.category
+        context['category'] = category
+
+        # Получаем цепочку родительских категорий
+        context['category_ancestors'] = category.get_ancestors()
+
         return context
 
     @staticmethod
