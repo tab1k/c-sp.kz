@@ -167,6 +167,13 @@
           <div class="container">
             <div class="row m-auto w-100 align-items-center">
               <div class="col-12 d-flex justify-content-between align-items-center flex-wrap p-0">
+                
+                <!-- Новая секция для мобильных устройств (сверху) -->
+                <div class="d-block d-sm-none w-100 text-center mt-2 mb-2 border-bottom">
+                  <div class="text-dark justify-content-between mb-1">
+                    <i class="bi bi-telephone-fill me-1"></i> +7 (708) 800 81 88  <i class="bi bi-envelope-fill me-1"></i> info@c-sp.kz
+                  </div>
+                </div>
     
                 <!-- Логотип + Telegram + WhatsApp -->
                 <div class="d-flex align-items-center flex-wrap">
@@ -187,29 +194,18 @@
                   </a>
                 </div>
     
-    
                 <!-- Контакты и иконки -->
                 <div class="d-flex align-items-center gap-3 flex-wrap fs-7 ms-auto">
-    
-                
                   <!-- Телефон -->
                   <div class="d-none d-sm-flex align-items-center text-dark small">
-                    <i class="bi bi-telephone-fill text-danger me-1"></i> +7 (708) 800 81 88
+                    <i class="bi bi-telephone-fill me-1"></i> +7 (708) 800 81 88
                   </div>
-                
+                  
                   <!-- Email -->
                   <div class="d-none d-sm-flex align-items-center text-dark small">
-                    <i class="bi bi-envelope-fill text-danger me-1"></i> info@c-sp.kz
+                    <i class="bi bi-envelope-fill me-1"></i> info@c-sp.kz
                   </div>
     
-                  <div class="d-none d-sm-flex align-items-center text-dark small">
-                    <div class="category">
-                      <span><a style="color: black;" href="/category/chernyj-metalloprokat/">Заявка в 1 клик 🔥</a></span>
-                    </div>
-                  </div>
-    
-    
-                
                   <!-- Бургер кнопки -->
                   <div class="d-flex align-items-center">
                     <button class="navbar-toggler ms-2 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -220,49 +216,10 @@
                       <i class="bi bi-grid-3x3-gap-fill"></i>
                     </button>
                   </div>
-                
                 </div>
-                
-    
               </div>
             </div>
     
-            <!-- Навигационное меню (мобильное) -->
-            <div class="navbar-collapse collapse" id="navbarCategoryCollapse">
-              <ul class="navbar-nav navbar-nav-scroll nav-pills-primary-soft text-center ms-auto p-2 p-xl-0 d-block d-xl-none">
-                <li class="nav-item d-lg-none">
-                  <a class="nav-link active" href="/category/">
-                    <i class="fa-solid fa-store me-2"></i>Каталог
-                  </a>
-                </li>
-    
-                <hr style="margin: 5px;">
-    
-                <li class="nav-item">
-                  <a class="nav-link" href="/">
-                    <i class="fa-solid fa-house me-2"></i>Главная
-                  </a>
-                </li>
-    
-                <li class="nav-item">
-                  <a class="nav-link" href="/services/">
-                    <i class="fa-solid fa-gavel me-2"></i>Услуги
-                  </a>
-                </li>
-    
-                <li class="nav-item">
-                  <a class="nav-link" href="/contacts/">
-                    <i class="fa-solid fa-phone me-2"></i>Контакты
-                  </a>
-                </li>
-    
-                <li class="nav-item">
-                  <a class="nav-link" href="/about/">
-                    <i class="fa-solid fa-info-circle me-2"></i>О компании
-                  </a>
-                </li>
-              </ul>
-            </div>
           </div>
         </nav>
       </div>
@@ -457,6 +414,10 @@
               .b24-form-btn {
                 border-radius: 12px;
                 background-color: #032655;
+              }
+
+              .b24-form-header-padding {
+                padding: 0px;
               }
           
               .b24-form-control-string .b24-form-control,

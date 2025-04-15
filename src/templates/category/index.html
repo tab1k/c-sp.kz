@@ -117,13 +117,29 @@
                   grid-column: span 3;
               }
           }
+
+          .grid-item {
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+          }
+        
+          .grid-item:hover {
+              transform: scale(1.05); /* Небольшой зум */
+              box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Лёгкая тень при наведении */
+              z-index: 2; /* Чтобы не перекрывался другими блоками */
+          }
+
+
+          
       </style>
 
 
       <div class="container mt-3 mb-4">
         <h4 class=" mb-3" style="color: #262a31;">Каталог</h4>
         <div class="grid">
-            {% for category in categories|slice:":10" %}
+            {% for category in categories|slice:":20" %}
               <a href="{{ category.get_absolute_url }}">
                 <div class="grid-item {% if forloop.first %}big{% endif %}" style="background-image: url('{% if category.image %}{{ category.image.url }}{% else %}{% static 'images/tech/chernyi.jpg' %}{% endif %}');">
                     <span>{{ category.name }}</span>
