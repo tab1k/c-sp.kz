@@ -194,12 +194,12 @@
                 
                   <!-- Телефон -->
                   <div class="d-none d-sm-flex align-items-center text-dark small">
-                    <i class="bi bi-telephone-fill text-success me-1"></i> +7 (708) 800 81 88
+                    <i style="color: #032655;" class="bi bi-telephone-fill me-1"></i> +7 (708) 800 81 88
                   </div>
                 
                   <!-- Email -->
                   <div class="d-none d-sm-flex align-items-center text-dark small">
-                    <i class="bi bi-envelope-fill text-success me-1"></i> info@c-sp.kz
+                    <i style="color: #032655;" class="bi bi-envelope-fill me-1"></i> info@c-sp.kz
                   </div>
     
                   
@@ -211,11 +211,21 @@
                     <button class="navbar-toggler ms-2 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                       <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
-                
+                  
                     <button class="navbar-toggler ms-2 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCategoryCollapse" aria-controls="navbarCategoryCollapse" aria-expanded="false" aria-label="Toggle navigation">
                       <i class="bi bi-grid-3x3-gap-fill"></i>
                     </button>
+                  
+                    <!-- ВСТАВЬ СЮДА СУЩЕСТВУЮЩИЙ navbarCollapse (перенеси, не копируй) -->
+                    <div class="navbar-collapse collapse d-md-none" id="navbarCollapse">
+                      <div class="search-bar" style="position: relative; width: 100%;">
+                        <input type="text" class="d-md-none" id="search-input" style="border-radius: 7px; border: 1px solid #e2e6ed; color: #262a31; padding: 8px 40px 8px 8px; width: 100%;" placeholder="Поиск в каталоге...">
+                        <ul id="search-results" style="position: absolute; width: 100%; max-height: 200px; overflow-y: auto; z-index: 10; display: none; list-style: none; padding: 0; margin: 0; background-color: white;"></ul>
+                      </div>
+                    </div>
+                    
                   </div>
+                  
                 
                 </div>
                 
@@ -304,10 +314,6 @@
                 <a class="nav-link text-dark fw-medium" href="{% url 'website:about' %}">О компании</a>
               </li>
     
-              <li class="nav-item">
-                <a class="nav-link text-dark fw-medium" href="{% url 'website:about' %}">Новости</a>
-              </li>
-    
               
             </ul>
     
@@ -387,6 +393,10 @@
             </div>
           
             <style>
+              .b24-form-header-padding {
+                display: none;
+                
+              }
               .b24-form-wrapper.b24-form-border-bottom {
                 border-bottom: 0px;
               }

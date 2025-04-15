@@ -337,6 +337,46 @@
 						});
 					</script>
 
+					<!-- Pagination -->
+					<nav class="d-flex justify-content-center" aria-label="navigation">
+						<ul class="pagination pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
+							{% if page_obj.has_previous %}
+								<li class="page-item mb-0">
+									<a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+										<i class="fa-solid fa-angle-left"></i>
+									</a>
+								</li>
+							{% endif %}
+					
+							{% for page in page_range %}
+								{% if page == page_obj.number %}
+									<li class="page-item mb-0 active">
+										<a class="page-link" href="#">{{ page }}</a>
+									</li>
+								{% else %}
+									<li class="page-item mb-0">
+										<a class="page-link" href="?page={{ page }}">{{ page }}</a>
+									</li>
+								{% endif %}
+							{% endfor %}
+					
+							{% if page_obj.has_next %}
+								<li class="page-item mb-0">
+									<a class="page-link" href="?page={{ page_obj.next_page_number }}">
+										<i class="fa-solid fa-angle-right"></i>
+									</a>
+								</li>
+							{% endif %}
+						</ul>
+					</nav>
+
+					<style>
+						.pagination-primary-soft .page-item.page-item.active .page-link {
+							color: #fff;
+							background-color: #032655;
+						}
+					</style>
+
 					<div class="container-xl mt-5">
 						<div class="row p-0">
 						  <div class="col-12 mb-3">
@@ -445,45 +485,7 @@
 					</style>
 		        
 
-					<!-- Pagination -->
-					<nav class="d-flex justify-content-center" aria-label="navigation">
-						<ul class="pagination pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
-							{% if page_obj.has_previous %}
-								<li class="page-item mb-0">
-									<a class="page-link" href="?page={{ page_obj.previous_page_number }}">
-										<i class="fa-solid fa-angle-left"></i>
-									</a>
-								</li>
-							{% endif %}
 					
-							{% for page in page_range %}
-								{% if page == page_obj.number %}
-									<li class="page-item mb-0 active">
-										<a class="page-link" href="#">{{ page }}</a>
-									</li>
-								{% else %}
-									<li class="page-item mb-0">
-										<a class="page-link" href="?page={{ page }}">{{ page }}</a>
-									</li>
-								{% endif %}
-							{% endfor %}
-					
-							{% if page_obj.has_next %}
-								<li class="page-item mb-0">
-									<a class="page-link" href="?page={{ page_obj.next_page_number }}">
-										<i class="fa-solid fa-angle-right"></i>
-									</a>
-								</li>
-							{% endif %}
-						</ul>
-					</nav>
-
-					<style>
-						.pagination-primary-soft .page-item.page-item.active .page-link {
-							color: #fff;
-							background-color: #032655;
-						}
-					</style>
 					
 
 				</div>
