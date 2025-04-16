@@ -177,7 +177,7 @@
                   </a>
     
                   <!-- Telegram -->
-                  <a href="https://wa.me/77088009874?text=👋%20Здравствуйте!%20Я%20пишу%20вам%20с%20*c-sp.kz*.%20хочу%20узнать%20подробнее%20о%20ваших%20услугах%20🚀" target="_blank" class="text-decoration-none me-3">
+                  <a href="https://t.me/centrstalnogoprokata" target="_blank" class="text-decoration-none me-3">
                     <i class="bi bi-telegram" style="font-size: 1.2rem; color:rgb(43, 73, 88);"></i>
                   </a>
     
@@ -533,61 +533,168 @@
 
     <!-- ======================= Footer START -->
 
-    <div class="position-absolute top-0 start-0 w-100" style="height: 100px; 
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
-            z-index: 10; pointer-events: none;"></div>
-
-    <footer class="bg-dark py-7" style="border-radius: 25px 25px 0px 0px;">
+    <footer class="text-light pt-5 pb-4" style="background-color: #0d1e4b;">
       <div class="container">
-        <div class="row mx-auto">
-          <div class="col-lg-6 mx-auto text-center">
-            <!-- Logo -->
-            <img class="mx-auto h-60px" src="{% static 'images/logotip.png' %}" style="filter: drop-shadow(0px 0px 12px white);" alt="logo" />
-
-            <p class="mt-3 text-white">ТОО "Центр Стального Проката" — ваш надежный партнер в сфере комплексных поставок строительных материалов.</p>
-            <!-- Links -->
-            <ul class="nav justify-content-between text-primary-hover mt-3 mt-md-0">
-              <li class="nav-item">
-                <a class="nav-link p-2 text-white" href="/">Главная</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link p-2 text-white" href="{% url 'website:category' %}">Каталог</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link p-2 text-white" href="{% url 'website:services' %}">Услуги</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link p-2 text-white" href="{% url 'website:contacts' %}">Контакты</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link p-2 text-white" href="{% url 'website:about' %}">О компании</a>
-              </li>
-            </ul>
-            <!-- Social media button -->
-            <ul class="list-inline mt-3 mb-0">
-              <li class="list-inline-item">
-                <a class="btn btn-white btn-sm shadow px-2 text-instagram" href="https://www.instagram.com/csp.almaty/"><i class="fab fa-fw fa-instagram"></i></a>
-              </li>
-            </ul>
-            <!-- copyright text -->
-            <div class="text-body-secondary text-primary-hover mt-3">
-              Copyrights ©2025 IT. Build by <a href="https://www.instagram.com/tab1kkz/" class="text-body-secondary">Tabigat Karbayev.</a>.
+        <div class="row">
+          <!-- Column 1 -->
+          <div class="col-md-3 mb-4">
+            <h6 class="fw-bold mb-3 text-white">ТОО "Центр Стального Проката"</h6>
+            <p class="mb-2 text-white"><strong>Головной офис</strong><br>г. Алматы, ул. Рыскулова 202/1</p>
+            <p class="mb-2 text-white"><strong>Приёмная</strong><br>8 (708) 800 81 88 </p>
+            <p class="mb-2 text-white"><strong>Отдел продаж</strong><br>+7 (708) 800-98-74</p>
+            <p class="mb-2 text-white"><strong>Email</strong><br><a href="mailto:info@c-sp.kz" class="text-light">info@c-sp.kz</a></p>
+            <p class="text-white"><strong>График работы</strong><br>ПН - ПТ: 09:00 - 18:00<br></p>
+            <div class="mt-3">
+              <a href="#" class="text-light me-2"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="text-light me-2"><i class="fab fa-facebook"></i></a>
+              <a href="#" class="text-light me-2"><i class="fab fa-youtube"></i></a>
             </div>
           </div>
+    
+          <!-- Column 2 -->
+          <div class="col-md-2 mb-4">
+            <h6 class="fw-bold mb-3 text-white">МЕНЮ САЙТА</h6>
+            <ul class="list-unstyled">
+              <li class="mb-2"><a href="/" class="text-light text-decoration-none ">Главная</a></li>
+              <li class="mb-2"><a href="{% url 'website:about' %}" class="text-light text-decoration-none">О нас</a></li>
+          
+              <li class="mb-2"><a href="{% url 'website:category' %}" class="text-light text-decoration-none">Каталог</a></li>
+         
+              <li class="mb-2"><a href="{% url 'website:services' %}" class="text-light text-decoration-none">Услуги</a></li>
+
+              <li class="mb-2"><a href="{% url 'website:contacts' %}" class="text-light text-decoration-none">Контакты</a></li>
+            </ul>
+          </div>
+
+
+          <!-- Column 3 -->
+          <div class="col-md-4 mb-4">
+            <h6 class="fw-bold mb-3 text-white">Каталог</h6>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a href="https://c-sp.kz/category/chernyj-metalloprokat/" class="text-light text-decoration-none">Черный металлопрокат</a><br>
+              </li>
+              <li class="mb-2">
+                <a href="https://c-sp.kz/category/nerzhaveyushij-prokat/" class="text-light text-decoration-none">Нержавеющий прокат</a><br>
+            
+              </li>
+              <li class="mb-2">
+                <a href="https://c-sp.kz/category/cvetnoj-metalloprokat/" class="text-light text-decoration-none">Цветной металлопрокат</a><br>
+              </li>
+
+              <li class="mb-2">
+                <a href="https://c-sp.kz/category/truboprovodnaya-armatura/" class="text-light text-decoration-none">Трубопроводная арматура</a><br>
+              </li>
+
+              <li class="mb-2">
+                <a href="https://c-sp.kz/category/ocinkovannyj-prokat/" class="text-light text-decoration-none">Оцинкованный прокат</a><br>
+              </li>
+
+              <li class="mb-2">
+                <a href="https://c-sp.kz/category/svarochnye-materialy/" class="text-light text-decoration-none">Сварочные материалы</a><br>
+              </li>
+
+              <li class="mb-2">
+                <a href="https://c-sp.kz/category/metizy-i-krepezh/" class="text-light text-decoration-none">Метизы и крепеж</a><br>
+              </li>
+            </ul>
+          </div>
+    
+          <!-- Column 4 -->
+          <div class="col-md-3 mb-4">
+            <h6 class="fw-bold mb-3 text-white">ПОДПИСКА</h6>
+            <p class="text-white">Получайте всю самую свежую информацию о событиях, распродажах и предложениях.</p>
+            <div class="">
+              <div class="bg-white p-4 rounded-4 shadow-sm">
+              
+                <!-- Bitrix24 форма -->
+                <script data-b24-form="inline/5/sbwncc" data-skip-moving="true">
+                  (function(w,d,u){
+                    var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);
+                    var h=d.getElementsByTagName('script')[0];
+                    h.parentNode.insertBefore(s,h);
+                  })(window,document,'https://cdn-ru.bitrix24.kz/b32852022/crm/form/loader_5.js');
+                </script>
+              </div>
+            </div>
+            
+            <style>
+              .b24-form-sign {
+                display: none;
+              }
+              .product-card {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                background-color: #fff;
+                padding: 16px;
+                border-radius: 16px;
+                border: 1px solid #e7e7e9;
+                margin-bottom: 20px;
+              }
+            
+              .product-img {
+                width: 60px;
+                height: 60px;
+                border-radius: 12px;
+                object-fit: cover;
+              }
+            
+              .product-title {
+                font-weight: 600;
+                font-size: 16px;
+                color: #212529;
+                margin: 0;
+                text-decoration: none;
+              }
+            
+              .product-meta {
+                font-size: 14px;
+                color: #6c757d;
+                margin: 0;
+              }
+            
+              .product-status {
+                color: #198754;
+                font-weight: 500;
+              }
+            
+              .b24-form {
+                overflow: hidden !important;
+              }
+            
+              .b24-form-header-padding {
+                display: none;
+              }
+            
+              .b24-form-wrapper.b24-form-border-bottom {
+                border-bottom: 0px;
+              }
+
+              .b24-form-padding-side {
+                padding-left: 0px;
+                padding-right: 0px;
+                padding-top: 0px;
+              }
+
+              .b24-form-wrapper {
+                min-height: 200px;
+              }
+            </style>
+          </div>
+        </div>
+    
+        <!-- Bottom line -->
+        <div class="text-center pt-4 border-top border-secondary mt-4">
+          <small class="text-muted text-white">Разработал <a style="color: white;" href="https://www.instagram.com/tab1kkz/">Tabigat Karbayev</a> &nbsp; • &nbsp; 
+            <a href="#" class="text-muted text-decoration-none">Казахстан</a> &nbsp; • &nbsp;
+            <a href="#" class="text-muted text-decoration-none">г. Астана</a>
+          </small>
         </div>
       </div>
     </footer>
 
-    <style>
-      footer {
-        background: linear-gradient(to top, #032655, rgba(255, 255, 255, 0));
-        color: #032655; /* Задаем цвет текста */
-        padding: 20px;
-        text-align: center;
-        backdrop-filter: blur(10px); /* Добавляем размытие */
-        position: relative;
-      }
-    </style>
+    
     <!--     =======================
 Footer END     -->
 
@@ -611,91 +718,91 @@ Footer END     -->
         bottom: 90px; /* Размещаем чуть выше WhatsApp */
         right: 20px;
         z-index: 9999;
-    }
-
-    .call-float {
-        background-color: #032655;
-        color: white;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 30px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        text-decoration: none;
-        transition: transform 0.3s ease;
-    }
-
-    .call-float:hover {
-        transform: scale(1.1);
-    }
-      /* Контейнер WhatsApp */
-      #whatsapp-container {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 9999;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
       }
 
-      /* Кнопка WhatsApp */
-      .whatsapp-float {
-        background-color: #25D366;
-        color: white;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 30px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        text-decoration: none;
-        transition: transform 0.3s ease;
+      .call-float {
+          background-color: #032655;
+          color: white;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 30px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+          text-decoration: none;
+          transition: transform 0.3s ease;
       }
 
-      /* Анимация звонка */
-      @keyframes ring {
-        0% { transform: rotate(0deg); }
-        10% { transform: rotate(-10deg); }
-        20% { transform: rotate(10deg); }
-        30% { transform: rotate(-10deg); }
-        40% { transform: rotate(10deg); }
-        50% { transform: rotate(0deg); }
+      .call-float:hover {
+          transform: scale(1.1);
       }
+        /* Контейнер WhatsApp */
+        #whatsapp-container {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          z-index: 9999;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
 
-      /* При наведении анимация отключается */
-      .whatsapp-float:hover {
-        transform: scale(1.1);
-        animation: none;
-      }
+        /* Кнопка WhatsApp */
+        .whatsapp-float {
+          background-color: #25D366;
+          color: white;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 30px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+          text-decoration: none;
+          transition: transform 0.3s ease;
+        }
 
-      /* Всплывающее облако */
-      .whatsapp-bubble {
-        background: white;
-        color: #333;
-        padding: 10px 15px;
-        border-radius: 15px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        font-size: 14px;
-        position: absolute;
-        bottom: 75px;
-        right: 10px;
-        opacity: 0;
-        transition: opacity 0.5s ease, transform 0.5s ease;
-        transform: translateY(10px);
-        white-space: nowrap;
-      }
+        /* Анимация звонка */
+        @keyframes ring {
+          0% { transform: rotate(0deg); }
+          10% { transform: rotate(-10deg); }
+          20% { transform: rotate(10deg); }
+          30% { transform: rotate(-10deg); }
+          40% { transform: rotate(10deg); }
+          50% { transform: rotate(0deg); }
+        }
 
-      /* Показываем облако */
-      .whatsapp-bubble.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
+        /* При наведении анимация отключается */
+        .whatsapp-float:hover {
+          transform: scale(1.1);
+          animation: none;
+        }
+
+        /* Всплывающее облако */
+        .whatsapp-bubble {
+          background: white;
+          color: #333;
+          padding: 10px 15px;
+          border-radius: 15px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+          font-size: 14px;
+          position: absolute;
+          bottom: 75px;
+          right: 10px;
+          opacity: 0;
+          transition: opacity 0.5s ease, transform 0.5s ease;
+          transform: translateY(10px);
+          white-space: nowrap;
+        }
+
+        /* Показываем облако */
+        .whatsapp-bubble.show {
+          opacity: 1;
+          transform: translateY(0);
+        }
     </style>
 
     <!-- Скрипт для появления облака и звонка -->

@@ -422,29 +422,38 @@
 					  </div>
 
 
-					<div class="container my-3 p-0">
-						<div class="rounded-5 p-5 text-white" style="background: linear-gradient(90deg, #1E3C72, #2A5298); position: relative;">
+					  <div class="container my-3 p-0 mb-4">
+						<div class="rounded-5 p-5 text-white position-relative" style="background: linear-gradient(90deg, #1E3C72, #2A5298);">
 						  <h4 class="fw-bold text-white">Не нашли, что искали?</h4>
 						  <p class="mb-4" style="color: #d2d2d2;">Оставьте Ваш телефон и мы перезвоним Вам для уточнения и расчета заказа</p>
 					  
+						  <!-- Иконки звонка и WhatsApp -->
+						  <div class="icon-group">
+							<a href="tel:+77088009874" class="icon-circle" title="Позвонить">
+							  <i class="fas fa-phone"></i>
+							</a>
+							<a href="https://wa.me/77088009874" class="icon-circle" title="WhatsApp">
+							  <i class="fab fa-whatsapp"></i>
+							</a>
+						  </div>
+					  
+						  <!-- Основная кнопка -->
 						  <button data-bs-toggle="modal" data-bs-target="#LeadModal" class="circle-button">
 							<span class="arrow-up">↑</span>
 						  </button>
 						</div>
-
-									  
-						<style>
-							/* Для мобильных устройств */
-							@media (max-width: 768px) {
-							  .p-5 {
-								padding: 2rem !important;
-							  }
-							}
-						  </style>
-						  
 					  
 						<style>
-								
+						  @media (max-width: 768px) {
+							.p-5 {
+							  padding: 2rem !important;
+							}
+							p.mb-4 {
+								padding-bottom: 35px;
+							}
+							
+						  }
+					  
 						  .circle-button {
 							width: 50px;
 							height: 50px;
@@ -453,36 +462,66 @@
 							display: flex;
 							justify-content: center;
 							align-items: center;
-							border: 2px solid black; /* Черная рамка */
+							border: 2px solid black;
 							position: absolute;
-							right: 20px;   /* Расстояние от правого края */
-							transform: translateY(-50%); /* Центрирование по вертикали */
-							cursor: pointer; /* Указатель при наведении */
+							right: 20px;
+							top: 74%;
+							transform: translateY(-50%);
+							cursor: pointer;
 						  }
 					  
 						  .arrow-up {
-							font-size: 24px; /* Размер стрелки */
-							color: black; /* Цвет стрелки */
-							transform: rotate(45deg); /* Поворот стрелки на 45 градусов */
+							font-size: 24px;
+							color: black;
+							transform: rotate(45deg);
 						  }
 					  
 						  .circle-button:hover {
-							background-color: #f0f0f0; /* Светлый фон при наведении */
+							background-color: #f0f0f0;
 						  }
 					  
 						  .circle-button:focus {
-							outline: none; /* Убираем рамку при фокусе */
+							outline: none;
+						  }
+					  
+						  .icon-group {
+							position: absolute;
+							right: 75px;
+							top: 74%;
+							transform: translateY(-50%);
+							display: flex;
+							gap: 5px;
+							}
+					  
+						  .icon-circle {
+							width: 50px;
+							height: 50px;
+							border-radius: 50%;
+							background-color: white;
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							border: 2px solid black;
+							cursor: pointer;
+							transition: 0.3s;
+						  }
+					  
+						  .icon-circle i {
+							font-size: 20px;
+							color: #2A5298;
+						  }
+					  
+						  .icon-circle:hover {
+							background-color: #f0f0f0;
 						  }
 						</style>
 					  </div>
 					  
-					<style>
-						.iti {
-							position: relative;
-							width: 100%;
-							display: inline-block;
-						}						
-					</style>
+					
+					
+					  <div class="col-12 mb-3">
+					  <h4 class="about-company-bottom__title" style="color: #262a31;"><a href="{% url 'website:about' %}">{{ category.name }} </a></h4>
+					</div>
 		        
 
 					
