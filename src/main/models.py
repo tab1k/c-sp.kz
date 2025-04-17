@@ -39,7 +39,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=255, verbose_name="Название продукта", db_index=True)
-    image = models.ImageField(upload_to='products/', verbose_name="Фото продукта")
+    image = models.ImageField(upload_to='products/', verbose_name="Фото продукта", blank=True)
     external_url = models.URLField(max_length=500, null=True, blank=True)
     category = models.ForeignKey(
         Category,
