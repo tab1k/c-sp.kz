@@ -32,34 +32,87 @@
           <div class="col-xl-10 mx-auto">
             <div class="bg-blur bg-white bg-opacity-10 border border-light border-opacity-25 rounded-3 p-4" style="margin-top: 100px;">
               <!-- Form START -->
-              <form class="row g-3 justify-content-center align-items-center">
+              <form id="lead-form" class="row g-3 justify-content-center align-items-center">
                 <div class="col-lg-5">
                   <div class="position-relative">
-                    <input id="phone-input" class="form-control form-control-lg ps-5" type="tel" placeholder="+7 (___) ___-__-__" required />
-                    <span class="position-absolute top-50 start-0 translate-middle ps-5"><i class="bi bi-telephone fs-5"></i></span>
+                    <input id="phone-input" name="phone" class="form-control form-control-lg ps-5" type="tel" placeholder="+7 (___) ___-__-__" required />
+                    <span class="position-absolute top-50 start-0 translate-middle ps-5">
+                      <i class="bi bi-telephone fs-5"></i>
+                    </span>
                   </div>
-    
-                  <script>
-                    $(document).ready(function () {
-                      $('#phone-input').inputmask('+7 (999) 999-99-99')
-                    })
-                  </script>
                 </div>
-    
+              
                 <div class="col-lg-5">
                   <div class="position-relative">
-                    <input class="form-control form-control-lg ps-5" type="text" placeholder="Введите ваше сообщение..." required />
-                    <span class="position-absolute top-50 start-0 translate-middle ps-5"><i class="bi bi-chat-text fs-5"></i></span>
+                    <input id="message-input" name="message" class="form-control form-control-lg ps-5" type="text" placeholder="Введите ваше сообщение..." required />
+                    <span class="position-absolute top-50 start-0 translate-middle ps-5">
+                      <i class="bi bi-chat-text fs-5"></i>
+                    </span>
                   </div>
                 </div>
-    
+              
                 <div class="col-lg-2 d-grid">
-                  <button type="submit" class="btn btn-lg mb-0" style="background-color: #032655; color: white; border: 1px solid #032655;">Заявка</button>
+                  <button type="submit" class="btn btn-lg mb-0" style="background-color: #032655; color: white;">Заявка</button>
                 </div>
               </form>
+              
+              <div id="response-message" class="text-center mt-3"></div>
+              
+              
+              
               <!-- Form END -->
             </div>
           </div>
+          
+          <!-- InputMask -->
+          <script>
+            $(document).ready(function () {
+              $('#phone-input').inputmask('+7 (999) 999-99-99');
+            });
+          </script>
+          
+          <script>
+            document.getElementById('lead-form').addEventListener('submit', function (e) {
+              e.preventDefault();
+            
+              const phone = document.getElementById('phone-input').value.trim();
+              const message = document.getElementById('message-input').value.trim();
+            
+              const url = 'https://csp.bitrix24.kz/rest/13/de6fvnom1pdg49wy/crm.lead.add.json';
+            
+              const formData = new URLSearchParams();
+              formData.append('FIELDS[TITLE]', 'Заявка с сайта');
+              formData.append('FIELDS[NAME]', 'Без имени');
+              formData.append('FIELDS[LAST_NAME]', message || 'Сообщение');
+              formData.append('FIELDS[PHONE][0][VALUE]', phone);
+              formData.append('FIELDS[PHONE][0][VALUE_TYPE]', 'WORK');
+            
+              fetch(url, {
+                method: 'POST',
+                body: formData
+              })
+              .then(response => response.json())
+              .then(result => {
+                const msgBlock = document.getElementById('response-message');
+                if (result.result) {
+                  msgBlock.textContent = 'Спасибо! Заявка отправлена.';
+                  msgBlock.style.color = 'green';
+                  document.getElementById('lead-form').reset();
+                } else {
+                  msgBlock.textContent = 'Ошибка отправки.';
+                  msgBlock.style.color = 'red';
+                }
+              })
+              .catch(error => {
+                console.error('Ошибка:', error);
+                document.getElementById('response-message').textContent = 'Ошибка соединения.';
+              });
+            });
+            </script>
+            
+          
+          
+          
           <!-- Search END -->
         </div>
       </div>

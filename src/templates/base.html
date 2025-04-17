@@ -877,6 +877,46 @@ Footer END     -->
     <noscript><div><img src="https://mc.yandex.ru/watch/100747262" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
 
+    <script>
+      document.getElementById('lead-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+      
+        const phone = document.getElementById('phone-input').value.trim();
+        const message = document.getElementById('message-input').value.trim();
+      
+        const url = 'https://csp.bitrix24.kz/rest/13/de6fvnom1pdg49wy/crm.lead.add.json';
+      
+        const formData = new URLSearchParams();
+        formData.append('FIELDS[TITLE]', 'Заявка с сайта');
+        formData.append('FIELDS[NAME]', 'Без имени');
+        formData.append('FIELDS[LAST_NAME]', message || 'Сообщение');
+        formData.append('FIELDS[PHONE][0][VALUE]', phone);
+        formData.append('FIELDS[PHONE][0][VALUE_TYPE]', 'WORK');
+      
+        fetch(url, {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(result => {
+          const msgBlock = document.getElementById('response-message');
+          if (result.result) {
+            msgBlock.textContent = 'Спасибо! Заявка отправлена.';
+            msgBlock.style.color = 'green';
+            document.getElementById('lead-form').reset();
+          } else {
+            msgBlock.textContent = 'Ошибка отправки.';
+            msgBlock.style.color = 'red';
+          }
+        })
+        .catch(error => {
+          console.error('Ошибка:', error);
+          document.getElementById('response-message').textContent = 'Ошибка соединения.';
+        });
+      });
+      </script>
+      
+
     
   
   </body>
