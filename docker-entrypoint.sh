@@ -11,10 +11,9 @@ python src/manage.py migrate
 python src/manage.py collectstatic --noinput
 
 echo "Запускаем Gunicorn-сервер..."
-exec gunicorn src.website.wsgi:application \
+export PYTHONPATH=/app/src
+exec gunicorn website.wsgi:application \
   --bind 0.0.0.0:8000 \
   --workers 3 \
   --threads 2 \
-  --timeout 120 \
-  --access-logfile - \
-  --error-logfile -
+  --timeout 120
