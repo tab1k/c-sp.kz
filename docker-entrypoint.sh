@@ -11,7 +11,7 @@ python src/manage.py migrate
 python src/manage.py collectstatic --noinput
 
 echo "Запускаем Gunicorn-сервер..."
-exec gunicorn website.wsgi:application \
+exec gunicorn src.website.wsgi:application \
   --bind 0.0.0.0:8000 \
   --workers 3 \
   --threads 2 \
