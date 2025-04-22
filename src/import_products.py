@@ -32,7 +32,7 @@ def import_products():
 
     count = 0
     for item in products_data:
-        print("ITEM:", item)
+
         name = item.get("title")
         if not name:
             continue
