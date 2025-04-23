@@ -700,148 +700,140 @@ Footer END     -->
 
       
 
-    <div id="call-container">
-      <a href="tel:+7 (708) 800 81 88" class="call-float"><i class="fas fa-phone"></i></a>
-    </div>
-
     <!-- Контейнер WhatsApp-кнопки с облаком -->
     <div id="whatsapp-container">
       <a href="https://wa.me/77088009874?text=👋%20Здравствуйте!%20Я%20пишу%20вам%20с%20*c-sp.kz*.%20хочу%20узнать%20подробнее%20о%20ваших%20услугах%20🚀" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
       <div class="whatsapp-bubble">💬 Привет! Напишите нам, мы поможем!</div>
     </div>
 
-    <!-- Стили для кнопки и облака -->
-    <style>
+    <!-- Контейнер кнопки звонка -->
+    <div id="call-container">
+      <a href="tel:+7 (708) 800 81 88" class="call-float"><i class="fas fa-phone"></i></a>
+    </div>
 
+    <style>
+      /* Контейнер WhatsApp */
+      #whatsapp-container {
+        position: fixed;
+        bottom: 90px; /* теперь выше кнопки звонка */
+        right: 20px;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .whatsapp-float {
+        background-color: #25D366;
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        text-decoration: none;
+        transition: transform 0.3s ease;
+      }
+
+      .whatsapp-float:hover {
+        transform: scale(1.1);
+        animation: none;
+      }
+
+      .whatsapp-bubble {
+        background: white;
+        color: #333;
+        padding: 10px 15px;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        font-size: 14px;
+        position: absolute;
+        bottom: 75px;
+        right: 10px;
+        opacity: 0;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        transform: translateY(10px);
+        white-space: nowrap;
+      }
+
+      .whatsapp-bubble.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Контейнер звонка */
       #call-container {
         position: fixed;
-        bottom: 90px; /* Размещаем чуть выше WhatsApp */
+        bottom: 20px; /* теперь ниже WhatsApp */
         right: 20px;
         z-index: 9999;
       }
 
       .call-float {
-          background-color: #032655;
-          color: white;
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 30px;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-          text-decoration: none;
-          transition: transform 0.3s ease;
+        background-color: #032655;
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        text-decoration: none;
+        transition: transform 0.3s ease;
       }
 
       .call-float:hover {
-          transform: scale(1.1);
+        transform: scale(1.1);
       }
-        /* Контейнер WhatsApp */
-        #whatsapp-container {
-          position: fixed;
-          bottom: 20px;
-          right: 20px;
-          z-index: 9999;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
 
-        /* Кнопка WhatsApp */
-        .whatsapp-float {
-          background-color: #25D366;
-          color: white;
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 30px;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-          text-decoration: none;
-          transition: transform 0.3s ease;
-        }
-
-        /* Анимация звонка */
-        @keyframes ring {
-          0% { transform: rotate(0deg); }
-          10% { transform: rotate(-10deg); }
-          20% { transform: rotate(10deg); }
-          30% { transform: rotate(-10deg); }
-          40% { transform: rotate(10deg); }
-          50% { transform: rotate(0deg); }
-        }
-
-        /* При наведении анимация отключается */
-        .whatsapp-float:hover {
-          transform: scale(1.1);
-          animation: none;
-        }
-
-        /* Всплывающее облако */
-        .whatsapp-bubble {
-          background: white;
-          color: #333;
-          padding: 10px 15px;
-          border-radius: 15px;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-          font-size: 14px;
-          position: absolute;
-          bottom: 75px;
-          right: 10px;
-          opacity: 0;
-          transition: opacity 0.5s ease, transform 0.5s ease;
-          transform: translateY(10px);
-          white-space: nowrap;
-        }
-
-        /* Показываем облако */
-        .whatsapp-bubble.show {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      @keyframes ring {
+        0% { transform: rotate(0deg); }
+        10% { transform: rotate(-10deg); }
+        20% { transform: rotate(10deg); }
+        30% { transform: rotate(-10deg); }
+        40% { transform: rotate(10deg); }
+        50% { transform: rotate(0deg); }
+      }
     </style>
 
-    <!-- Скрипт для появления облака и звонка -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const whatsappBtn = document.querySelector(".whatsapp-float");
         const whatsappBubble = document.querySelector(".whatsapp-bubble");
-    
+
         function startRingAnimation() {
           whatsappBtn.style.animation = "ring 1.5s";
           setTimeout(() => { whatsappBtn.style.animation = ""; }, 1500);
         }
-    
+
         function showBubble() {
           const lastShown = localStorage.getItem("whatsappLastShown");
           const now = Date.now();
-    
-          if (!lastShown || now - lastShown > 15000) { // 15 секунд прошло?
+
+          if (!lastShown || now - lastShown > 15000) {
             whatsappBubble.classList.add("show");
             localStorage.setItem("whatsappLastShown", now);
-    
+
             setTimeout(() => {
               whatsappBubble.classList.remove("show");
             }, 5000);
           }
         }
-    
-        // 🛑 Если пользователь наводит курсор на WhatsApp, облако скрывается
+
         whatsappBtn.addEventListener("mouseenter", function () {
           whatsappBubble.classList.remove("show");
         });
-    
-        // 🔁 Показываем облако раз в 15 секунд (но не сразу)
+
         setInterval(showBubble, 15000);
-    
-        // 🔁 Запускаем звонок каждые 10 секунд
         setInterval(startRingAnimation, 2000);
       });
     </script>
+
     
 
     <!-- Bootstrap JS -->
