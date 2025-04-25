@@ -219,8 +219,12 @@
                     <!-- ВСТАВЬ СЮДА СУЩЕСТВУЮЩИЙ navbarCollapse (перенеси, не копируй) -->
                     <div class="navbar-collapse collapse d-md-none" id="navbarCollapse">
                       <div class="search-bar" style="position: relative; width: 100%;">
-                        <input type="text" class="d-md-none" id="search-input" style="border-radius: 7px; border: 1px solid #e2e6ed; color: #262a31; padding: 8px 40px 8px 8px; width: 100%;" placeholder="Поиск в каталоге...">
-                        <ul id="search-results" style="position: absolute; width: 100%; max-height: 200px; overflow-y: auto; z-index: 10; display: none; list-style: none; padding: 0; margin: 0; background-color: white;"></ul>
+                        <input type="text" class="d-md-none" id="mobile-search-input"
+                          style="border-radius: 7px; border: 1px solid #e2e6ed; color: #262a31; padding: 8px 40px 8px 8px; width: 100%;"
+                          placeholder="Поиск в каталоге...">
+                        <ul id="mobile-search-results"
+                          style="position: absolute; width: 100%; max-height: 200px; overflow-y: auto; z-index: 10; display: none; list-style: none; padding: 0; margin: 0; background-color: white;">
+                        </ul>
                       </div>
                     </div>
                     
@@ -277,28 +281,25 @@
       <div class="container bg-white border-top d-none d-xl-block">
         <div class="container py-2">
           <div class="d-flex align-items-center justify-content-center flex-wrap gap-2">
-    
+      
             <!-- Каталог -->
             <div class="d-flex align-items-center">
               <i class="fa-solid fa-store me-2 text-black"></i>
               <a class="nav-link text-dark fw-medium" href="{% url 'website:category' %}">Каталог</a>
             </div>
-    
+      
             <!-- Поисковая строка -->
             <div class="search-bar flex-grow-1 mx-3" style="max-width: 440px; position: relative;">
-              <input type="text" id="search-input" class="form-control"
+              <input type="text" id="desktop-search-input" class="form-control"
                 style="border-radius: 7px; border: 1px solid #e2e6ed; color: #262a31; padding: 8px 40px 8px 8px;"
                 placeholder="Поиск в каталоге...">
-              
-              <!-- Иконка лупы -->
-              <i class="bi bi-search" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #aaa;"></i>
-    
-              <ul id="search-results"
+              <i class="bi bi-search"
+                style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #aaa;"></i>
+              <ul id="desktop-search-results"
                 style="position: absolute; width: 100%; max-height: 200px; overflow-y: auto; z-index: 10; display: none; list-style: none; padding: 0; margin: 0; background-color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #e2e6ed;">
               </ul>
             </div>
-    
-    
+      
             <!-- Навигация -->
             <ul class="nav gap-1 mb-0">
               <li class="nav-item">
@@ -313,53 +314,61 @@
               <li class="nav-item">
                 <a class="nav-link text-dark fw-medium" href="{% url 'website:about' %}">О компании</a>
               </li>
-    
-              
             </ul>
-    
           </div>
-    
-          <!-- JS для поиска -->
-          <script>
-            document.getElementById('search-input').addEventListener('input', function () {
-              const query = this.value.trim();
-              const resultsContainer = document.getElementById('search-results');
-    
-              if (query.length > 0) {
-                fetch(`/search/?query=${encodeURIComponent(query)}`)
-                  .then(response => response.json())
-                  .then(data => {
-                    resultsContainer.innerHTML = '';
-                    if (data.results.length > 0) {
-                      resultsContainer.style.display = 'block';
-                      data.results.forEach(result => {
-                        const li = document.createElement('li');
-                        li.style.padding = '8px';
-                        li.style.borderBottom = '1px solid #e2e6ed';
-                        if (result.type === 'product') {
-                          li.innerHTML = `<a href="/product/${result.slug}" style="color: #262a31; text-decoration: none;">${result.name}</a>`;
-                        } else if (result.type === 'category') {
-                          li.innerHTML = `<a href="/category/${result.slug}" style="color: #262a31; text-decoration: none;">${result.name}</a>`;
-                        } else if (result.type === 'none') {
-                          li.innerHTML = `<span style="color: #262a31;">${result.name}</span>`;
-                        }
-                        resultsContainer.appendChild(li);
-                      });
-                    } else {
-                      resultsContainer.style.display = 'none';
-                    }
-                  })
-                  .catch(error => {
-                    console.error('Ошибка загрузки данных:', error);
-                    resultsContainer.style.display = 'none';
-                  });
-              } else {
-                resultsContainer.style.display = 'none';
-              }
-            });
-          </script>
         </div>
       </div>
+      
+      
+      <!-- ======= УНИВЕРСАЛЬНЫЙ СКРИПТ ПОИСКА ======= -->
+      <script>
+        function setupSearch(inputId, resultsId) {
+          const input = document.getElementById(inputId);
+          const resultsContainer = document.getElementById(resultsId);
+      
+          if (!input || !resultsContainer) return;
+      
+          input.addEventListener('input', function () {
+            const query = this.value.trim();
+      
+            if (query.length > 0) {
+              fetch(`/search/?query=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(data => {
+                  resultsContainer.innerHTML = '';
+                  if (data.results.length > 0) {
+                    resultsContainer.style.display = 'block';
+                    data.results.forEach(result => {
+                      const li = document.createElement('li');
+                      li.style.padding = '8px';
+                      li.style.borderBottom = '1px solid #e2e6ed';
+                      if (result.type === 'product') {
+                        li.innerHTML = `<a href="/product/${result.slug}" style="color: #262a31; text-decoration: none;">${result.name}</a>`;
+                      } else if (result.type === 'category') {
+                        li.innerHTML = `<a href="/category/${result.slug}" style="color: #262a31; text-decoration: none;">${result.name}</a>`;
+                      } else {
+                        li.innerHTML = `<span style="color: #262a31;">${result.name}</span>`;
+                      }
+                      resultsContainer.appendChild(li);
+                    });
+                  } else {
+                    resultsContainer.style.display = 'none';
+                  }
+                })
+                .catch(error => {
+                  console.error('Ошибка загрузки данных:', error);
+                  resultsContainer.style.display = 'none';
+                });
+            } else {
+              resultsContainer.style.display = 'none';
+            }
+          });
+        }
+      
+        // Запускаем поиск для обеих версий
+        setupSearch('desktop-search-input', 'desktop-search-results');
+        setupSearch('mobile-search-input', 'mobile-search-results');
+      </script>
     
     </header>
     <!-- Header END -->
@@ -540,8 +549,15 @@
           <div class="col-md-3 mb-4">
             <h6 class="fw-bold mb-3 text-white">ТОО "Центр Стального Проката"</h6>
             <p class="mb-2 text-white"><strong>Головной офис</strong><br>г. Алматы, ул. Рыскулова 202/1</p>
-            <p class="mb-2 text-white"><strong>Приёмная</strong><br>8 (708) 800 81 88 </p>
-            <p class="mb-2 text-white"><strong>Отдел продаж</strong><br>+7 (708) 800-98-74</p>
+            <p class="mb-2 text-white">
+              <strong>Приёмная</strong><br>
+              <a href="tel:+77088008188" class="text-light text-white">+7 (708) 800 81 88</a>
+            </p>
+          
+            <p class="mb-2 text-white">
+              <strong>Отдел продаж</strong><br>
+              <a href="tel:+77088009874" class="text-light text-white">+7 (708) 800-98-74</a>
+            </p>
             <p class="mb-2 text-white"><strong>Email</strong><br><a href="mailto:info@c-sp.kz" class="text-light">info@c-sp.kz</a></p>
             <p class="text-white"><strong>График работы</strong><br>ПН - ПТ: 09:00 - 18:00<br></p>
             <div class="mt-3">
@@ -703,7 +719,7 @@ Footer END     -->
     <!-- Контейнер WhatsApp-кнопки с облаком -->
     <div id="whatsapp-container">
       <a href="https://wa.me/77088009874?text=👋%20Здравствуйте!%20Я%20пишу%20вам%20с%20*c-sp.kz*.%20хочу%20узнать%20подробнее%20о%20ваших%20услугах%20🚀" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
-      <div class="whatsapp-bubble">💬 Привет! Напишите нам, мы поможем!</div>
+      <div class="whatsapp-bubble">💬 Привет! Есть все позиции!</div>
     </div>
 
     <!-- Контейнер кнопки звонка -->
