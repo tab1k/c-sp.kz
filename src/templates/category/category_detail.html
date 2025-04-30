@@ -502,7 +502,7 @@
        
 
         <div class="mt-4">
-          {% if category.price_list %}
+          {% if category.price_list and category.price_list.url %}
             <!-- Если прайс есть — прямая ссылка на файл -->
             <a href="{{ category.price_list.url }}" class="d-flex align-items-center" download>
               <div id="product-info" class="product-card d-flex align-items-center gap-3">
