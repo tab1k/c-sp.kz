@@ -389,7 +389,11 @@
                             <div class="d-sm-flex justify-content-sm-between align-items-center mb-3">
                                 <div>
                                     <span>Цена</span>
+                                    {% if product.price %}
+                                    <h4 class="card-title mb-0">{{ product.price }} тг.</h4>
+                                    {% else %}
                                     <h4 class="card-title mb-0">Договорная</h4>
+                                    {% endif %}
                                 </div>
                                 <div>
                                     <h6 class="fw-normal mb-0"><a type="tel" href="tel: +7 (708) 800 81 88">+7 (708) 800 81 88</a></h6>

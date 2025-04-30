@@ -267,7 +267,7 @@
     </div>
 
     <div class="container" style="margin-top: 20px; margin-bottom: 30px; background: url('{% static 'images/tech/background.png' %}'); background-repeat: no-repeat; background-size: cover;">
-      <h4 class="about-company-bottom__title mb-4" style="color: #262a31;"><a href="{% url 'website:category' %}">Спектр услуг</a></h4>
+      <h4 class="about-company-bottom__title mb-4" style="color: #262a31;"><a href="{% url 'website:services' %}">Спектр услуг</a></h4>
       <div class="grid">
         {% for service in services|slice:':4' %}
           <a href="{% url 'website:services' %}">

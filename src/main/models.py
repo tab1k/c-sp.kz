@@ -8,6 +8,7 @@ class Category(models.Model):
     image = models.ImageField(max_length=255, blank=True, null=True, verbose_name="Картинка категории")
     slug = models.SlugField(unique=True, verbose_name="Слаг", max_length=255)
     about = models.TextField(max_length=555, blank=True, null=True)
+    price_list = models.FileField(blank=True, null=True)
     parent = models.ForeignKey(
         'self',
         on_delete=models.CASCADE,
@@ -49,6 +50,7 @@ class Product(models.Model):
     )
     slug = models.SlugField(unique=True, verbose_name="Слаг", blank=True, null=True, max_length=255)
     description = models.TextField(blank=True, verbose_name="Описание")
+    price = models.BigIntegerField(blank=True, null=True)
 
     class Meta:
         verbose_name = "Продукт"
