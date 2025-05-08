@@ -67,7 +67,7 @@
           <!-- InputMask -->
           <script>
             $(document).ready(function () {
-              $('#phone-input').inputmask('+7 (999) 999-99-99');
+              $('#phone-input').inputmask('+7 (707) 777-28-17');
             });
           </script>
           
@@ -77,8 +77,9 @@
             
               const phone = document.getElementById('phone-input').value.trim();
               const message = document.getElementById('message-input').value.trim();
+              const email = document.getElementById('email-input') ? document.getElementById('email-input').value.trim() : '';
             
-              const url = 'https://csp.bitrix24.kz/rest/13/de6fvnom1pdg49wy/crm.lead.add.json';
+              const url = 'https://steelfed.bitrix24.kz/rest/19/m0nqftkdut9jajvj/crm.lead.add.json';
             
               const formData = new URLSearchParams();
               formData.append('FIELDS[TITLE]', 'Заявка с сайта');
@@ -86,6 +87,11 @@
               formData.append('FIELDS[LAST_NAME]', message || 'Сообщение');
               formData.append('FIELDS[PHONE][0][VALUE]', phone);
               formData.append('FIELDS[PHONE][0][VALUE_TYPE]', 'WORK');
+            
+              if (email) {
+                formData.append('FIELDS[EMAIL][0][VALUE]', email);
+                formData.append('FIELDS[EMAIL][0][VALUE_TYPE]', 'WORK');
+              }
             
               fetch(url, {
                 method: 'POST',
@@ -108,11 +114,9 @@
                 document.getElementById('response-message').textContent = 'Ошибка соединения.';
               });
             });
-            </script>
-            
+            </script>                      
           
-          
-          
+  
           <!-- Search END -->
         </div>
       </div>

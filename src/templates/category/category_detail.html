@@ -134,7 +134,7 @@
             </div>
             <div class="col-auto ms-auto">
               <div class="d-flex align-items-center">
-                <label class="form-check-label me-2" style="color: #262a31;" for="activitySwitch">Показать списком</label>
+                <label class="form-check-label me-2" style="color: #262a31; font-size: 15px;" for="activitySwitch">Показать списком</label>
                 <div class="form-check form-switch">
                   <input class="form-check-input" type="checkbox" id="activitySwitch">
                 </div>
@@ -327,20 +327,29 @@
           
 
           <script>
-            const switchInput = document.getElementById("activitySwitch");
-            const grid = document.getElementById("product-grid");
-            const list = document.getElementById("product-list");
+            document.addEventListener("DOMContentLoaded", function () {
+              const switchInput = document.getElementById("activitySwitch");
+              const grid = document.getElementById("product-grid");
+              const list = document.getElementById("product-list");
           
-            switchInput.addEventListener("change", function () {
-              if (this.checked) {
-                grid.style.display = "none";
-                list.style.display = "flex";
-              } else {
-                grid.style.display = "grid";
-                list.style.display = "none";
-              }
+              // Загружаем сохранённое значение (true/false)
+              const isListView = localStorage.getItem("isListView") === "true";
+          
+              // Устанавливаем чекбокс и отображение
+              switchInput.checked = isListView;
+              grid.style.display = isListView ? "none" : "grid";
+              list.style.display = isListView ? "flex" : "none";
+          
+              // При изменении чекбокса сохраняем значение
+              switchInput.addEventListener("change", function () {
+                const showList = this.checked;
+                localStorage.setItem("isListView", showList);
+                grid.style.display = showList ? "none" : "grid";
+                list.style.display = showList ? "flex" : "none";
+              });
             });
-          </script>          
+          </script>
+              
         
 
 				</div>
@@ -501,27 +510,49 @@
         
 
         <div class="mt-4">
-          <a href="#" data-bs-toggle="modal" data-bs-target="#LeadModal" class="d-flex align-items-center">
-            <div id="product-info" class="product-card d-flex align-items-center gap-3">
-              <img id="product-photo" src="{% static 'images/download.webp' %}" alt="Труба" class="product-img" style="max-width: 100%; max-height: 300px; object-fit: contain;">
-    
+          <!-- Прайс-лист для текущей категории -->
+          {% if category.price_list %}
+            <a href="{{ category.price_list.url }}" download class="d-flex align-items-center">
+              <div id="product-info" class="product-card d-flex align-items-center gap-3">
+                <img id="product-photo" src="{% static 'images/download.webp' %}" alt="{{ category.name }}" class="product-img" style="max-width: 100%; max-height: 300px; object-fit: contain;">
+        
                 <div class="d-flex flex-column justify-content-between w-100">
-                    <div class="d-flex ">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#LeadModal" class="d-flex align-items-center" style="color: black;">
-                            <span>Запросить прайс лист</span>
-                        </a>
+                  <div class="d-flex">
+                    <span style="color: black;">Скачать прайс лист ({{ category.name }})</span>
+                  </div>
+                  <p id="product-meta" class="product-meta mb-0 mt-2">
+                    <span class="product-status">В наличии</span>
+                  </p>
+                </div>
+              </div>
+            </a>
+          {% endif %}
+        
+          <!-- Прайс-листы для подкатегорий -->
+          {% for subcat in subcategories %}
+            {% if subcat.price_list %}
+              <a href="{{ subcat.price_list.url }}" download class="d-flex align-items-center mt-3">
+                <div id="product-info" class="w-100 product-card d-flex align-items-center gap-3">
+                  <img id="product-photo" src="{% static 'images/download.webp' %}" alt="{{ subcat.name }}" class="product-img" style="max-width: 100%; max-height: 300px; object-fit: contain;">
+        
+                  <div class="d-flex flex-column justify-content-between w-100">
+                    <div class="d-flex">
+                      <span style="color: black;">Скачать прайс лист ({{ subcat.name }})</span>
                     </div>
                     <p id="product-meta" class="product-meta mb-0 mt-2">
-                        <span class="product-status">В наличии</span>
+                      <span class="product-status">В наличии</span>
                     </p>
+                  </div>
                 </div>
-            </div>
-          </a>
+              </a>
+            {% endif %}
+          {% endfor %}
         </div>
+        
 
         <div class="product-control__found mb-3 mt-3">
           Найдено <span id="product-count">{{ total_products }}</span> товаров.
-      </div>
+        </div>
       
       <div class="vstack" id="listing-table-target">
           {% for product in page_obj %}
