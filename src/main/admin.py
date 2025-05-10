@@ -34,3 +34,8 @@ class ProductAdmin(admin.ModelAdmin):
 class ServiceAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}  # Автоматическое заполнение
     list_display = ("name", "slug")
+
+
+@admin.register(Story)
+class StoryAdmin(admin.ModelAdmin):
+    list_display = ("title", "created_at")

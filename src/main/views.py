@@ -18,6 +18,10 @@ from django_filters.views import FilterView
 from .models import Product, Category, Service
 from .filters import ProductFilter
 
+from django.utils import timezone
+from datetime import timedelta
+from .models import Story 
+
         
 
 class IndexPageView(TemplateView):
@@ -115,11 +119,11 @@ class CategoryViewPage(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Передаем категории и их продукты
+
         context['categories'] = (
             Category.objects.filter(parent__isnull=True)
             .order_by('id')
-            .only('id', 'name', 'slug')  # Загрузите только нужные поля
+            .only('id', 'name', 'slug')
             .prefetch_related(
                 Prefetch(
                     'children',
@@ -136,8 +140,12 @@ class CategoryViewPage(TemplateView):
             )
         )
 
-        return context
+        # Добавляем активные истории (не старше 3 дней)
+        three_days_ago = timezone.now() - timedelta(days=3)
+        context['stories'] = Story.objects.filter(created_at__gte=three_days_ago)
 
+        return context
+    
 
 class CategoryDetailView(DetailView):
     model = Category
@@ -208,13 +216,18 @@ class CategoryDetailView(DetailView):
 
         # Главные категории для меню
         top_categories = Category.objects.filter(parent__isnull=True).only('id', 'name')
-
+        three_days_ago = timezone.now() - timedelta(days=3)
+        stories = Story.objects.filter(created_at__gte=three_days_ago)
+        ancestors = category.get_ancestors()
+    
         # Передаем данные в шаблон
         context.update({
             'page_obj': page_obj,
             'categories': top_categories,
             'total_products': total_products,
             'subcategories': subcategories,
+            'stories' : stories,
+            'ancestors' : ancestors,
         })
         return context
     

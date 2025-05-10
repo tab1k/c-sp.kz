@@ -7,30 +7,174 @@
 
 <section class="pt-0 pb-3 mt-2">
 	<div class="container">
-		<!-- Background image -->
-		<div class="rounded-3 p-3 p-sm-5 position-relative text-white"
-     style="background-image: url('{% if category.image %}{{ category.image.url }}{% else %}{% static 'images/tech/banner4.jpg' %}{% endif %}');
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-size: cover;">
-
-
-    <!-- Затемняющий слой -->
-    <div class="position-absolute top-0 start-0 w-100 h-100" 
-         style="background-color: rgba(0, 0, 0, 0.5); border-radius: 25px;"></div>
-
-    <!-- Контент поверх затемнения -->
-    <div class="position-relative">
-        <div class="row my-2 my-xl-5"> 
-            <div class="col-md-8 mx-auto"> 
-                <h1 class="text-center text-white">{{ category.name }}</h1>
+		
+    <!-- Истории — круглые, кликабельные -->
+    <div class="mx-auto pb-1 pt-2">
+      <div class="d-flex gap-3 overflow-auto">
+        {% for story in stories %}
+          <div class="flex-shrink-0 text-center" style="flex: 0 0 auto;">
+            <div
+              onclick="openStoryModal('{{ story.image.url }}')"
+              style="width: 64px; height: 64px; border-radius: 50%; border: 2px solid #22c55e; overflow: hidden; cursor: pointer;"
+            >
+              <img
+                src="{{ story.image.url }}"
+                alt="Story"
+                style="width: 100%; height: 100%; object-fit: cover;"
+              />
             </div>
-        </div>
+            <p style="font-size: 12px; margin-top: 4px; margin-bottom: 4px;">{{ story.title }}</p>
+          </div>
+        {% endfor %}
+      </div>
+      <style>
+        .d-flex {
+          overflow-x: auto; /* Горизонтальная прокрутка по мере необходимости */
+        }
+      
+        .d-flex::-webkit-scrollbar {
+          display: none; /* Скрыть ползунок */
+        }
+      </style>
+      
+      
     </div>
 
-  </div>
+    <!-- Модалка -->
+    <div
+      id="storyModal"
+      style="position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 9999;"
+      onclick="closeStoryModal(event)">
+      <div style="position: relative; max-width: 90vw; max-height: 90vh;">
+        <!-- Прогресс-бар -->
+        <div
+          id="storyProgress"
+          style="position: absolute; top: 0; left: 0; height: 4px; background: white; width: 0%; transition: width 0.1s;"
+        ></div>
 
+        <!-- Кнопка закрытия -->
+        <button
+          onclick="closeStoryManually()"
+          style="position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.6); border: none; color: white; font-size: 18px; padding: 4px 10px; border-radius: 50%; cursor: pointer; z-index: 10;"
+        >
+          &times;
+        </button>
+
+        <!-- Сторис изображение -->
+        <img
+          id="storyImage"
+          src=""
+          style="width: 100%; height: auto; border-radius: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3);"
+        />
+      </div>
+    </div>
+
+
+    <script>
+      let storyTimeout = null;
+      let progressInterval = null;
+    
+      function openStoryModal(imageUrl) {
+        const modal = document.getElementById("storyModal");
+        const image = document.getElementById("storyImage");
+        const progress = document.getElementById("storyProgress");
+    
+        image.src = imageUrl;
+        modal.style.display = "flex";
+    
+        let progressValue = 0;
+        progress.style.width = "0%";
+    
+        progressInterval = setInterval(() => {
+          progressValue += 1;
+          progress.style.width = progressValue + "%";
+          if (progressValue >= 100) {
+            closeStoryModal();
+          }
+        }, 100); // 100 * 100ms = 10 сек
+      }
+    
+      function closeStoryModal(event) {
+        // Закрываем только если клик вне изображения
+        if (event && !event.target.closest("#storyImage")) return;
+        resetStory();
+      }
+    
+      function closeStoryManually() {
+        resetStory();
+      }
+    
+      function resetStory() {
+        document.getElementById("storyModal").style.display = "none";
+        document.getElementById("storyImage").src = "";
+        document.getElementById("storyProgress").style.width = "0%";
+        clearInterval(progressInterval);
+      }
+    </script>
+
+    <div class="row">
+			<div class="bread-crumbs mt-2">
+				<div class="">
+					<ul class="bread-crumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+						<li class="bread-crumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+						  <a class="bread-crumbs__link" href="/" itemprop="item">
+							<span itemprop="name">Главная</span>
+						  </a>
+						  <meta itemprop="position" content="1">
+						</li>
+					  
+						{% for cat in ancestors %}
+						  <li class="bread-crumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+							<a class="bread-crumbs__link" href="{{ cat.get_absolute_url }}" itemprop="item">
+							  <span itemprop="name">{{ cat.name|upper }}</span>
+							</a>
+							<meta itemprop="position" content="{{ forloop.counter|add:1 }}">
+						  </li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+
+			<style>
+				.bread-crumbs__list {
+					display: flex;
+					flex-wrap: wrap;
+					margin: 0;
+				
+					margin-bottom: 8px;
+					padding: 0;
+					list-style-type: none;
+				}
+				.bread-crumbs__item {
+					display: flex;
+					align-items: center;
+					margin-bottom: 8px;
+				}
+				.bread-crumbs__link {
+					color: #999;
+					font-weight: 700;
+					font-size: 12px;
+					text-transform: uppercase;
+					letter-spacing: .01em;
+				}
+
+				.bread-crumbs__item::after {
+					content: url('{% static 'images/tech/rigth.svg' %}');
+					display: flex;
+					align-items: center;
+					margin: 0 9px;
+					width: 7px;
+					height: 10px;
+					color: #d3d6db;
+				}
+			</style>
+
+			<div class="col-12">
+				<h3 style="color: #262a31; margin-bottom: 0px;">{{ category.name.upper }}<h3>
+			</div>
+		</div>
 	</div>
+  
 </section>
 
 

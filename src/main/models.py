@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 from slugify import slugify
+from django.utils import timezone
+from datetime import timedelta
 
 
 class Category(models.Model):
@@ -81,7 +83,18 @@ class Product(models.Model):
         return reverse('website:product_detail', kwargs={'slug': self.slug})
     
     
+
+class Story(models.Model):
+    title = models.CharField(max_length=50, blank=True, null=True)
+    image = models.ImageField(upload_to='stories/')
     
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def is_active(self):
+        return timezone.now() < self.created_at + timedelta(days=3)
+
+
 
 class Service(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False)
