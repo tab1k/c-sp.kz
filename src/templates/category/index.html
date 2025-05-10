@@ -142,7 +142,7 @@
         <h4 class=" mb-3" style="color: #262a31;">Каталог</h4>
 
         <!-- Истории — круглые, кликабельные -->
-        <div class="mx-auto pb-0 pt-2">
+        <div class="mx-auto pb-2 pt-2">
           <div class="d-flex gap-3 overflow-auto">
             {% for story in stories %}
               <div class="flex-shrink-0 text-center" style="flex: 0 0 auto;">
@@ -156,7 +156,7 @@
                     style="width: 100%; height: 100%; object-fit: cover;"
                   />
                 </div>
-                <p style="font-size: 12px; margin-top: 4px;">{{ story.title }}</p>
+                <p style="font-size: 12px; margin-top: 4px; max-width: 64px; word-wrap: break-word; white-space: normal; margin: 4px auto 0;">{{ story.title }}</p>
               </div>
             {% endfor %}
           </div>
