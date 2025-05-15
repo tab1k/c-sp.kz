@@ -8,7 +8,66 @@
 <section class="pt-0 pb-3 mt-2">
 	<div class="container">
 		
-    <!-- Истории — круглые, кликабельные -->
+    
+
+    <div class="row">
+			<div class="bread-crumbs mt-2">
+				<div class="">
+					<ul class="bread-crumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+						<li class="bread-crumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+						  <a class="bread-crumbs__link" href="/" itemprop="item">
+							<span itemprop="name">Главная</span>
+						  </a>
+						  <meta itemprop="position" content="1">
+						</li>
+					  
+						{% for cat in ancestors %}
+						  <li class="bread-crumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+							<a class="bread-crumbs__link" href="{{ cat.get_absolute_url }}" itemprop="item">
+							  <span itemprop="name">{{ cat.name|upper }}</span>
+							</a>
+							<meta itemprop="position" content="{{ forloop.counter|add:1 }}">
+						  </li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+
+			<style>
+				.bread-crumbs__list {
+					display: flex;
+					flex-wrap: wrap;
+					margin: 0;
+				
+					margin-bottom: 8px;
+					padding: 0;
+					list-style-type: none;
+				}
+				.bread-crumbs__item {
+					display: flex;
+					align-items: center;
+					margin-bottom: 8px;
+				}
+				.bread-crumbs__link {
+					color: #999;
+					font-weight: 700;
+					font-size: 12px;
+					text-transform: uppercase;
+					letter-spacing: .01em;
+				}
+
+				.bread-crumbs__item::after {
+					content: url('{% static 'images/tech/rigth.svg' %}');
+					display: flex;
+					align-items: center;
+					margin: 0 9px;
+					width: 7px;
+					height: 10px;
+					color: #d3d6db;
+				}
+			</style>
+
+      <!-- Истории — круглые, кликабельные -->
     <div class="mx-auto pb-2 pt-2">
       <div class="d-flex gap-3 overflow-auto">
         {% for story in stories %}
@@ -111,63 +170,6 @@
         clearInterval(progressInterval);
       }
     </script>
-
-    <div class="row">
-			<div class="bread-crumbs mt-2">
-				<div class="">
-					<ul class="bread-crumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
-						<li class="bread-crumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-						  <a class="bread-crumbs__link" href="/" itemprop="item">
-							<span itemprop="name">Главная</span>
-						  </a>
-						  <meta itemprop="position" content="1">
-						</li>
-					  
-						{% for cat in ancestors %}
-						  <li class="bread-crumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-							<a class="bread-crumbs__link" href="{{ cat.get_absolute_url }}" itemprop="item">
-							  <span itemprop="name">{{ cat.name|upper }}</span>
-							</a>
-							<meta itemprop="position" content="{{ forloop.counter|add:1 }}">
-						  </li>
-						{% endfor %}
-					</ul>
-				</div>
-			</div>
-
-			<style>
-				.bread-crumbs__list {
-					display: flex;
-					flex-wrap: wrap;
-					margin: 0;
-				
-					margin-bottom: 8px;
-					padding: 0;
-					list-style-type: none;
-				}
-				.bread-crumbs__item {
-					display: flex;
-					align-items: center;
-					margin-bottom: 8px;
-				}
-				.bread-crumbs__link {
-					color: #999;
-					font-weight: 700;
-					font-size: 12px;
-					text-transform: uppercase;
-					letter-spacing: .01em;
-				}
-
-				.bread-crumbs__item::after {
-					content: url('{% static 'images/tech/rigth.svg' %}');
-					display: flex;
-					align-items: center;
-					margin: 0 9px;
-					width: 7px;
-					height: 10px;
-					color: #d3d6db;
-				}
-			</style>
 
 			<div class="col-12">
 				<h3 style="color: #262a31; margin-bottom: 0px;">{{ category.name.upper }}<h3>
@@ -825,13 +827,12 @@
             
               
                 <!-- Bitrix24 форма -->
-                <script data-b24-form="inline/5/sbwncc" data-skip-moving="true">
-                  (function(w,d,u){
-                    var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);
-                    var h=d.getElementsByTagName('script')[0];
-                    h.parentNode.insertBefore(s,h);
-                  })(window,document,'https://cdn-ru.bitrix24.kz/b32852022/crm/form/loader_5.js');
-                </script>
+                <script data-b24-form="inline/57/rn8mlt" data-skip-moving="true">
+(function(w,d,u){
+var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);
+var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
+})(window,document,'https://cdn-ru.bitrix24.kz/b17734044/crm/form/loader_57.js');
+</script>
               </div>
             </div>
             
