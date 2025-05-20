@@ -424,37 +424,41 @@
 
 					  <div class="container my-3 p-0 mb-4">
 						<div class="rounded-5 p-5 text-white position-relative" style="background: linear-gradient(90deg, #1E3C72, #2A5298);">
-						  <h4 class="fw-bold text-white">Не нашли, что искали?</h4>
-						  <p class="mb-4" style="color: #d2d2d2;">Бесплатный звонок и консультация!</p>
-					  
-						  <!-- Иконки звонка и WhatsApp -->
-						  <div class="icon-group">
-							<a href="tel:+77088009874" class="icon-circle" title="Позвонить">
-							  <i class="fas fa-phone"></i>
+							<h4 class="fw-bold text-white">Не нашли, что искали?</h4>
+							<p class="mb-4" style="color: #d2d2d2;">Бесплатный звонок и консультация!</p>
+
+							<!-- Иконки звонка и WhatsApp -->
+							<div class="icon-group">
+							<a href="tel:+77088009874" class="icon-circle phone" title="Позвонить">
+								<i class="fas fa-phone"></i>
 							</a>
-							<a href="https://wa.me/77088009874" class="icon-circle" title="WhatsApp">
-							  <i class="fab fa-whatsapp"></i>
+							<a href="https://wa.me/77088009874" class="icon-circle whatsapp" title="WhatsApp">
+								<i class="fab fa-whatsapp"></i>
 							</a>
-						  </div>
-					  
-						  <!-- Основная кнопка -->
-						  <button data-bs-toggle="modal" data-bs-target="#LeadModal" class="circle-button">
+							</div>
+
+							<!-- Основная кнопка -->
+							<button data-bs-toggle="modal" data-bs-target="#LeadModal" class="circle-button">
 							<span class="arrow-up">↑</span>
-						  </button>
+							</button>
 						</div>
-					  
+
 						<style>
-						  @media (max-width: 768px) {
-							.p-5 {
-							  padding: 2rem !important;
+							a.alert.border.mb-2.bg-white.text-dark.d-flex.align-items-center {
+							border-radius: 15px;
 							}
+
+							@media (max-width: 768px) {
+							.p-5 {
+								padding: 2rem !important;
+							}
+
 							p.mb-4 {
 								padding-bottom: 35px;
 							}
-							
-						  }
-					  
-						  .circle-button {
+							}
+
+							.circle-button {
 							width: 50px;
 							height: 50px;
 							border-radius: 50%;
@@ -468,23 +472,23 @@
 							top: 74%;
 							transform: translateY(-50%);
 							cursor: pointer;
-						  }
-					  
-						  .arrow-up {
+							}
+
+							.arrow-up {
 							font-size: 24px;
 							color: black;
 							transform: rotate(45deg);
-						  }
-					  
-						  .circle-button:hover {
+							}
+
+							.circle-button:hover {
 							background-color: #f0f0f0;
-						  }
-					  
-						  .circle-button:focus {
+							}
+
+							.circle-button:focus {
 							outline: none;
-						  }
-					  
-						  .icon-group {
+							}
+
+							.icon-group {
 							position: absolute;
 							right: 75px;
 							top: 74%;
@@ -492,30 +496,44 @@
 							display: flex;
 							gap: 5px;
 							}
-					  
-						  .icon-circle {
+
+							.icon-circle {
 							width: 50px;
 							height: 50px;
 							border-radius: 50%;
-							background-color: white;
 							display: flex;
 							justify-content: center;
 							align-items: center;
-							border: 2px solid black;
 							cursor: pointer;
 							transition: 0.3s;
-						  }
-					  
-						  .icon-circle i {
+							}
+
+							.icon-circle.phone {
+							background-color: #00bcd4;
+							color: white;
+							}
+
+							.icon-circle.whatsapp {
+							background-color: #25D366;
+							color: white;
+							}
+
+							.icon-circle i {
 							font-size: 20px;
-							color: #2A5298;
-						  }
-					  
-						  .icon-circle:hover {
-							background-color: #f0f0f0;
-						  }
+							}
+
+							.icon-circle:hover {
+							opacity: 0.85;
+							}
 						</style>
-					  </div>
+						</div>
+
+						<div class="col-12 mb-3">
+						<h4 class="about-company-bottom__title" style="color: #262a31;">
+							<a href="{% url 'website:about' %}">{{ category.name }}</a>
+						</h4>
+						</div>
+
 					  
 					
 					
