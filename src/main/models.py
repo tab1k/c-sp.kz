@@ -113,12 +113,8 @@ class ProductAttributeValue(models.Model):
 class Story(models.Model):
     title = models.CharField(max_length=50, blank=True, null=True)
     image = models.ImageField(upload_to='stories/')
-    
     created_at = models.DateTimeField(auto_now_add=True)
 
-    @property
-    def is_active(self):
-        return timezone.now() < self.created_at + timedelta(days=3)
 
 
 

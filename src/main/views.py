@@ -142,9 +142,8 @@ class CategoryViewPage(TemplateView):
             )
         )
 
-        # Добавляем активные истории (не старше 3 дней)
-        three_days_ago = timezone.now() - timedelta(days=3)
-        context['stories'] = Story.objects.filter(created_at__gte=three_days_ago)
+        context['stories'] = Story.objects.all()
+
 
         return context
     
@@ -222,7 +221,7 @@ class CategoryDetailView(DetailView):
         subcategories = category.children.all()
         top_categories = Category.objects.filter(parent__isnull=True).only('id', 'name')
         three_days_ago = timezone.now() - timedelta(days=3)
-        stories = Story.objects.filter(created_at__gte=three_days_ago)
+        stories = Story.objects.all()
         ancestors = category.get_ancestors()
 
         context.update({
