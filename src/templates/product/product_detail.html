@@ -405,14 +405,32 @@
                             
     
                             <!-- Rating -->
-                            <ul class="list-inline mb-2">
-                                <li class="list-inline-item me-1 h6 fw-light mb-0"><i class="bi bi-arrow-right me-2"></i>5</li>
-                                <li class="list-inline-item me-0 small"><i class="fa-solid fa-star text-warning"></i></li>
-                                <li class="list-inline-item me-0 small"><i class="fa-solid fa-star text-warning"></i></li>
-                                <li class="list-inline-item me-0 small"><i class="fa-solid fa-star text-warning"></i></li>
-                                <li class="list-inline-item me-0 small"><i class="fa-solid fa-star text-warning"></i></li>
-                                <li class="list-inline-item me-0 small"><i class="fa-solid fa-star text-warning"></i></li>
-                            </ul>
+                            
+                            <div class="characteristics">
+                                <h5 class="mb-4 fw-bold">Характеристики</h4>
+                                {% for attr in product.attributes.all %}
+                                    <div class="row mb-3">
+                                        <div class="col-6 text-black">{{ attr.attribute.name }}</div>
+                                        <div class="col-6 fw-semibold text-end text-black">{{ attr.value }}</div>
+                                    </div>
+                                {% empty %}
+                                    <p>Нет характеристик</p>
+                                {% endfor %}
+                            </div>
+
+                            <style>
+                                .characteristics {
+                                    font-family: sans-serif;
+                                    max-width: 500px;
+                                }
+
+                                .characteristics .row {
+                                    border-bottom: 1px dotted #ccc;
+                                    padding-bottom: 4px;
+                                }
+
+                            </style>
+
     
                             <p class="h6 fw-light mb-4"><i class="bi bi-arrow-right me-2"></i>Лучшее качество</p>
     

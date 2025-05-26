@@ -1,4 +1,5 @@
 from datetime import datetime
+from django.urls import reverse
 import random
 import re
 from collections import defaultdict
@@ -83,6 +84,7 @@ class AjaxableTemplateView(TemplateView):
         soup = BeautifulSoup(html, 'html.parser')
         content = soup.find(id="content")
         return str(content) if content else ""
+
 
 class ServiceViewPage(AjaxableTemplateView):
     template_name = 'website/services.html'
@@ -198,8 +200,15 @@ class CategoryDetailView(DetailView):
 
         if not products_data:
             products_qs = Product.objects.filter(category_id__in=category_ids).select_related('category').distinct()
-            products_data = list(products_qs.values('id', 'name', 'price', 'category__name'))
+            
+            products_data = []
+            for product in products_qs.values('id', 'name', 'price', 'slug', 'category__image'):
+                product['get_absolute_url'] = reverse('website:product_detail', kwargs={'slug': product['slug']})
+                product['category_image'] = product.get('category__image')
+                products_data.append(product)
+            
             cache.set(cache_key, products_data, 60 * 15)
+
 
         # Случайная сортировка на Python
         random.shuffle(products_data)

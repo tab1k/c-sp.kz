@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block title %} {{ category.name }} {% endblock %}
 
@@ -78,7 +79,7 @@
 				{% for category in similar_categories %}
 					<a href="{{ category.get_absolute_url }}">
 						<div class="category">
-							<img style="border-radius: 10px;" src="{% if category.image %}{{ category.image.url }}{% else %}{% static 'images/tech/default.jpg' %}{% endif %}" 
+							<img style="border-radius: 10px;" src="{% if category.image %}{{ category.image.url }}{% else %}{% static 'images/logotip.png' %}{% endif %}" 
 								 alt="{{ category.name }}" />
 							<span>{{ category.name }}</span>
 						</div>
@@ -151,52 +152,25 @@
 						<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasSidebar" aria-label="Close"></button>
 					</div>
 					<div class="offcanvas-body flex-column p-3 p-xl-0">
-						<form class="rounded-3 shadow">
-							<!-- Hotel type START -->
-							<div class="card card-body rounded-5 p-4">
-								<!-- Title -->
-								<h6 class="mb-3">Поиск</h6>
-								<!-- Hotel Type group -->
-								<div class="col-12">
-									<!-- Checkbox -->
-									<div class="form-check" style="padding-left: 0px;">
-										<form method="get" id="search-form">
-											<label class="search__label visible" style="outline: 1px solid #cacaca; border-radius: 7px; width: 100%;">
-												<input type="text" name="search" class="search__input filter-aside__search"
-													placeholder="32х4.5 мм P460N EN 10216-3..." autocomplete="off" style="border-radius: 7px; border: 1px solid #e2e6ed; color: #262a31; padding: 8px 40px 8px 8px; width: 100%;">
-											</label>
-										</form>
-									</div>
-									
+
+						<form method="get" class="mb-4 m-1">
+							<div class="mb-3">
+								{{ filter.form.search.label_tag }}
+								{{ filter.form.search|attr:"class:form-control form-control-sm" }}
+							</div>
+
+							{% for field in filter.form %}
+								{% if field.name != 'search' %}
+								<div class="mb-4">
+									{{ field.label_tag }}
+									{{ field|add_class:"form-select form-select-sm" }}
 								</div>
-							</div>
-							<!-- Hotel type END -->
+								{% endif %}
+							{% endfor %}
 
+							<button type="submit" style="background-color: #032655;" class="btn text-white w-100">Применить фильтры</button>
+						</form>
 
-							<div class="mt-3">
-								<a href="#" data-bs-toggle="modal" data-bs-target="#LeadModal" class="d-flex align-items-center">
-								  <div id="product-info" class="product-card d-flex align-items-center gap-3 w-100">
-									<img id="product-photo" src="{% static 'images/download.webp' %}" alt="Труба" class="product-img" style="max-width: 100%; max-height: 300px; object-fit: contain;">
-						  
-									  <div class="d-flex flex-column justify-content-between w-100">
-										  <div class="d-flex ">
-											  <a href="#" data-bs-toggle="modal" data-bs-target="#LeadModal" class="d-flex align-items-center" style="color: black;">
-												  <span>Скачать прайс лист</span>
-											  </a>
-										  </div>
-										  <p id="product-meta" class="product-meta mb-0 mt-2">
-											  <span class="product-status">В наличии</span>
-										  </p>
-									  </div>
-								  </div>
-								</a>
-							</div>
-
-		
-							
-							
-							<!-- Amenities END -->
-						</form><!-- Form End -->
 					</div>
 				
 				</div>
@@ -208,7 +182,7 @@
 			<div class="col-xl-8 col-xxl-9">
 				<div class="hstack gap-3 justify-content-between justify-content-md-end">
 					<!-- Filter offcanvas button -->
-					<button class="btn btn-primary-check mb-0 d-xl-none w-100" style="background-color: #f5f5f5; color: black;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+					<button class="btn mb-0 d-xl-none w-100 text-white" style="background-color: #032655;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
 						<i class="fa-solid fa-sliders-h me-1"></i> Фильтры
 					</button>
 					<!-- tabs -->

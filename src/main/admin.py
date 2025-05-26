@@ -1,38 +1,52 @@
 from django.contrib import admin
 from .models import *
 
+class ProductAttributeValueInline(admin.TabularInline):
+    model = ProductAttributeValue
+    extra = 1
+
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'category', 'price')
+    search_fields = ('name', 'description', 'category__name')  # добавили поиск по названию категории
+    prepopulated_fields = {'slug': ('name',)}
+    list_filter = ('category',)
+    inlines = [ProductAttributeValueInline]
+
+
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'parent')  # Показываем название и родительскую категорию
-    prepopulated_fields = {'slug': ('name',)}  # Автозаполнение slug
-    autocomplete_fields = ['parent']  # Добавляем автодополнение для выбора родительской категории
-    search_fields = ('name', 'parent__name')  # Поиск по имени категории и родительской категории
-    ordering = ('name',)  # Сортировка категорий по имени в алфавитном порядке
-
-    # Добавляем фильтрацию категорий без родителя
+    list_display = ('name', 'parent')
+    prepopulated_fields = {'slug': ('name',)}
+    autocomplete_fields = ['parent']
+    search_fields = ('name', 'parent__name')
+    ordering = ('name',)
     list_filter = ('parent',)
 
-    # Переопределяем список категорий для показа
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
-        # Если нужен фильтр для категорий без родителя:
         if request.GET.get('parent__isnull', None):
             return queryset.filter(parent__isnull=True)
         return queryset
 
 
-@admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'slug')
-    prepopulated_fields = {'slug': ('name',)}
-    autocomplete_fields = ['category']
-    search_fields = ('name', 'category__name')
-    ordering = ('name',)
-    
+@admin.register(ProductAttribute)
+class ProductAttributeAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+
+@admin.register(ProductAttributeValue)
+class ProductAttributeValueAdmin(admin.ModelAdmin):
+    list_display = ('product', 'attribute', 'value')
+    search_fields = ('product__name', 'attribute__name', 'value')
+    ordering = ('product',)
+
 
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
-    prepopulated_fields = {"slug": ("name",)}  # Автоматическое заполнение
+    prepopulated_fields = {"slug": ("name",)}
     list_display = ("name", "slug")
 
 

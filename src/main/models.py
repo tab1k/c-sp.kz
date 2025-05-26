@@ -82,7 +82,33 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('website:product_detail', kwargs={'slug': self.slug})
     
+
+class ProductAttribute(models.Model):
+    name = models.CharField(max_length=255)  # Например: "Толщина", "Марка стали", "ГОСТ"
     
+    class Meta:
+        verbose_name = "Атрибут продукта"
+        verbose_name_plural = "Атрибуты продуков"
+
+    def __str__(self):
+        return self.name
+    
+
+class ProductAttributeValue(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="attributes")
+    attribute = models.ForeignKey(ProductAttribute, on_delete=models.CASCADE)
+    value = models.CharField(max_length=255)  # Например: "2 мм", "AISI 304", "ГОСТ 19903-74"
+
+    class Meta:
+        verbose_name = "Значение атрибута продукта"
+        verbose_name_plural = "Значения атрибутов продукта"
+        unique_together = ('product', 'attribute')  # У одного товара не может быть дважды одна и та же характеристика
+
+    def __str__(self):
+        return f"{self.attribute.name}: {self.value}"
+
+
+
 
 class Story(models.Model):
     title = models.CharField(max_length=50, blank=True, null=True)
