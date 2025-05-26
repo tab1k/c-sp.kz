@@ -48,12 +48,10 @@ def import_products():
         )
 
         # Обработка атрибутов
-        attributes = item.get("attributes", {})
+        attributes = item.get("characteristics", {})  # здесь поменял с "attributes" на "characteristics"
         for attr_name, attr_value in attributes.items():
-            # Получаем или создаём атрибут
             attribute_obj, created = ProductAttribute.objects.get_or_create(name=attr_name)
 
-            # Создаём значение атрибута для продукта
             ProductAttributeValue.objects.create(
                 product=product,
                 attribute=attribute_obj,
