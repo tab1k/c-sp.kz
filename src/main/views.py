@@ -293,12 +293,15 @@ class ProductListView(FilterView, ListView):
         context['current_page'] = current_page
         context['ancestors'] = category.get_ancestors()
         return context
-
+    
 
 class ProductDetailView(DetailView):
     model = Product
     template_name = 'product/product_detail.html'
     context_object_name = 'product'
+
+    def get_queryset(self):
+        return Product.objects.prefetch_related('attributes__attribute')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -312,6 +315,7 @@ class ProductDetailView(DetailView):
         context['category_ancestors'] = category.get_ancestors()
 
         return context
+
 
 
 
