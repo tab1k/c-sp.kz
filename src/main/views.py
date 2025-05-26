@@ -220,7 +220,6 @@ class CategoryDetailView(DetailView):
         # Остальные данные
         subcategories = category.children.all()
         top_categories = Category.objects.filter(parent__isnull=True).only('id', 'name')
-        three_days_ago = timezone.now() - timedelta(days=3)
         stories = Story.objects.all()
         ancestors = category.get_ancestors()
 
@@ -305,9 +304,6 @@ class ProductDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         product = self.object
 
-        # Распарсенные данные из названия
-        context['parsed_data'] = self.parse_product_name(product.name)
-
         # Категория товара
         category = product.category
         context['category'] = category
@@ -317,27 +313,7 @@ class ProductDetailView(DetailView):
 
         return context
 
-    @staticmethod
-    def parse_product_name(product_name):
-        # Извлекаем толщину стенки
-        thickness = next(iter(re.findall(r"(\d+(\.\d+)?)\s*мм", product_name)), ("Не указано",))[0] + " мм"
 
-        # Извлекаем марку стали
-        mark = next(iter(re.findall(r"(Ст\d+[пс|кп]?)", product_name)), "Не указано")
-
-        # Извлекаем ГОСТ
-        gost = next(iter(re.findall(r"(ГОСТ\s*\d+-\d+)", product_name)), "Не указано")
-
-        # Определяем тип проката
-        product_type = "горячекатаная" if "горячекатаная" in product_name else \
-                       "холоднокатаная" if "холоднокатаная" in product_name else "Не указано"
-
-        return {
-            "thickness": thickness,
-            "mark": mark,
-            "gost": gost,
-            "product_type": product_type,
-        }
 
 
 
