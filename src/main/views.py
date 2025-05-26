@@ -174,60 +174,55 @@ class CategoryDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         category = self.object
-        
-        subcategories = category.children.all()
 
-        # Получаем все категории
-        all_categories = Category.objects.only('id', 'parent_id')
-
-        # Строим дерево в памяти с использованием defaultdict
-        children_map = defaultdict(list)
-        for cat in all_categories:
-            children_map[cat.parent_id].append(cat.id)
+        # Кэшируем дерево категорий
+        children_map = cache.get('category_tree')
+        if not children_map:
+            all_categories = Category.objects.only('id', 'parent_id')
+            children_map = defaultdict(list)
+            for cat in all_categories:
+                children_map[cat.parent_id].append(cat.id)
+            cache.set('category_tree', children_map, 60 * 60)
 
         # Собираем все id категорий и их потомков
         category_ids = set()
         stack = [category.id]
-
         while stack:
             current_id = stack.pop()
             category_ids.add(current_id)
             stack.extend(children_map.get(current_id, []))
 
-        # Используем кэш для списка продуктов
+        # Кэшируем данные продуктов, а не QuerySet
         cache_key = f'category_{category.id}_products'
-        products = cache.get(cache_key)
+        products_data = cache.get(cache_key)
 
-        if not products:
-            # Получаем продукты одним запросом по всем нужным категориям и сортируем их случайным образом
-            products = Product.objects.filter(category_id__in=category_ids).select_related('category').distinct()
-            products = products.order_by('?')  # Сортируем случайным образом
+        if not products_data:
+            products_qs = Product.objects.filter(category_id__in=category_ids).select_related('category').distinct()
+            products_data = list(products_qs.values('id', 'name', 'price', 'category__name'))
+            cache.set(cache_key, products_data, 60 * 15)
 
-            # Кэшируем результат на 15 минут
-            cache.set(cache_key, products, timeout=60 * 15)
+        # Случайная сортировка на Python
+        random.shuffle(products_data)
 
         # Пагинация
-        paginator = Paginator(products, 15)
+        paginator = Paginator(products_data, 15)
         page_number = self.request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
-        # Получаем количество продуктов через пагинатор
-        total_products = page_obj.paginator.count
-
-        # Главные категории для меню
+        # Остальные данные
+        subcategories = category.children.all()
         top_categories = Category.objects.filter(parent__isnull=True).only('id', 'name')
         three_days_ago = timezone.now() - timedelta(days=3)
         stories = Story.objects.filter(created_at__gte=three_days_ago)
         ancestors = category.get_ancestors()
-    
-        # Передаем данные в шаблон
+
         context.update({
             'page_obj': page_obj,
             'categories': top_categories,
-            'total_products': total_products,
+            'total_products': paginator.count,
             'subcategories': subcategories,
-            'stories' : stories,
-            'ancestors' : ancestors,
+            'stories': stories,
+            'ancestors': ancestors,
         })
         return context
     
