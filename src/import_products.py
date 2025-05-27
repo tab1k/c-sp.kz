@@ -1,7 +1,7 @@
 import os
 import json
 import django
-from django.utils.text import slugify
+from slugify import slugify 
 
 
 # Настрой Django (если запускаешь вне manage.py)
