@@ -306,6 +306,7 @@ class ProductDetailView(DetailView):
 
         # Подгружаем атрибуты с помощью select_related для оптимизации
         attributes = product.attributes.select_related('attribute').all()
+        print(f"Product {product.name} attributes:", list(attributes))
         context['attributes'] = attributes
 
         # Добавляем категорию и её предков
