@@ -304,16 +304,17 @@ class ProductDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         product = self.object
 
-        # ЯВНО загружаем характеристики (через select_related)
+        # Подгружаем атрибуты с помощью select_related для оптимизации
         attributes = product.attributes.select_related('attribute').all()
         context['attributes'] = attributes
 
-        # Категория товара
+        # Добавляем категорию и её предков
         category = product.category
         context['category'] = category
         context['category_ancestors'] = category.get_ancestors()
 
         return context
+
 
 
 
