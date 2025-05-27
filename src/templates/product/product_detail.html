@@ -408,7 +408,7 @@
                             
                             <div class="characteristics">
                                 <h5 class="mb-4 fw-bold">Характеристики</h4>
-                                {% for attr in product.attributes.all %}
+                                {% for attr in attributes %}
                                     <div class="row mb-3">
                                         <div class="col-6 text-black">{{ attr.attribute.name }}</div>
                                         <div class="col-6 fw-semibold text-end text-black">{{ attr.value }}</div>
