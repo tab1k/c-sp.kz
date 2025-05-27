@@ -300,15 +300,13 @@ class ProductDetailView(DetailView):
     template_name = 'product/product_detail.html'
     context_object_name = 'product'
 
-    def get_queryset(self):
-        return Product.objects.prefetch_related('attributes__attribute')
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         product = self.object
 
-        # Добавим характеристики в контекст
-        context['attributes'] = product.attributes.select_related('attribute').all()
+        # ЯВНО загружаем характеристики (через select_related)
+        attributes = product.attributes.select_related('attribute').all()
+        context['attributes'] = attributes
 
         # Категория товара
         category = product.category
