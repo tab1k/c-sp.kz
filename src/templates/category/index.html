@@ -141,6 +141,69 @@
       <div class="container mt-3 mb-4">
         <h4 class=" mb-3" style="color: #262a31;">Каталог</h4>
 
+        <div class="bread-crumbs mt-2">
+				<div class="">
+					<ul class="bread-crumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+						<li class="bread-crumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+						  <a class="bread-crumbs__link" href="/" itemprop="item">
+							<span itemprop="name">Главная</span>
+						  </a>
+						  <meta itemprop="position" content="1">
+						</li>
+
+            <li class="bread-crumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+						  <a class="bread-crumbs__link" href="{% url 'website:category' %}" itemprop="item">
+							<span itemprop="name">Каталог</span>
+						  </a>
+						  <meta itemprop="position" content="1">
+						</li>
+					  
+						{% for cat in ancestors %}
+						  <li class="bread-crumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+							<a class="bread-crumbs__link" href="{{ cat.get_absolute_url }}" itemprop="item">
+							  <span itemprop="name">{{ cat.name|upper }}</span>
+							</a>
+							<meta itemprop="position" content="{{ forloop.counter|add:1 }}">
+						  </li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+
+			<style>
+				.bread-crumbs__list {
+					display: flex;
+					flex-wrap: wrap;
+					margin: 0;
+				
+					margin-bottom: 8px;
+					padding: 0;
+					list-style-type: none;
+				}
+				.bread-crumbs__item {
+					display: flex;
+					align-items: center;
+					margin-bottom: 8px;
+				}
+				.bread-crumbs__link {
+					color: #999;
+					font-weight: 700;
+					font-size: 12px;
+					text-transform: uppercase;
+					letter-spacing: .01em;
+				}
+
+				.bread-crumbs__item::after {
+					content: url('{% static 'images/tech/rigth.svg' %}');
+					display: flex;
+					align-items: center;
+					margin: 0 9px;
+					width: 7px;
+					height: 10px;
+					color: #d3d6db;
+				}
+			</style>
+
         <!-- Истории — круглые, кликабельные -->
         <div class="mx-auto pb-2 pt-2">
           <div class="d-flex gap-3 overflow-auto">
