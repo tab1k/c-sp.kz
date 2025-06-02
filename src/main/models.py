@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from slugify import slugify
-from django.utils import timezone
+from django.utils import timezoneа
 from datetime import timedelta
 
 
