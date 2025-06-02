@@ -158,14 +158,6 @@
 						  <meta itemprop="position" content="1">
 						</li>
 					  
-						{% for cat in ancestors %}
-						  <li class="bread-crumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-							<a class="bread-crumbs__link" href="{{ cat.get_absolute_url }}" itemprop="item">
-							  <span itemprop="name">{{ cat.name|upper }}</span>
-							</a>
-							<meta itemprop="position" content="{{ forloop.counter|add:1 }}">
-						  </li>
-						{% endfor %}
 					</ul>
 				</div>
 			</div>
